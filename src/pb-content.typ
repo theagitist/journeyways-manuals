@@ -105,7 +105,7 @@
         prompt[What do I look like?]
         cbox(2.35in)
         prompt[My name is:]
-        cbox(0.4in)
+        cbox(0.62in)
       },
     )
     v(10pt)
