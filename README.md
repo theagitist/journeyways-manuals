@@ -8,13 +8,14 @@ built as a 1-up reading proof and a 2-up imposed print booklet:
 - **`booklet.pdf`** - the same content imposed **2-up** on landscape letter
   sheets, ready to print, fold, and staple into a half-letter booklet.
 
-**Player Booklet** (the per-player write-in booklet: cover, intro, a fill-in
-Character Sheet, 12 lined journal pages, back cover):
+**Player Booklet** (the per-player write-in booklet: cover, an intro + quick
+reference, two Character Sheets - a "before" near the front and an "after"
+second-to-last - 11 lined journal pages, and a back cover):
 - **`player-booklet.pdf`** - 1-up, letter-proportioned pages.
 - **`player-booklet-2up.pdf`** - imposed **2-up** (16 pages = 4 saddle-stitch
-  sheets). Its art-heavy pages (cover, journal) are faithful full-page renders of
-  the source; the text pages (intro, character sheet, back cover) are rebuilt with
-  the brand fonts.
+  sheets). The cover is a faithful full-page render of the source; the other
+  pages (intro / quick reference, both character sheets, journal pages, back
+  cover) are rebuilt with the brand fonts.
 
 These are a 1:1 recreation of the original `JOURNEYWAYS_Game_Rules.pdf` and its
 imposed `..._BOOKLET.pdf`, rebuilt in Typst so the rules are editable and the
@@ -36,8 +37,9 @@ src/pb-content.typ    Player Booklet content (leaves + rebuilt text pages)
 src/pb-manual.typ     Player Booklet driver: 1-up
 src/pb-booklet.typ    Player Booklet driver: 2-up saddle-stitch imposition
 fonts/                Italianno + Inter (SIL OFL, vendored so builds are reproducible)
-assets/               rules art (cover, swirl, QR) extracted from the source PDF
-assets/player-booklet/ pages/ = full-page renders (cover, journal); art/ = extracted art
+assets/               rules art: cover + swirl from the source PDF; QR generated for journeyways.ca
+assets/player-booklet/ pages/ = cover render; art/ = wash, swirl, intro illustrations, QR
+deploy-web.sh         copy stable PDFs into www/download (run on each stable version)
 build.sh              builds all four PDFs
 ```
 
