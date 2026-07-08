@@ -37,31 +37,45 @@
 // 1. Cover (full render).
 #let pb-cover = img-leaf("pages/cover-01.png")
 
-// 2. Intro: title + prose (left) + two illustrations (right).
-#let pb-intro = pb-frame(pad: 0.45in, {
-  script(46pt, [Journeyways])
-  v(-6pt)
+// 2. Intro + quick guide. Black and white; a short lead, then a handy reference.
+#let qh(body) = block(above: 9pt, below: 3pt,
+  text(font: "Inter", weight: "bold", size: 10pt, fill: c-ink, body))
+#let pb-intro = pb-frame(pad: 0.5in, {
+  script(44pt, [Journeyways])
+  v(-4pt)
   tagline
-  v(10pt)
-  grid(columns: (1.15fr, 1fr), column-gutter: 14pt,
-    {
-      set text(font: "Inter", size: 10pt, fill: c-ink, style: "italic")
-      set par(leading: 0.6em, spacing: 0.85em)
-      [Step into a world where identity is not chosen but uncovered. In Journeyways, you don't play to win; you play to unfold.]
-      parbreak()
-      [Explore selfhood not with labels, but with motion, memory, and meaning.]
-      parbreak()
-      [Whether solo or in chorus, each session reveals a story made only by your presence.]
-      parbreak()
-      [With no fixed roles and no final answers, Journeyways invites you to co-create the story of who you are and who you are becoming.]
-      parbreak()
-      [No rules to break. Just ways to move.]
-    },
-    {
-      image(pba("art/intro-1.png"), width: 100%)
-      v(10pt)
-      image(pba("art/intro-2.png"), width: 100%)
-    },
+  v(9pt)
+  block(width: 100%, text(font: "Inter", size: 11pt, style: "italic", fill: c-ink)[
+    Step into a world where identity is not chosen but uncovered. In Journeyways,
+    you don't play to win; you play to unfold.
+  ])
+  v(15pt)
+  script(28pt, [Quick Guide])
+  v(1pt)
+  set text(font: "Inter", size: 9.5pt, fill: c-ink)
+  set par(leading: 0.5em, spacing: 0.5em)
+  set list(indent: 4pt, spacing: 0.5em, marker: [•])
+
+  qh[Each turn has three phases: Explore, Draw, Reflect.]
+  list(
+    [*Explore:* place a map tile (or invent one on a sticky note), then move one or two spaces.],
+    [*Draw:* take a card from any pile, even the Discard pile.],
+    [*Reflect:* do what the card asks, then write in your journal.],
+  )
+
+  qh[What the card colours mean]
+  list(
+    [*Green:* movement.],
+    [*Blue:* a quote to reflect on.],
+    [*Red:* an encounter.],
+    [*Purple:* a group event (leave these out for solo play).],
+    [*Black:* the passing of time. The game ends when the fifth Black card is drawn.],
+  )
+
+  qh[Good to know]
+  list(
+    [*Green* and *Purple* ask you to perform the action shown; *Blue* and *Red* invite a journal entry.],
+    [There is no winning or losing, only becoming. Take as much time as you need.],
   )
 })
 
