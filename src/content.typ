@@ -296,6 +296,9 @@
         image(asset("qr-instagram.png"), width: 1.3in)
       }),
     )
+    v(0.18in)
+    align(center, text(font: "Inter", size: 7.5pt, fill: c-mut,
+      [© 2025 Adri M. Licensed under CC BY-NC 4.0.]))
   }
 )
 

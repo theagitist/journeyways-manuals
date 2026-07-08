@@ -114,8 +114,7 @@
   place(horizon + center, dy: -0.1in, image(pba("art/qr.png"), width: 2in))
   place(bottom + center, dy: -0.6in, align(center,
     text(font: "Inter", size: 9pt, style: "italic", fill: c-mut)[
-      Prototype material. Not for public distribution. \
-      © 2025. Adri M. All rights reserved. \
+      © 2025 Adri M. Licensed under CC BY-NC 4.0. \
       https://www.journeywaysgame.com
     ]))
 })
