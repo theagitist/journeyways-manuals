@@ -56,6 +56,22 @@ typst compile --font-path fonts --root . src/manual.typ  manual.pdf
 typst compile --font-path fonts --root . src/booklet.typ booklet.pdf
 ```
 
+## Deploying to the website (ongoing)
+
+The public site (`www.journeyways.ca`) offers the Rulebook and Player Booklet as
+downloads. **Whenever there is a new stable version of the documents, run:**
+
+```sh
+./deploy-web.sh
+```
+
+It rebuilds, copies the readable 1-up PDFs into the site's `download/` folder
+(`manual.pdf` -> the Rulebook, `player-booklet.pdf` -> the Player Booklet, same
+filenames so links keep working), and refreshes the file-size labels in
+`boardgame.html`. Afterwards, commit the `www` repo, and if `journeyways.ca` is
+proxied through Cloudflare, purge the cache for `/download/*.pdf` so visitors get
+the new files.
+
 ## Printing the booklet
 
 `booklet.pdf` is 6 landscape letter sheets in saddle-stitch order.

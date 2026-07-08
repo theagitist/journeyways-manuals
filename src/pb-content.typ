@@ -50,8 +50,8 @@
     you don't play to win; you play to unfold.
   ])
   v(15pt)
-  script(28pt, [Quick Guide])
-  v(1pt)
+  script(28pt, [Quick Reference])
+  v(9pt)
   set text(font: "Inter", size: 9.5pt, fill: c-ink)
   set par(leading: 0.5em, spacing: 0.5em)
   set list(indent: 4pt, spacing: 0.5em, marker: [•])
@@ -76,6 +76,8 @@
   list(
     [*Green* and *Purple* ask you to perform the action shown; *Blue* and *Red* invite a journal entry.],
     [There is no winning or losing, only becoming. Take as much time as you need.],
+    [Turns are not strict: play when you have the opportunity to do so.],
+    [Any rule can be bent or changed, as long as everyone playing agrees.],
   )
 })
 
@@ -117,9 +119,10 @@
 // are panned/repositioned per page (deterministic by index) so the 12 pages keep
 // the source's varied feel without baking in the original raster header.
 #let pb-journal-page(i) = box(width: pbw, height: pbh, clip: true, {
-  // faint watercolour wash, panned horizontally per page
+  // faint watercolour wash, panned horizontally per page. Width is wider than the
+  // page (+4in) so panning left never exposes white on the right (max pan 3in).
   place(top + left, dx: -0.5in * calc.rem(i, 7),
-    image(pba("art/wash-faint.png"), height: pbh, fit: "cover"))
+    image(pba("art/wash-faint.png"), width: pbw + 4in))
   // faint swirl decoration, position + size varied per page
   place(top + right,
     dx: 0.25in + 0.1in * calc.rem(i, 3),
