@@ -104,7 +104,7 @@
         script(30pt, [Journeyways])
         prompt[What do I look like?]
         cbox(2.35in)
-        prompt[My name is:]
+        prompt[What's my name?]
         cbox(0.62in)
       },
     )
