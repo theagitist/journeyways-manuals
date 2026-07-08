@@ -5,7 +5,7 @@
 // text pages (intro, character sheet, back cover) are rebuilt with the brand
 // fonts (Italianno + Inter). The booklet is monochrome (black script headings).
 //
-// Content (c) 2025 Adri M., CC BY-NC 4.0.
+// Content (c) 2025-2026 Adri M., CC BY-NC 4.0.
 
 // Letter-proportioned leaf matching the source trim (695.25 x 900 pt ~= 0.773).
 #let pbw = 5.5in
@@ -188,8 +188,8 @@
   place(horizon + center, dy: -0.1in, image(pba("art/qr.png"), width: 2in))
   place(bottom + center, dy: -0.6in, align(center,
     text(font: "Inter", size: 9pt, style: "italic", fill: c-mut)[
-      © 2025 Adri M. Licensed under CC BY-NC 4.0. \
-      https://www.journeywaysgame.com
+      © 2025-2026 Adri M. Licensed under CC BY-NC 4.0. \
+      https://www.journeyways.ca
     ]))
 })
 

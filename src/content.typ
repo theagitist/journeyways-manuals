@@ -8,7 +8,7 @@
 // and drops Notes. TOC page numbers differ to match.
 //
 // Typography mirrors the web/play brand: Italianno (display script) + Inter (body).
-// Content reproduces the JOURNEYWAYS game rules (c) 2025 Adri M., CC BY-NC 4.0.
+// Content reproduces the JOURNEYWAYS game rules (c) 2025-2026 Adri M., CC BY-NC 4.0.
 
 #let leaf-w = 5.5in
 #let leaf-h = 8.5in
@@ -55,12 +55,9 @@
       image(asset("swirl.png"), width: 4.2in))
     place(top + center, dy: 0.34in,
       text(font: "Inter", size: 8pt, fill: c-ink,
-        [© 2025 JOURNEYWAYS. A board game about becoming.]))
+        [© 2025-2026 JOURNEYWAYS. A board game about becoming.]))
     place(top + left, dx: 0.55in, dy: 0.7in,
       box(width: leaf-w - 1.1in, height: leaf-h - 1.5in, body-set(body)))
-    place(bottom + center, dy: -0.32in,
-      text(font: "Inter", size: 8.5pt, style: "italic", fill: c-mut,
-        [This is a prototype and work in progress. All content is subject to change.]))
     if num != none {
       place(bottom + (if left-num { left } else { right }),
         dx: (if left-num { 0.55in } else { -0.55in }), dy: -0.3in,
@@ -281,24 +278,13 @@
     align(center, text(font: "Inter", style: "italic", size: 14pt, fill: c-ink, [A game about becoming.]))
     v(0.12in)
     align(center, text(font: "Italianno", size: 30pt, fill: c-orange, [Website]))
-    v(0.06in)
-    align(center, image(asset("qr-website.png"), width: 1.85in))
-    v(0.18in)
-    grid(columns: (1fr, 1fr), column-gutter: 0.3in,
-      align(center, {
-        text(font: "Italianno", size: 17pt, fill: c-orange, [Online Game Rules (updated)])
-        v(0.04in)
-        image(asset("qr-rules.png"), width: 1.3in)
-      }),
-      align(center, {
-        text(font: "Italianno", size: 17pt, fill: c-orange, [Adri M. Instagram])
-        v(0.04in)
-        image(asset("qr-instagram.png"), width: 1.3in)
-      }),
-    )
-    v(0.18in)
+    v(0.12in)
+    align(center, image(asset("qr-website.png"), width: 2.4in))
+    v(0.1in)
+    align(center, text(font: "Inter", size: 10pt, fill: c-ink, [www.journeyways.ca]))
+    v(0.4in)
     align(center, text(font: "Inter", size: 7.5pt, fill: c-mut,
-      [© 2025 Adri M. Licensed under CC BY-NC 4.0.]))
+      [© 2025-2026 Adri M. Licensed under CC BY-NC 4.0.]))
   }
 )
 
