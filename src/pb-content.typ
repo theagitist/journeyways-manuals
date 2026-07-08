@@ -133,18 +133,18 @@
       {
         script(30pt, [Journeyways])
         cbox(1.9in)
-        prompt[My name:]
+        prompt[What's my name?]
         cbox(0.4in)
-        prompt[My story title:]
+        prompt[What's my story title?]
         cbox(0.4in)
       },
     )
     v(9pt)
-    prompt[One word that stays with me:]
+    prompt[What is one word that stays with me?]
     cbox(0.34in)
-    prompt[One question that stays with me:]
+    prompt[What is one question that stays with me?]
     cbox(0.34in)
-    prompt[One place in the map I would like to revisit:]
+    prompt[What is one place in the map I would like to revisit?]
     cbox(0.34in)
   }))
 })
@@ -193,14 +193,13 @@
     ]))
 })
 
-// Reading order (16): cover, intro, first character sheet, 10 journal pages, the
-// second (after) character sheet, one more journal page, back cover.
+// Reading order (16): cover, intro, first character sheet, 11 journal pages, the
+// second (after) character sheet second-to-last, back cover last.
 #let pb-leaves = (
   pb-cover,
   pb-intro,
   pb-charsheet,
-  ..pb-journal.slice(0, 10),
+  ..pb-journal,
   pb-charsheet-2,
-  pb-journal.at(10),
   pb-back,
 )
