@@ -98,9 +98,31 @@
   }))
 })
 
-// 4-15. Journal pages (full renders).
-#let pad2(n) = if n < 10 { "0" + str(n) } else { str(n) }
-#let pb-journal = range(4, 16).map(n => img-leaf("pages/journal-" + pad2(n) + ".png"))
+// 4-15. Journal pages: rebuilt in Typst. Faint wash + swirl background with an
+// Italianno "Journeyways" header and vector ruled lines. The shared wash/swirl
+// are panned/repositioned per page (deterministic by index) so the 12 pages keep
+// the source's varied feel without baking in the original raster header.
+#let pb-journal-page(i) = box(width: pbw, height: pbh, clip: true, {
+  // faint watercolour wash, panned horizontally per page
+  place(top + left, dx: -0.5in * calc.rem(i, 7),
+    image(pba("art/wash-faint.png"), height: pbh, fit: "cover"))
+  // faint swirl decoration, position + size varied per page
+  place(top + right,
+    dx: 0.25in + 0.1in * calc.rem(i, 3),
+    dy: 0.1in + 0.13in * calc.rem(i * 5, 7),
+    image(pba("art/swirl-faint.png"), width: 2.7in + 0.16in * calc.rem(i * 2, 4)))
+  // Italianno header, top-right
+  place(top + right, dx: -0.45in, dy: 0.42in,
+    text(font: "Italianno", size: 34pt, fill: c-ink, [Journeyways]))
+  // ruled writing lines
+  place(top + left, dx: 0.45in, dy: 1.2in, box(width: pbw - 0.9in, {
+    for _ in range(17) {
+      line(length: 100%, stroke: 0.6pt + c-boxln)
+      v(0.315in)
+    }
+  }))
+})
+#let pb-journal = range(12).map(i => pb-journal-page(i))
 
 // 16. Back cover.
 #let pb-back = box(width: pbw, height: pbh, clip: true, {
