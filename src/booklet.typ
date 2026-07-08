@@ -7,15 +7,17 @@
 //   Short-edge duplex printers: set flip-backs to true (rotates back sheets 180deg).
 //
 // Build: typst compile --font-path ../fonts --root .. src/booklet.typ booklet.pdf
-#import "content.typ": leaves, leaf-w, leaf-h
+#import "content.typ": booklet-leaves, leaf-w, leaf-h
 
-#let flip-backs = false
+// The source booklet is bound for SHORT-edge duplex (back sheets rotated 180deg).
+// Set to false if your printer flips on the long edge.
+#let flip-backs = true
 
 #let blank = box(width: leaf-w, height: leaf-h)
 
 // Pad the reading-order leaves to a multiple of 4 (saddle-stitch needs full sheets).
 #let padded = {
-  let ls = leaves
+  let ls = booklet-leaves
   let target = calc.ceil(ls.len() / 4) * 4
   for _ in range(target - ls.len()) { ls.push(blank) }
   ls
@@ -36,12 +38,10 @@
 
 #for (i, sp) in spreads.enumerate() {
   if i > 0 { pagebreak() }
-  let sheet = {
-    place(top + left, sp.at(0))
-    place(top + left, dx: leaf-w, sp.at(1))
-  }
+  // Two fixed-size leaf boxes side by side fill the landscape sheet exactly.
+  let sheet = stack(dir: ltr, sp.at(0), sp.at(1))
   if flip-backs and calc.odd(i) {
-    box(width: 2 * leaf-w, height: leaf-h, rotate(180deg, origin: center + horizon, sheet))
+    rotate(180deg, origin: center + horizon, reflow: true, sheet)
   } else {
     sheet
   }

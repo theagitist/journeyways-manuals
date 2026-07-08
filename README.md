@@ -11,6 +11,12 @@ These are a 1:1 recreation of the original `JOURNEYWAYS_Game_Rules.pdf` and its
 imposed `..._BOOKLET.pdf`, rebuilt in Typst so the rules are editable and the
 typography matches the web/play brand (Italianno display + Inter body).
 
+The two source PDFs paginate the same text slightly differently, so
+`content.typ` keeps the text as atomic section chunks and composes them into two
+leaf sets: `manual-leaves` (Solo + Advanced share folio 5, plus a Notes page) and
+`booklet-leaves` (Solo, Advanced, and Tips each get their own folio, no Notes).
+The table-of-contents page numbers follow suit.
+
 ## Layout
 
 ```
@@ -41,12 +47,13 @@ typst compile --font-path fonts --root . src/booklet.typ booklet.pdf
 
 `booklet.pdf` is 6 landscape letter sheets in saddle-stitch order.
 
-1. Print **double-sided**, flipped on the **long edge** (the default).
+1. Print **double-sided**, flipped on the **short edge** (the default, matching
+   the original booklet; the back sheets are pre-rotated 180 degrees for this).
 2. Stack the sheets in order, fold the whole stack in half down the middle.
 3. Staple the spine.
 
-Short-edge duplex printer? Set `flip-backs` to `true` at the top of
-`src/booklet.typ` and rebuild; it rotates the back sheets 180 degrees.
+Long-edge duplex printer? Set `flip-backs` to `false` at the top of
+`src/booklet.typ` and rebuild.
 
 ## Editing the rules
 
@@ -56,10 +63,12 @@ at once. Change the palette or type in the helpers near the top of that file.
 
 ## Fidelity notes
 
-The content reproduces the source verbatim, including two typos in the original
-that were left as-is for a true 1:1: "face **dawn**" (Game Setup step 1) and
-"draws a tile **fom** any pile" (step 7). Fix them in `content.typ` if you want a
-corrected edition.
+This is a **corrected edition**: two typos in the original were fixed here, "face
+dawn" -> "face down" (Game Setup step 1) and "draws a tile fom" -> "draws a tile
+from" (step 7). Everything else reproduces the source.
+
+The cover uses the low-resolution (72 dpi) image embedded in the source PDF; a
+crisper print cover could be swapped in from `original_assets/boardgame/cover/`.
 
 ## License
 

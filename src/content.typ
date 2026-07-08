@@ -1,10 +1,14 @@
 // JOURNEYWAYS Game Rules - shared content module.
-// One source of truth for both the 1-up reading manual and the 2-up imposed booklet.
-// Each leaf is a fixed half-letter (5.5in x 8.5in) page block, so two sit 1:1 on a
-// landscape letter sheet with no scaling.
+// The two source PDFs paginate the same text differently, so this module keeps
+// the text as atomic section chunks and composes them into two leaf sets:
+//   manual-leaves   -> matches JOURNEYWAYS_Game_Rules.pdf (portrait reading manual)
+//   booklet-leaves  -> matches JOURNEYWAYS_Game_Rules_BOOKLET.pdf (imposed booklet)
+// Difference: the manual crams Solo+Advanced on folio 5 and has a Notes page
+// (folio 7); the booklet gives Solo, Advanced, and Tips their own folios (5/6/7)
+// and drops Notes. TOC page numbers differ to match.
 //
 // Typography mirrors the web/play brand: Italianno (display script) + Inter (body).
-// Content reproduces JOURNEYWAYS_Game_Rules.pdf (c) 2025 Adri M., CC BY-NC 4.0.
+// Content reproduces the JOURNEYWAYS game rules (c) 2025 Adri M., CC BY-NC 4.0.
 
 #let leaf-w = 5.5in
 #let leaf-h = 8.5in
@@ -21,15 +25,11 @@
 #let asset(name) = "../assets/" + name
 
 // --- Type helpers --------------------------------------------------------------
-// Big centered script section title.
 #let title(body) = align(center, text(font: "Italianno", size: 44pt, fill: c-orange, body))
-// Left-aligned script subsection heading.
 #let subhead(body) = block(above: 12pt, below: 6pt,
   text(font: "Italianno", size: 25pt, fill: c-orange, body))
-// Small bold orange label (1. Explore ...).
 #let label-b(body) = block(above: 8pt, below: 2pt,
   text(font: "Inter", weight: "bold", size: 10.5pt, fill: c-orange, body))
-// Coloured card word.
 #let card(name, col) = text(fill: col, weight: "bold", name)
 #let g = card("Green", c-green)
 #let bl = card("Black", c-mut)
@@ -42,32 +42,22 @@
   set par(leading: 0.66em, spacing: 0.9em, justify: false)
   body
 }
-
-// Paragraph: a block so consecutive body paragraphs space apart in code mode
-// (bare [..] blocks would otherwise concatenate with no break).
+// Paragraph block so consecutive body paragraphs space apart in code mode.
 #let p(body) = block(below: 0.75em, width: 100%, body)
-
-// Bulleted / numbered lists tuned to the source spacing.
 #let blist(..items) = list(indent: 6pt, spacing: 0.55em, ..items)
 #let nlist(..items) = enum(indent: 6pt, spacing: 0.6em, ..items)
 
 // --- Page frame ----------------------------------------------------------------
-// A framed content leaf: faint swirl, running head, footer with outer page number.
-// `num`: printed page number (none on the front matter). `left-num`: number corner.
 #let frame(num: none, left-num: false, body) = box(
   width: leaf-w, height: leaf-h, clip: true,
   {
-    // faint decorative swirl, bleeding off the top-right corner
     place(top + right, dx: 0.35in, dy: -0.25in,
       image(asset("swirl.png"), width: 4.2in))
-    // running head
     place(top + center, dy: 0.34in,
       text(font: "Inter", size: 8pt, fill: c-ink,
         [© 2025 JOURNEYWAYS. A board game about becoming.]))
-    // body column
     place(top + left, dx: 0.55in, dy: 0.7in,
       box(width: leaf-w - 1.1in, height: leaf-h - 1.5in, body-set(body)))
-    // footer
     place(bottom + center, dy: -0.32in,
       text(font: "Inter", size: 8.5pt, style: "italic", fill: c-mut,
         [This is a prototype and work in progress. All content is subject to change.]))
@@ -79,13 +69,13 @@
   }
 )
 
-// --- The leaves (reading order) ------------------------------------------------
+// --- Shared front matter -------------------------------------------------------
 
-// 1. Cover: full-bleed art.
+// Cover: full-bleed art.
 #let leaf-cover = box(width: leaf-w, height: leaf-h, clip: true,
   image(asset("cover.png"), width: leaf-w, height: leaf-h, fit: "cover"))
 
-// 2. Title / intro (front matter, unnumbered).
+// Title / intro (unnumbered).
 #let leaf-title = frame(
   {
     v(0.35in)
@@ -112,19 +102,17 @@
   }
 )
 
-// 3. Table of Contents (printed 1).
-#let toc-line(l, p, indent: 0pt, bold: false, serif: false) = {
-  set text(font: (if serif { "Inter" } else { "Inter" }),
-    weight: (if bold { "bold" } else { "regular" }),
+// Table of Contents, parameterised so the two editions get the right folios.
+#let toc-line(l, pg, indent: 0pt, bold: false, serif: false) = {
+  set text(weight: (if bold { "bold" } else { "regular" }),
     style: (if serif { "italic" } else { "normal" }),
-    size: (if bold { 11pt } else { 9pt }),
-    fill: c-ink)
+    size: (if bold { 11pt } else { 9pt }), fill: c-ink)
   box(width: 100%, inset: (left: indent))[
-    #l #box(width: 1fr, repeat[.]) #p
+    #l #box(width: 1fr, repeat[.]) #pg
   ]
   v(if bold { 0.35em } else { 0.15em })
 }
-#let leaf-toc = frame(num: 1, left-num: true,
+#let make-toc(adv, own, tips) = frame(num: 1, left-num: true,
   {
     title[Table of Contents]
     v(0.2in)
@@ -141,17 +129,17 @@
     toc-line("Solo vs Group Play", "5", bold: true)
     toc-line("Solo Play", "5", indent: 14pt, serif: true)
     toc-line("Group Play", "5", indent: 14pt, serif: true)
-    toc-line("Advanced Concepts", "5", bold: true)
-    toc-line("Session Endings", "5", indent: 14pt, serif: true)
-    toc-line("Returning to Previous Sessions", "5", indent: 14pt, serif: true)
-    toc-line("Creating Your Own Elements", "6", indent: 14pt, serif: true)
-    toc-line("Tips for Meaningful Play", "6", bold: true)
-    toc-line("Creating Safe Space", "6", indent: 14pt, serif: true)
-    toc-line("Deepening the Experience", "6", indent: 14pt, serif: true)
+    toc-line("Advanced Concepts", adv, bold: true)
+    toc-line("Session Endings", adv, indent: 14pt, serif: true)
+    toc-line("Returning to Previous Sessions", adv, indent: 14pt, serif: true)
+    toc-line("Creating Your Own Elements", own, indent: 14pt, serif: true)
+    toc-line("Tips for Meaningful Play", tips, bold: true)
+    toc-line("Creating Safe Space", tips, indent: 14pt, serif: true)
+    toc-line("Deepening the Experience", tips, indent: 14pt, serif: true)
   }
 )
 
-// 4. Game Setup (printed 2).
+// Game Setup (folio 2).
 #let leaf-setup = frame(num: 2, left-num: false,
   {
     title[Game Setup]
@@ -167,19 +155,19 @@
     )
     subhead[Initial Setup]
     nlist(
-      [Shuffle all cards together and place them face dawn in three draw piles.],
+      [Shuffle all cards together and place them face down in three draw piles.],
       [Draw one card and place it apart face up. This will be the Discard pile.],
       [Find the Starter board tile and set it apart. Shuffle all others and place them face down in three piles.],
       [Each player takes one player token.],
       [Use the die to determine the starting player. For example, highest number goes first.],
       [Place the Starter board tile in the center of the table.],
-      [Taking turns, each player draws a tile fom any pile and places it adjacent to another previously placed tile. If it's a blank tile, put it back in the pile and draw again.],
+      [Taking turns, each player draws a tile from any pile and places it adjacent to another previously placed tile. If it's a blank tile, put it back in the pile and draw again.],
       [All players place their tokens on the Starter tile.],
     )
   }
 )
 
-// 5. Basic Gameplay (printed 3).
+// Basic Gameplay (folio 3).
 #let leaf-gameplay = frame(num: 3, left-num: true,
   {
     title[Basic Gameplay]
@@ -199,7 +187,7 @@
   }
 )
 
-// 6. Writing your journal (printed 4).
+// Writing your journal (folio 4).
 #let leaf-journal = frame(num: 4, left-num: false,
   {
     title[Writing your journal]
@@ -218,77 +206,73 @@
   }
 )
 
-// 7. Solo vs Group Play / Advanced Concepts (printed 5).
-#let leaf-solo = frame(num: 5, left-num: true,
-  {
-    title[Solo vs Group Play]
-    subhead[Solo Play]
-    blist(
-      [Remove the #pp cards from the game.],
-      [Focus on deep personal reflection.],
-      [Take as much time as you need.],
-      [Use journaling extensively.],
-      [Create your own pacing.],
-      [Return to previous sessions.],
-    )
-    subhead[Group Play]
-    blist(
-      [Share reflections with others.],
-      [Learn from different perspectives.],
-      [Build collective narratives.],
-      [Support each other's growth.],
-      [Create shared memories.],
-    )
-    v(0.15in)
-    title[Advanced Concepts]
-    subhead[Session Endings]
-    p[It's recommended to end the session when the fifth #bl card is drawn. Each player can add a final entry to their journal, or just leave it as it is.]
-    p[However, if all players agree you can end the session after any amount of #bl cards are drawn, or disregard the #bl cards and use a timer, etc.]
-    subhead[Returning to Previous Sessions]
-    [JOURNEYWAYS is designed for ongoing play. Return to previous sessions, revisit old insights, and see how your understanding has evolved. Your character and story continue to develop between sessions.]
-  }
-)
+// --- Atomic section chunks (composed differently per edition) -------------------
 
-// 8. Creating Your Own Elements / Tips for Meaningful Play (printed 6).
-#let leaf-tips = frame(num: 6, left-num: false,
-  {
-    subhead[Creating Your Own Elements]
-    [Feel free to add your own story cards, character elements, or game mechanics. JOURNEYWAYS is a framework for exploration; make it your own.]
-    v(0.35in)
-    title[Tips for Meaningful Play]
-    subhead[Creating Safe Space]
-    blist(
-      [Set aside dedicated time.],
-      [Minimize distractions.],
-      [Create a comfortable environment.],
-      [Honor everyone's privacy.],
-      [Practice active listening.],
-    )
-    subhead[Deepening the Experience]
-    blist(
-      [Ask open-ended questions.],
-      [Embrace uncertainty.],
-      [Allow for silence and reflection.],
-      [Be curious, not judgmental.],
-      [Celebrate small discoveries.],
-    )
-  }
-)
+#let sec-solo = {
+  title[Solo vs Group Play]
+  subhead[Solo Play]
+  blist(
+    [Remove the #pp cards from the game.],
+    [Focus on deep personal reflection.],
+    [Take as much time as you need.],
+    [Use journaling extensively.],
+    [Create your own pacing.],
+    [Return to previous sessions.],
+  )
+  subhead[Group Play]
+  blist(
+    [Share reflections with others.],
+    [Learn from different perspectives.],
+    [Build collective narratives.],
+    [Support each other's growth.],
+    [Create shared memories.],
+  )
+}
 
-// 9. Notes (printed 7).
-#let leaf-notes = frame(num: 7, left-num: true,
-  {
-    title[Notes]
-    v(0.3in)
-    // ruled lines
-    for _ in range(22) {
-      line(length: 100%, stroke: 0.6pt + c-ink)
-      v(0.34in)
-    }
-  }
-)
+#let sec-advanced = {
+  title[Advanced Concepts]
+  subhead[Session Endings]
+  p[It's recommended to end the session when the fifth #bl card is drawn. Each player can add a final entry to their journal, or just leave it as it is.]
+  p[However, if all players agree you can end the session after any amount of #bl cards are drawn, or disregard the #bl cards and use a timer, etc.]
+  subhead[Returning to Previous Sessions]
+  [JOURNEYWAYS is designed for ongoing play. Return to previous sessions, revisit old insights, and see how your understanding has evolved. Your character and story continue to develop between sessions.]
+}
 
-// 10. Website / QR codes (printed 8).
+#let sec-creating-own = {
+  subhead[Creating Your Own Elements]
+  [Feel free to add your own story cards, character elements, or game mechanics. JOURNEYWAYS is a framework for exploration; make it your own.]
+}
+
+#let sec-tips = {
+  title[Tips for Meaningful Play]
+  subhead[Creating Safe Space]
+  blist(
+    [Set aside dedicated time.],
+    [Minimize distractions.],
+    [Create a comfortable environment.],
+    [Honor everyone's privacy.],
+    [Practice active listening.],
+  )
+  subhead[Deepening the Experience]
+  blist(
+    [Ask open-ended questions.],
+    [Embrace uncertainty.],
+    [Allow for silence and reflection.],
+    [Be curious, not judgmental.],
+    [Celebrate small discoveries.],
+  )
+}
+
+#let sec-notes = {
+  title[Notes]
+  v(0.3in)
+  for _ in range(22) {
+    line(length: 100%, stroke: 0.6pt + c-ink)
+    v(0.34in)
+  }
+}
+
+// Website / QR codes (folio 8).
 #let leaf-web = frame(num: 8, left-num: false,
   {
     v(0.1in)
@@ -315,8 +299,34 @@
   }
 )
 
-// Reading order (10 leaves). Front matter (cover, title) then printed 1..8.
-#let leaves = (
-  leaf-cover, leaf-title, leaf-toc, leaf-setup, leaf-gameplay,
-  leaf-journal, leaf-solo, leaf-tips, leaf-notes, leaf-web,
+// --- The two editions ----------------------------------------------------------
+
+// Portrait reading manual: Solo+Advanced share folio 5, Creating-Own+Tips share
+// folio 6, Notes is folio 7. (matches JOURNEYWAYS_Game_Rules.pdf)
+#let manual-leaves = (
+  leaf-cover,
+  leaf-title,
+  make-toc("5", "6", "6"),
+  leaf-setup,
+  leaf-gameplay,
+  leaf-journal,
+  frame(num: 5, left-num: true, { sec-solo; v(0.15in); sec-advanced }),
+  frame(num: 6, left-num: false, { sec-creating-own; v(0.35in); sec-tips }),
+  frame(num: 7, left-num: true, sec-notes),
+  leaf-web,
+)
+
+// Imposed booklet: Solo (folio 5), Advanced+Creating-Own (folio 6), Tips (folio 7),
+// no Notes page. (matches JOURNEYWAYS_Game_Rules_BOOKLET.pdf)
+#let booklet-leaves = (
+  leaf-cover,
+  leaf-title,
+  make-toc("6", "6", "7"),
+  leaf-setup,
+  leaf-gameplay,
+  leaf-journal,
+  frame(num: 5, left-num: true, sec-solo),
+  frame(num: 6, left-num: false, { sec-advanced; v(0.3in); sec-creating-own }),
+  frame(num: 7, left-num: true, sec-tips),
+  leaf-web,
 )
