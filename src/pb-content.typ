@@ -114,7 +114,42 @@
   }))
 })
 
-// 4-15. Journal pages: rebuilt in Typst. Faint wash + swirl background with an
+// Second Character Sheet (the "after", filled at the end to compare how the
+// character evolved). Distinct fields from the first sheet.
+#let pb-charsheet-2 = box(width: pbw, height: pbh, clip: true, {
+  place(top + left, image(pba("art/wash-faint.png"), width: pbw, height: pbh, fit: "cover"))
+  place(top + left, dx: pbw - 2.7in, dy: 0.5in, image(pba("art/swirl-faint.png"), width: 2.4in))
+  place(top + left, dx: 0.4in, dy: 0.4in, box(width: pbw - 0.8in, height: pbh - 0.8in, {
+    grid(columns: (1fr, 1fr), column-gutter: 14pt,
+      {
+        script(30pt, [Character Sheet])
+        prompt[Where am I now?]
+        cbox(0.55in)
+        prompt[What/who am I now?]
+        cbox(0.55in)
+        prompt[What changed?]
+        cbox(1.15in)
+      },
+      {
+        script(30pt, [Journeyways])
+        cbox(1.9in)
+        prompt[My name:]
+        cbox(0.4in)
+        prompt[My story title:]
+        cbox(0.4in)
+      },
+    )
+    v(9pt)
+    prompt[One word that stays with me:]
+    cbox(0.34in)
+    prompt[One question that stays with me:]
+    cbox(0.34in)
+    prompt[One place in the map I would like to revisit:]
+    cbox(0.34in)
+  }))
+})
+
+// Journal pages: rebuilt in Typst. Faint wash + swirl background with an
 // Italianno "Journeyways" header and vector ruled lines. The shared wash/swirl
 // are panned/repositioned per page (deterministic by index) so the 12 pages keep
 // the source's varied feel without baking in the original raster header.
@@ -139,7 +174,7 @@
     }
   }))
 })
-#let pb-journal = range(12).map(i => pb-journal-page(i))
+#let pb-journal = range(11).map(i => pb-journal-page(i))
 
 // 16. Back cover.
 #let pb-back = box(width: pbw, height: pbh, clip: true, {
@@ -158,5 +193,14 @@
     ]))
 })
 
-// Reading order: cover, intro, character sheet, 12 journal pages, back cover = 16.
-#let pb-leaves = (pb-cover, pb-intro, pb-charsheet, ..pb-journal, pb-back)
+// Reading order (16): cover, intro, first character sheet, 10 journal pages, the
+// second (after) character sheet, one more journal page, back cover.
+#let pb-leaves = (
+  pb-cover,
+  pb-intro,
+  pb-charsheet,
+  ..pb-journal.slice(0, 10),
+  pb-charsheet-2,
+  pb-journal.at(10),
+  pb-back,
+)
