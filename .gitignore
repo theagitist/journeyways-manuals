@@ -1,0 +1,7 @@
+# Built PDFs (regenerate with ./build.sh; distribution copies live on the fileshare)
+/manual.pdf
+/booklet.pdf
+
+# Editor / OS cruft
+.DS_Store
+*.swp
