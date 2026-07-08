@@ -1,11 +1,20 @@
-# JOURNEYWAYS Game Rules (Typst)
+# JOURNEYWAYS print material (Typst)
 
-Typst sources for the JOURNEYWAYS boardgame rules, in two forms from one content
-source:
+Typst sources for the JOURNEYWAYS boardgame print components. Two documents, each
+built as a 1-up reading proof and a 2-up imposed print booklet:
 
+**Game rules:**
 - **`manual.pdf`** - 1-up reading proof, one half-letter page per page.
 - **`booklet.pdf`** - the same content imposed **2-up** on landscape letter
   sheets, ready to print, fold, and staple into a half-letter booklet.
+
+**Player Booklet** (the per-player write-in booklet: cover, intro, a fill-in
+Character Sheet, 12 lined journal pages, back cover):
+- **`player-booklet.pdf`** - 1-up, letter-proportioned pages.
+- **`player-booklet-2up.pdf`** - imposed **2-up** (16 pages = 4 saddle-stitch
+  sheets). Its art-heavy pages (cover, journal) are faithful full-page renders of
+  the source; the text pages (intro, character sheet, back cover) are rebuilt with
+  the brand fonts.
 
 These are a 1:1 recreation of the original `JOURNEYWAYS_Game_Rules.pdf` and its
 imposed `..._BOOKLET.pdf`, rebuilt in Typst so the rules are editable and the
@@ -20,12 +29,16 @@ The table-of-contents page numbers follow suit.
 ## Layout
 
 ```
-src/content.typ   the rules content + styles (single source of truth)
-src/manual.typ    driver: 1-up reading proof
-src/booklet.typ   driver: 2-up saddle-stitch imposition
-fonts/            Italianno + Inter (SIL OFL, vendored so builds are reproducible)
-assets/           cover, decorative swirl, QR codes (extracted from the source PDF)
-build.sh          builds both PDFs
+src/content.typ       rules content + styles (source of truth for the rules)
+src/manual.typ        rules driver: 1-up reading proof
+src/booklet.typ       rules driver: 2-up saddle-stitch imposition
+src/pb-content.typ    Player Booklet content (leaves + rebuilt text pages)
+src/pb-manual.typ     Player Booklet driver: 1-up
+src/pb-booklet.typ    Player Booklet driver: 2-up saddle-stitch imposition
+fonts/                Italianno + Inter (SIL OFL, vendored so builds are reproducible)
+assets/               rules art (cover, swirl, QR) extracted from the source PDF
+assets/player-booklet/ pages/ = full-page renders (cover, journal); art/ = extracted art
+build.sh              builds all four PDFs
 ```
 
 ## Build

@@ -4,8 +4,13 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+# Game rules (portrait manual + 2-up imposed booklet)
 typst compile --font-path fonts --root . src/manual.typ  manual.pdf
 typst compile --font-path fonts --root . src/booklet.typ booklet.pdf
 
+# Player Booklet (1-up + 2-up imposed)
+typst compile --font-path fonts --root . src/pb-manual.typ  player-booklet.pdf
+typst compile --font-path fonts --root . src/pb-booklet.typ player-booklet-2up.pdf
+
 echo "Built:"
-ls -la manual.pdf booklet.pdf
+ls -la manual.pdf booklet.pdf player-booklet.pdf player-booklet-2up.pdf
