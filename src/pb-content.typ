@@ -38,7 +38,7 @@
 #let pb-cover = img-leaf("pages/cover-01.png")
 
 // 2. Intro + quick guide. Black and white; a short lead, then a handy reference.
-#let qh(body) = block(above: 9pt, below: 3pt,
+#let qh(body) = block(above: 10pt, below: 7pt,
   text(font: "Inter", weight: "bold", size: 10pt, fill: c-ink, body))
 #let pb-intro = pb-frame(pad: 0.5in, {
   script(44pt, [Journeyways])
@@ -49,17 +49,17 @@
     Step into a world where identity is not chosen but uncovered. In Journeyways,
     you don't play to win; you play to unfold.
   ])
-  v(15pt)
+  v(6pt)
   script(28pt, [Quick Reference])
   v(9pt)
   set text(font: "Inter", size: 9.5pt, fill: c-ink)
   set par(leading: 0.5em, spacing: 0.5em)
   set list(indent: 4pt, spacing: 0.5em, marker: [•])
 
-  qh[Each turn has three phases: Explore, Draw, Reflect.]
+  qh[Each turn has three phases: Explore, Pick, Reflect.]
   list(
     [*Explore:* place a map tile (or invent one on a sticky note), then move one or two spaces.],
-    [*Draw:* take a card from any pile, even the Discard pile.],
+    [*Pick:* take a card from any pile, even the Discard pile.],
     [*Reflect:* do what the card asks, then write in your journal.],
   )
 
@@ -69,7 +69,7 @@
     [*Blue:* a quote to reflect on.],
     [*Red:* an encounter.],
     [*Purple:* a group event (leave these out for solo play).],
-    [*Black:* the passing of time. The game ends when the fifth Black card is drawn.],
+    [*Black:* the passing of time. The game ends when the fifth Black card is picked.],
   )
 
   qh[Good to know]
@@ -91,6 +91,7 @@
     grid(columns: (1fr, 1fr), column-gutter: 14pt,
       {
         script(30pt, [Character Sheet])
+        v(20pt)
         prompt[Where do I come from?]
         cbox(0.62in)
         prompt[Where am I now?]
@@ -102,6 +103,7 @@
       },
       {
         script(30pt, [Journeyways])
+        v(20pt)
         prompt[What do I look like?]
         cbox(2.35in)
         prompt[What's my name?]
@@ -120,23 +122,29 @@
   place(top + left, image(pba("art/wash-faint.png"), width: pbw, height: pbh, fit: "cover"))
   place(top + left, dx: pbw - 2.7in, dy: 0.5in, image(pba("art/swirl-faint.png"), width: 2.4in))
   place(top + left, dx: 0.4in, dy: 0.4in, box(width: pbw - 0.8in, height: pbh - 0.8in, {
+    // Both columns share the same structure (heading + three prompt/box pairs)
+    // and equal box totals (2.34in), so the columns bottom-align exactly, the
+    // way the first sheet does.
     grid(columns: (1fr, 1fr), column-gutter: 14pt,
       {
         script(30pt, [Character Sheet])
+        v(20pt)
         prompt[Where am I now?]
-        cbox(0.55in)
+        cbox(0.62in)
         prompt[What/who am I now?]
-        cbox(0.55in)
+        cbox(0.62in)
         prompt[What changed?]
-        cbox(1.15in)
+        cbox(1.1in)
       },
       {
         script(30pt, [Journeyways])
-        cbox(1.9in)
+        v(20pt)
+        prompt[What do I look like now?]
+        cbox(1.34in)
         prompt[What's my name?]
-        cbox(0.4in)
+        cbox(0.5in)
         prompt[What's my story title?]
-        cbox(0.4in)
+        cbox(0.5in)
       },
     )
     v(9pt)
@@ -195,7 +203,7 @@
 
 // Reading order (16): cover, intro, first character sheet, 11 journal pages, the
 // second (after) character sheet second-to-last, back cover last.
-#let pb-leaves = (
+#let pb-raw = (
   pb-cover,
   pb-intro,
   pb-charsheet,
@@ -203,3 +211,15 @@
   pb-charsheet-2,
   pb-back,
 )
+
+// Page numbers: the cover (leaf 0) and back cover (last leaf) stay unnumbered;
+// the intro is "1" and numbering runs through the second-to-last leaf. Baked
+// into the leaf so both the 1-up and the imposed 2-up carry correct numbers.
+#let stamp-num(n, leaf) = box(width: pbw, height: pbh, clip: true, {
+  leaf
+  place(bottom + center, dy: -0.3in,
+    text(font: "Inter", size: 9pt, fill: c-mut, str(n)))
+})
+#let pb-leaves = pb-raw.enumerate().map(((i, leaf)) => {
+  if i >= 1 and i <= pb-raw.len() - 2 { stamp-num(i, leaf) } else { leaf }
+})

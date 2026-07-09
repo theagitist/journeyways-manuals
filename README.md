@@ -1,46 +1,36 @@
 # JOURNEYWAYS print material (Typst)
 
-Typst sources for the JOURNEYWAYS boardgame print components. Two documents, each
-built as a 1-up reading proof and a 2-up imposed print booklet:
+Typst sources for the JOURNEYWAYS boardgame print components: the game rules and
+the per-player write-in booklet, rebuilt in Typst so they are editable and the
+typography matches the web/play brand (Italianno display + Inter body).
 
 **Game rules:**
-- **`manual.pdf`** - 1-up reading proof, one half-letter page per page.
-- **`booklet.pdf`** - the same content imposed **2-up** on landscape letter
-  sheets, ready to print, fold, and staple into a half-letter booklet.
+- **`manual.pdf`** - a single large **square 8.5x8.5** reading manual, one topic
+  per page with generous spacing. Print on letter and trim the bottom to a
+  square (the boardgame box holds a square trim). There is no 2-up edition.
 
 **Player Booklet** (the per-player write-in booklet: cover, an intro + quick
 reference, two Character Sheets - a "before" near the front and an "after"
-second-to-last - 11 lined journal pages, and a back cover):
+second-to-last - 11 lined journal pages numbered 1 to 14, and a back cover):
 - **`player-booklet.pdf`** - 1-up, letter-proportioned pages.
 - **`player-booklet-2up.pdf`** - imposed **2-up** (16 pages = 4 saddle-stitch
   sheets). The cover is a faithful full-page render of the source; the other
   pages (intro / quick reference, both character sheets, journal pages, back
   cover) are rebuilt with the brand fonts.
 
-These are a 1:1 recreation of the original `JOURNEYWAYS_Game_Rules.pdf` and its
-imposed `..._BOOKLET.pdf`, rebuilt in Typst so the rules are editable and the
-typography matches the web/play brand (Italianno display + Inter body).
-
-The two source PDFs paginate the same text slightly differently, so
-`content.typ` keeps the text as atomic section chunks and composes them into two
-leaf sets: `manual-leaves` (Solo + Advanced share folio 5, plus a Notes page) and
-`booklet-leaves` (Solo, Advanced, and Tips each get their own folio, no Notes).
-The table-of-contents page numbers follow suit.
-
 ## Layout
 
 ```
-src/content.typ       rules content + styles (source of truth for the rules)
-src/manual.typ        rules driver: 1-up reading proof
-src/booklet.typ       rules driver: 2-up saddle-stitch imposition
+src/content.typ       game-rules content + styles (source of truth)
+src/manual.typ        game-rules driver: builds the square 8.5x8.5 manual
 src/pb-content.typ    Player Booklet content (leaves + rebuilt text pages)
 src/pb-manual.typ     Player Booklet driver: 1-up
 src/pb-booklet.typ    Player Booklet driver: 2-up saddle-stitch imposition
 fonts/                Italianno + Inter (SIL OFL, vendored so builds are reproducible)
-assets/               rules art: cover + swirl from the source PDF; QR generated for journeyways.ca
+assets/               game-rules art: square cover.jpg, swirl watermark, tiles/ gallery, QR
 assets/player-booklet/ pages/ = cover render; art/ = wash, swirl, intro illustrations, QR
 deploy-web.sh         copy stable PDFs into www/download (run on each stable version)
-build.sh              builds all four PDFs
+build.sh              builds all three PDFs
 ```
 
 ## Build
@@ -54,8 +44,7 @@ Needs [Typst](https://typst.app) (built with 0.14.2; 0.15+ is fine):
 or individually:
 
 ```sh
-typst compile --font-path fonts --root . src/manual.typ  manual.pdf
-typst compile --font-path fonts --root . src/booklet.typ booklet.pdf
+typst compile --font-path fonts --root . src/manual.typ manual.pdf
 ```
 
 ## Deploying to the website (ongoing)
@@ -74,32 +63,31 @@ filenames so links keep working), and refreshes the file-size labels in
 proxied through Cloudflare, purge the cache for `/download/*.pdf` so visitors get
 the new files.
 
-## Printing the booklet
+## Printing the Player Booklet
 
-`booklet.pdf` is 6 landscape letter sheets in saddle-stitch order.
+`player-booklet-2up.pdf` is 4 landscape sheets in saddle-stitch order.
 
-1. Print **double-sided**, flipped on the **short edge** (the default, matching
-   the original booklet; the back sheets are pre-rotated 180 degrees for this).
+1. Print **double-sided**, flipped on the **short edge** (the default; the back
+   sheets are pre-rotated 180 degrees for this).
 2. Stack the sheets in order, fold the whole stack in half down the middle.
 3. Staple the spine.
 
 Long-edge duplex printer? Set `flip-backs` to `false` at the top of
-`src/booklet.typ` and rebuild.
+`src/pb-booklet.typ` and rebuild.
 
 ## Editing the rules
 
-Edit `src/content.typ`. Each page is a `leaf-*` block; both PDFs pick them up
-from the `leaves` array, so a content change flows to the manual and the booklet
-at once. Change the palette or type in the helpers near the top of that file.
+Edit `src/content.typ`. Each page is a `leaf-*` block collected in the
+`manual-leaves` array; folios and the Table of Contents are set there. Change the
+palette or type in the helpers near the top of the file.
 
 ## Fidelity notes
 
 This is a **corrected edition**: two typos in the original were fixed here, "face
 dawn" -> "face down" (Game Setup step 1) and "draws a tile fom" -> "draws a tile
-from" (step 7). Everything else reproduces the source.
-
-The cover uses the low-resolution (72 dpi) image embedded in the source PDF; a
-crisper print cover could be swapped in from `original_assets/boardgame/cover/`.
+from" (step 7). The cover is the high-resolution square cover from
+`original_assets/boardgame/cover/`, and the title page carries a small gallery of
+the real map-tile art.
 
 ## License
 
