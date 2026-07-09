@@ -27,7 +27,8 @@ src/pb-content.typ    Player Booklet content (leaves + rebuilt text pages)
 src/pb-manual.typ     Player Booklet driver: 1-up
 src/pb-booklet.typ    Player Booklet driver: 2-up saddle-stitch imposition
 fonts/                Italianno + Inter (SIL OFL, vendored so builds are reproducible)
-assets/               game-rules art: square cover.jpg, swirl watermark, tiles/ gallery, QR
+assets/               game-rules art: square cover.jpg, swirl watermark, QR, and the
+                      design art (tiles/ gallery, chips/ card colours, doodles/, meeples.jpg)
 assets/player-booklet/ pages/ = cover render; art/ = wash, swirl, intro illustrations, QR
 deploy-web.sh         copy stable PDFs into www/download (run on each stable version)
 build.sh              builds all three PDFs
