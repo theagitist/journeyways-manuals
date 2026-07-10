@@ -4,34 +4,44 @@ Typst sources for the JOURNEYWAYS boardgame print components: the game rules and
 the per-player write-in booklet, rebuilt in Typst so they are editable and the
 typography matches the web/play brand (Italianno display + Inter body).
 
+**Localized: en / es / fr.** One source, three languages. The language is chosen
+at compile time with `--input lang=..` (default `en`); every PDF is written with
+a `_en` / `_es` / `_fr` suffix. See "Translating / editing text" below.
+
 **Game rules:**
-- **`manual.pdf`** - a single large **square 8.5x8.5** reading manual, one topic
-  per page with generous spacing. Print on letter and trim the bottom to a
+- **`manual_LANG.pdf`** - a single large **square 8.5x8.5** reading manual, one
+  topic per page with generous spacing. Print on letter and trim the bottom to a
   square (the boardgame box holds a square trim). There is no 2-up edition.
 
 **Player Booklet** (the per-player write-in booklet: cover, an intro + quick
 reference, two Character Sheets - a "before" near the front and an "after"
 second-to-last - 11 lined journal pages numbered 1 to 14, and a back cover):
-- **`player-booklet.pdf`** - 1-up, letter-proportioned pages.
-- **`player-booklet-2up.pdf`** - imposed **2-up** (16 pages = 4 saddle-stitch
-  sheets). The cover is a faithful full-page render of the source; the other
-  pages (intro / quick reference, both character sheets, journal pages, back
-  cover) are rebuilt with the brand fonts.
+- **`player-booklet_LANG.pdf`** - 1-up, letter-proportioned pages.
+- **`player-booklet-2up_LANG.pdf`** - imposed **2-up** (16 pages = 4 saddle-stitch
+  sheets). Every page, including the cover, is built in Typst with the brand
+  fonts (the cover is a framed grayscale art panel with the localized tagline and
+  booklet label as live text).
+
+Both covers are rebuilt in Typst so their text localizes: the stylized JOURNEYWAYS
+wordmark stays as brand art in every language, while the tagline (both documents)
+and the "Player Booklet" label (booklet) are live localized text over a text-free
+background (`assets/cover-bg.jpg`, extracted from the source cover PSD).
 
 ## Layout
 
 ```
+src/i18n.typ          localization helper: lang (from --input) + the t() picker
 src/content.typ       game-rules content + styles (source of truth)
 src/manual.typ        game-rules driver: builds the square 8.5x8.5 manual
 src/pb-content.typ    Player Booklet content (leaves + rebuilt text pages)
 src/pb-manual.typ     Player Booklet driver: 1-up
 src/pb-booklet.typ    Player Booklet driver: 2-up saddle-stitch imposition
 fonts/                Italianno + Inter (SIL OFL, vendored so builds are reproducible)
-assets/               game-rules art: square cover.jpg, swirl watermark, QR, and the
+assets/               game-rules art: cover-bg.jpg (text-free cover), swirl, QR, and the
                       design art (tiles/ gallery, chips/ card colours, doodles/, meeples.jpg)
-assets/player-booklet/ pages/ = cover render; art/ = wash, swirl, intro illustrations, QR
-deploy-web.sh         copy stable PDFs into www/download (run on each stable version)
-build.sh              builds all three PDFs
+assets/player-booklet/ pages/ = cover-bg.jpg (grayscale); art/ = wash, swirl, QR
+deploy-web.sh         copy stable PDFs (all languages) into www/download
+build.sh              builds all nine PDFs (3 documents x 3 languages)
 ```
 
 ## Build
@@ -39,14 +49,16 @@ build.sh              builds all three PDFs
 Needs [Typst](https://typst.app) (built with 0.14.2; 0.15+ is fine):
 
 ```sh
-./build.sh
+./build.sh          # all nine PDFs: manual/player-booklet/player-booklet-2up x en/es/fr
 ```
 
-or individually:
+or one language / one document:
 
 ```sh
-typst compile --font-path fonts --root . src/manual.typ manual.pdf
+typst compile --font-path fonts --root . --input lang=fr src/manual.typ manual_fr.pdf
 ```
+
+Omitting `--input lang=..` builds English.
 
 ## Deploying to the website (ongoing)
 
@@ -57,12 +69,29 @@ downloads. **Whenever there is a new stable version of the documents, run:**
 ./deploy-web.sh
 ```
 
-It rebuilds, copies the readable 1-up PDFs into the site's `download/` folder
-(`manual.pdf` -> the Rulebook, `player-booklet.pdf` -> the Player Booklet, same
-filenames so links keep working), and refreshes the file-size labels in
-`boardgame.html`. Afterwards, commit the `www` repo, and if `journeyways.ca` is
-proxied through Cloudflare, purge the cache for `/download/*.pdf` so visitors get
-the new files.
+It rebuilds every language and copies the readable 1-up PDFs into the site's
+`download/` folder as language-suffixed files (`JOURNEYWAYS Game Rules 1.0
+{EN,ES,FR}.pdf` and `JOURNEYWAYS Player Booklet 1.0 {EN,ES,FR}.pdf`); the English
+copies are also written to the legacy un-suffixed names so old external links keep
+working. The component pages (`components-manual.html`, `components-booklet.html`)
+and `boardgame.html` offer the three languages as separate download links.
+Afterwards, if the layout changed, re-render the component-page previews and bump
+the on-site `?v=` (same-name assets stay Cloudflare-cached; the DNS-scoped
+`cloudflare-token` cannot purge), then commit the `www` repo.
+
+## Translating / editing text
+
+All user-facing text lives inline in `src/content.typ` (rules) and
+`src/pb-content.typ` (booklet), wrapped in `t(en: .., es: .., fr: ..)` from
+`src/i18n.typ`. The layout is written once; only the strings differ per language.
+To fix or add a translation, edit the relevant `t(...)` call. A missing language
+falls back to English. Because each page is a fixed-size clipped leaf, text that
+runs longer in es/fr is tuned to fit; re-render after edits to check.
+
+Inclusive language: gendered agent nouns use **neutral periphrasis** in both es
+and fr (`cada persona` / `chaque personne`, `quien juega` / `la personne qui
+joue`). "Pick" keeps its agency framing (`Elegir` / `Choisir`), and `dibujar` /
+`dessiner` stay reserved for illustrating on a sticky note.
 
 ## Printing the Player Booklet
 

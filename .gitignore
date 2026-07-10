@@ -1,4 +1,10 @@
 # Built PDFs (regenerate with ./build.sh; distribution copies live on the fileshare)
+# One source, three languages: manual_en.pdf, player-booklet_es.pdf, etc.
+/manual_*.pdf
+/player-booklet_*.pdf
+/player-booklet-2up_*.pdf
+
+# Legacy un-suffixed names (pre-localization; regenerate as *_en.pdf)
 /manual.pdf
 /booklet.pdf
 /player-booklet.pdf
