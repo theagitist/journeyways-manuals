@@ -10,6 +10,16 @@
 /player-booklet.pdf
 /player-booklet-2up.pdf
 
+# Card print files (regenerate with ./build-cards.sh)
+/cards_*.pdf
+/cards-sheet_*.pdf
+/card-backs.pdf
+/tgc-png/
+
+# Generated card manifest + art, exported from the play repo (not source; run
+# play's scripts/export-print-cards.js to regenerate)
+/assets/cards/
+
 # Editor / OS cruft
 .DS_Store
 *.swp

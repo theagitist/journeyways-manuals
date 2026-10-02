@@ -40,8 +40,12 @@ fonts/                Italianno + Inter (SIL OFL, vendored so builds are reprodu
 assets/               game-rules art: cover-bg.jpg (text-free cover), swirl, QR, and the
                       design art (tiles/ gallery, chips/ card colours, doodles/, meeples.jpg)
 assets/player-booklet/ pages/ = cover-bg.jpg (grayscale); art/ = wash, swirl, QR
+src/cards.typ         card faces: one per card (single) or 8-up cut sheets (sheet)
+src/card-backs.typ    the five deck backs, one per page
+assets/cards/         GENERATED: manifest + art exported from the play repo
 deploy-web.sh         copy stable PDFs (all languages) into www/download
 build.sh              builds all nine PDFs (3 documents x 3 languages)
+build-cards.sh        builds the card print files (needs the export first)
 ```
 
 ## Build
@@ -57,6 +61,53 @@ or one language / one document:
 ```sh
 typst compile --font-path fonts --root . --input lang=fr src/manual.typ manual_fr.pdf
 ```
+
+## Card print files
+
+The playing cards are rendered from the **single source** that drives the digital
+game and the website: the play repo's database (which cards, decks, art, numbers)
+plus its i18next locales (card text) plus its full-resolution art. Print and screen
+cannot drift because they read the same source.
+
+Two steps. First export the manifest + art from the play repo (on this host, with
+the DB reachable):
+
+```sh
+( cd /var/www/play.journeyways.ca && node scripts/export-print-cards.js )
+```
+
+This writes `assets/cards/cards.json` and copies the card art here. Then build:
+
+```sh
+./build-cards.sh            # English PDFs; --export runs the export, --png adds TGC images, --all-langs adds es/fr
+```
+
+The physical game is English-first for now (es/fr printed sets are deferred), so the
+default build is **English only**; pass `--all-langs` for the es/fr sets. The digital
+videogame and website stay trilingual regardless.
+
+Outputs (all `.gitignore`d; regenerate, do not commit):
+
+- **`cards_LANG.pdf`** - one card face per **unique design** (79), at the 2.5 x 3.5in
+  poker/trading-card trim plus 1/8in bleed. The page is 2.75 x 3.75in, i.e. exactly
+  The Game Crafter's **Poker Card** template (825 x 1125px at 300 DPI, cut 750 x 1050,
+  safe zone 675 x 975), and the same spec MakePlayingCards / QinPrinting use. Physical
+  duplicate counts are in `cards.json` (`count`); set the per-card quantity in the
+  shop's tool.
+- **`card-backs.pdf`** - the five deck backs, same bleed. Upload alongside the faces.
+- **`cards-sheet_LANG.pdf`** - the whole deck imposed **8-up** (4 x 2) on landscape
+  Letter, grouped by deck, with faint cut lines; each run of face sheets is followed
+  by matching uniform deck-back sheets. For printing **double-sided cardstock you cut
+  by hand** at any local shop. Because every back within a deck is identical, the
+  duplex flip aligns no matter how the printer flips.
+- **`tgc-png/LANG/<number>.png`** + **`tgc-png/backs/<deck>.png`** (with `--png`) -
+  per-card face images at 825 x 1125px, named by card number (R1, B12, ...), plus one
+  back per deck. The Game Crafter's uploader takes **one image per card**, not a PDF,
+  so use these for TGC; the PDFs are for shops that accept a PDF or for the DIY route.
+
+A "collectible / baseball card" is the same 2.5 x 3.5in trim as poker, so there is no
+size variant: the collectible look is a finish (gloss, rounded corners) chosen at the
+print shop, not a different renderer.
 
 Omitting `--input lang=..` builds English.
 
