@@ -1,0 +1,473 @@
+{
+  "spec": {
+    "trim_mm": [
+      63.5,
+      63.5
+    ],
+    "bleed_mm": 3.175
+  },
+  "tiles": [
+    {
+      "tile_number": "T1",
+      "slug": "start",
+      "name": {
+        "en": "Start",
+        "es": "Inicio",
+        "fr": "Départ"
+      },
+      "art": "start-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T2",
+      "slug": "abandoned-playground",
+      "name": {
+        "en": "Abandoned Playground",
+        "es": "Parque de juegos abandonado",
+        "fr": "Aire de jeux abandonnée"
+      },
+      "art": "abandoned-playground-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T3",
+      "slug": "buried-names-field",
+      "name": {
+        "en": "Buried Names Field",
+        "es": "Campo de los nombres enterrados",
+        "fr": "Champ des noms enterrés"
+      },
+      "art": "buried-names-field-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T4",
+      "slug": "childhood-house",
+      "name": {
+        "en": "Childhood House",
+        "es": "Casa de la infancia",
+        "fr": "Maison d'enfance"
+      },
+      "art": "childhood-house-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T5",
+      "slug": "mirror-lake",
+      "name": {
+        "en": "Mirror Lake",
+        "es": "Lago Espejo",
+        "fr": "Lac Miroir"
+      },
+      "art": "mirror-lake-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T6",
+      "slug": "misty-trail",
+      "name": {
+        "en": "Misty Trail",
+        "es": "Sendero neblinoso",
+        "fr": "Sentier brumeux"
+      },
+      "art": "misty-trail-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T7",
+      "slug": "mountain-peak",
+      "name": {
+        "en": "Mountain Peak",
+        "es": "Cima de la montaña",
+        "fr": "Sommet de la montagne"
+      },
+      "art": "mountain-peak-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T8",
+      "slug": "night-way",
+      "name": {
+        "en": "Night Way",
+        "es": "Camino nocturno",
+        "fr": "Chemin de nuit"
+      },
+      "art": "night-way-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T9",
+      "slug": "singing-cave",
+      "name": {
+        "en": "Singing Cave",
+        "es": "Cueva cantora",
+        "fr": "Grotte chantante"
+      },
+      "art": "singing-cave-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T10",
+      "slug": "star-bridge",
+      "name": {
+        "en": "Star Bridge",
+        "es": "Puente de las estrellas",
+        "fr": "Pont des étoiles"
+      },
+      "art": "star-bridge-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T11",
+      "slug": "study-room",
+      "name": {
+        "en": "Study Room",
+        "es": "Cuarto de estudio",
+        "fr": "Salle d'étude"
+      },
+      "art": "study-room-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T12",
+      "slug": "tree-hollow",
+      "name": {
+        "en": "Tree Hollow",
+        "es": "Hueco del árbol",
+        "fr": "Creux de l'arbre"
+      },
+      "art": "tree-hollow-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T13",
+      "slug": "volcanic-ground",
+      "name": {
+        "en": "Volcanic Ground",
+        "es": "Tierra volcánica",
+        "fr": "Terre volcanique"
+      },
+      "art": "volcanic-ground-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T14",
+      "slug": "campsite",
+      "name": {
+        "en": "Campsite",
+        "es": "Campamento",
+        "fr": "Campement"
+      },
+      "art": "campsite-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T15",
+      "slug": "firefly-forest",
+      "name": {
+        "en": "Firefly Forest",
+        "es": "Bosque de luciérnagas",
+        "fr": "Forêt des lucioles"
+      },
+      "art": "firefly-forest-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T16",
+      "slug": "northern-lights",
+      "name": {
+        "en": "Northern Lights",
+        "es": "Auroras boreales",
+        "fr": "Aurores boréales"
+      },
+      "art": "northern-lights-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T17",
+      "slug": "childhood-room",
+      "name": {
+        "en": "Childhood Room",
+        "es": "Cuarto de la infancia",
+        "fr": "Chambre d'enfance"
+      },
+      "art": "childhood-room-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T18",
+      "slug": "dry-land",
+      "name": {
+        "en": "Dry Land",
+        "es": "Tierra seca",
+        "fr": "Terre aride"
+      },
+      "art": "dry-land-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T19",
+      "slug": "mushroom-hut",
+      "name": {
+        "en": "Mushroom Hut",
+        "es": "Choza de hongos",
+        "fr": "Cabane champignon"
+      },
+      "art": "mushroom-hut-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T20",
+      "slug": "watchtower",
+      "name": {
+        "en": "Watchtower",
+        "es": "Torre de vigía",
+        "fr": "Tour de guet"
+      },
+      "art": "watchtower-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T21",
+      "slug": "ferris-wheel",
+      "name": {
+        "en": "Ferris Wheel",
+        "es": "Rueda de la fortuna",
+        "fr": "Grande roue"
+      },
+      "art": "ferris-wheel-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T22",
+      "slug": "bridge",
+      "name": {
+        "en": "Bridge",
+        "es": "Puente",
+        "fr": "Pont"
+      },
+      "art": "bridge-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T23",
+      "slug": "dunes",
+      "name": {
+        "en": "Dunes",
+        "es": "Dunas",
+        "fr": "Dunes"
+      },
+      "art": "dunes-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T24",
+      "slug": "church",
+      "name": {
+        "en": "Church",
+        "es": "Iglesia",
+        "fr": "Église"
+      },
+      "art": "church-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T25",
+      "slug": "park",
+      "name": {
+        "en": "Park",
+        "es": "Parque",
+        "fr": "Parc"
+      },
+      "art": "park-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T26",
+      "slug": "fountain",
+      "name": {
+        "en": "Fountain",
+        "es": "Fuente",
+        "fr": "Fontaine"
+      },
+      "art": "fountain-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T27",
+      "slug": "skyline",
+      "name": {
+        "en": "Skyline",
+        "es": "Horizonte urbano",
+        "fr": "Horizon urbain"
+      },
+      "art": "skyline-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T28",
+      "slug": "island",
+      "name": {
+        "en": "Island",
+        "es": "Isla",
+        "fr": "Île"
+      },
+      "art": "island-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T29",
+      "slug": "crossroads",
+      "name": {
+        "en": "Crossroads",
+        "es": "Encrucijada",
+        "fr": "Carrefour"
+      },
+      "art": "crossroads-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T30",
+      "slug": "platform",
+      "name": {
+        "en": "The Platform",
+        "es": "Andén",
+        "fr": "Quai"
+      },
+      "art": "platform-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T31",
+      "slug": "ferry-dock",
+      "name": {
+        "en": "Ferry Dock",
+        "es": "Embarcadero",
+        "fr": "Embarcadère"
+      },
+      "art": "ferry-dock-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T32",
+      "slug": "dancefloor",
+      "name": {
+        "en": "The Dancefloor",
+        "es": "Pista de baile",
+        "fr": "Piste de danse"
+      },
+      "art": "dancefloor-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T33",
+      "slug": "old-library",
+      "name": {
+        "en": "Old Library",
+        "es": "Biblioteca antigua",
+        "fr": "Vieille bibliothèque"
+      },
+      "art": "old-library-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T34",
+      "slug": "night-market",
+      "name": {
+        "en": "Night Market",
+        "es": "Mercado nocturno",
+        "fr": "Marché nocturne"
+      },
+      "art": "night-market-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T35",
+      "slug": "dressing-room",
+      "name": {
+        "en": "Dressing Room",
+        "es": "Probador",
+        "fr": "Cabine d'essayage"
+      },
+      "art": "dressing-room-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T36",
+      "slug": "hall-of-mirrors",
+      "name": {
+        "en": "Hall of Mirrors",
+        "es": "Galería de los espejos",
+        "fr": "Galerie des miroirs"
+      },
+      "art": "hall-of-mirrors-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T37",
+      "slug": "shedding-grounds",
+      "name": {
+        "en": "Shedding Grounds",
+        "es": "Tierra de las mudas",
+        "fr": "Terres de la mue"
+      },
+      "art": "shedding-grounds-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T38",
+      "slug": "overgrown-garden",
+      "name": {
+        "en": "Overgrown Garden",
+        "es": "Jardín frondoso",
+        "fr": "Jardin envahi"
+      },
+      "art": "overgrown-garden-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T39",
+      "slug": "blanket-fort",
+      "name": {
+        "en": "Blanket Fort",
+        "es": "Fuerte de mantas",
+        "fr": "Cabane de couvertures"
+      },
+      "art": "blanket-fort-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T40",
+      "slug": "lantern-festival",
+      "name": {
+        "en": "Lantern Festival",
+        "es": "Festival de faroles",
+        "fr": "Fête des lanternes"
+      },
+      "art": "lantern-festival-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T41",
+      "slug": "hall-of-doors",
+      "name": {
+        "en": "Hall of Doors",
+        "es": "Pasillo de puertas",
+        "fr": "Couloir des portes"
+      },
+      "art": "hall-of-doors-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T42",
+      "slug": "blank",
+      "name": {
+        "en": "Blank",
+        "es": "En blanco",
+        "fr": "Vierge"
+      },
+      "art": null,
+      "copies": 5
+    }
+  ]
+}

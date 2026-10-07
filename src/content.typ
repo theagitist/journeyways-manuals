@@ -258,8 +258,8 @@
     title(t(en: [Game Setup], es: [Preparación], fr: [Mise en place]))
     subhead(t(en: [What You'll Need], es: [Qué necesitas], fr: [Ce qu'il te faut]))
     blist(
-      t(en: [Board tiles (35).], es: [Losetas de tablero (35).], fr: [Tuiles de plateau (35).]),
-      t(en: [Game cards (81).], es: [Cartas de juego (81).], fr: [Cartes de jeu (81).]),
+      t(en: [Board tiles (41).], es: [Losetas de tablero (41).], fr: [Tuiles de plateau (41).]),
+      t(en: [Game cards (101).], es: [Cartas de juego (101).], fr: [Cartes de jeu (101).]),
       t(en: [Player tokens (1 per player).], es: [Fichas de juego (1 por persona).], fr: [Pions (1 par personne).]),
       t(en: [Player booklet (1 per player).], es: [Cuaderno de juego (1 por persona).], fr: [Cahier de jeu (1 par personne).]),
       t(en: [Some sticky notes.], es: [Algunas notas adhesivas.], fr: [Quelques notes autocollantes.]),
