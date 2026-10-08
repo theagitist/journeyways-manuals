@@ -36,7 +36,7 @@ src/manual.typ        game-rules driver: builds the square 8.5x8.5 manual
 src/pb-content.typ    Player Booklet content (leaves + rebuilt text pages)
 src/pb-manual.typ     Player Booklet driver: 1-up
 src/pb-booklet.typ    Player Booklet driver: 2-up saddle-stitch imposition
-fonts/                Italianno + Inter (SIL OFL, vendored so builds are reproducible)
+fonts/                Italianno + Inter + Caveat (SIL OFL, vendored so builds are reproducible)
 assets/               game-rules art: cover-bg.jpg (text-free cover), swirl, QR, and the
                       design art (tiles/ gallery, chips/ card colours, doodles/, meeples.jpg)
 assets/player-booklet/ pages/ = cover-bg.jpg (grayscale); art/ = wash, swirl, QR
@@ -173,5 +173,5 @@ the real map-tile art.
 ## License
 
 Content and layout: **CC BY-NC 4.0** (c) 2025 Adri M. (see `LICENSE`), matching
-`play.journeyways.ca`. Bundled fonts (Italianno, Inter) are under the SIL Open
+`play.journeyways.ca`. Bundled fonts (Italianno, Inter, Caveat) are under the SIL Open
 Font License; see `fonts/*-OFL.txt`.

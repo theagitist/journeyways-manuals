@@ -54,8 +54,6 @@
       place(top + center, dy: side * 0.60,
         text(font: "Inter", weight: "bold", size: 10.5pt, fill: c-ink, tracking: 0.02em,
           t(en: [A BOARD GAME ABOUT BECOMING], es: [UN JUEGO DE MESA SOBRE EL DEVENIR], fr: [UN JEU DE SOCIÉTÉ SUR LE DEVENIR])))
-      // swirl ornament, echoing the source cover
-      place(top + center, dy: side * 0.70, image(pba("art/swirl.png"), width: side * 0.34))
     }))
   // localized booklet label below the panel
   place(bottom + center, dy: -0.5in,
@@ -143,7 +141,6 @@
 #let cbox(h) = rect(width: 100%, height: h, radius: 1pt, stroke: 0.7pt + c-boxln, fill: c-boxfill)
 #let pb-charsheet = box(width: pbw, height: pbh, clip: true, {
   place(top + left, image(pba("art/wash-faint.png"), width: pbw, height: pbh, fit: "cover"))
-  place(top + left, dx: pbw - 2.7in, dy: 0.55in, image(pba("art/swirl-faint.png"), width: 2.4in))
   place(top + left, dx: 0.4in, dy: 0.4in, box(width: pbw - 0.8in, height: pbh - 0.8in, {
     grid(columns: (1fr, 1fr), column-gutter: 14pt,
       {
@@ -179,7 +176,6 @@
 // character evolved). Distinct fields from the first sheet.
 #let pb-charsheet-2 = box(width: pbw, height: pbh, clip: true, {
   place(top + left, image(pba("art/wash-faint.png"), width: pbw, height: pbh, fit: "cover"))
-  place(top + left, dx: pbw - 2.7in, dy: 0.5in, image(pba("art/swirl-faint.png"), width: 2.4in))
   place(top + left, dx: 0.4in, dy: 0.4in, box(width: pbw - 0.8in, height: pbh - 0.8in, {
     // Both columns share the same structure (heading + three prompt/box pairs)
     // and equal box totals (2.34in), so the columns bottom-align exactly, the
@@ -219,28 +215,24 @@
   }))
 })
 
-// Journal pages: rebuilt in Typst. Faint wash + swirl background with an
-// Italianno "Journeyways" header and vector ruled lines. The shared wash/swirl
-// are panned/repositioned per page (deterministic by index) so the 12 pages keep
+// Journal pages: rebuilt in Typst. Faint wash background with an
+// Italianno "Journeyways" header and vector ruled lines. The shared wash
+// is panned/repositioned per page (deterministic by index) so the 12 pages keep
 // the source's varied feel without baking in the original raster header.
 #let pb-journal-page(i) = box(width: pbw, height: pbh, clip: true, {
   // faint watercolour wash, panned horizontally per page. Width is wider than the
   // page (+4in) so panning left never exposes white on the right (max pan 3in).
   place(top + left, dx: -0.5in * calc.rem(i, 7),
     image(pba("art/wash-faint.png"), width: pbw + 4in))
-  // faint swirl decoration, position + size varied per page
-  place(top + right,
-    dx: 0.25in + 0.1in * calc.rem(i, 3),
-    dy: 0.1in + 0.13in * calc.rem(i * 5, 7),
-    image(pba("art/swirl-faint.png"), width: 2.7in + 0.16in * calc.rem(i * 2, 4)))
   // Italianno header, top-right
   place(top + right, dx: -0.45in, dy: 0.42in,
     text(font: "Italianno", size: 34pt, fill: c-ink, [Journeyways]))
   // ruled writing lines
   place(top + left, dx: 0.45in, dy: 1.2in, box(width: pbw - 0.9in, {
-    for _ in range(17) {
+    set block(spacing: 0pt)
+    for _ in range(16) {
       line(length: 100%, stroke: 0.6pt + c-boxln)
-      v(0.315in)
+      v(0.33in)
     }
   }))
 })
@@ -249,7 +241,6 @@
 // 16. Back cover.
 #let pb-back = box(width: pbw, height: pbh, clip: true, {
   place(top + left, image(pba("art/wash-faint.png"), width: pbw, height: pbh, fit: "cover"))
-  place(top + right, dx: 0.35in, dy: -0.15in, image(pba("art/swirl-faint.png"), width: 3in))
   place(top + center, dy: 0.7in, align(center, {
     script(42pt, [Journeyways])
     v(-4pt)

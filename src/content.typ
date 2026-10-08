@@ -101,15 +101,6 @@
 #let frame(num: none, left-num: false, body) = box(
   width: leaf-w, height: leaf-h, clip: true,
   {
-    // Faint swirl watermark: a whisper in the corner, no longer crossing the
-    // headings as a dark graphic.
-    place(top + right, dx: 0.7in, dy: -0.8in,
-      image(asset("swirl-faint.png"), width: 6in))
-    place(top + center, dy: 0.5in,
-      text(font: "Inter", size: 8.5pt, fill: c-ink,
-        t(en: [© 2025-2026 JOURNEYWAYS. A board game about becoming.],
-          es: [© 2025-2026 JOURNEYWAYS. Un juego de mesa sobre el devenir.],
-          fr: [© 2025-2026 JOURNEYWAYS. Un jeu de société sur le devenir.])))
     place(top + left, dx: 1.2in, dy: 0.82in,
       box(width: leaf-w - 2.4in, height: leaf-h - 1.5in, body-set(body)))
     if num != none {
@@ -138,6 +129,16 @@
 #let tile-card(path) = box(width: 1.7in, height: 1.7in, radius: 6pt, clip: true,
   stroke: 0.6pt + c-mut.lighten(35%),
   image(asset("tiles/" + path), width: 100%, height: 100%, fit: "cover"))
+
+// A map-tile at an arbitrary square size (for scattered/bottom decorations).
+#let tile-img(path, s) = box(width: s, height: s, radius: 6pt, clip: true,
+  stroke: 0.6pt + c-mut.lighten(35%),
+  image(asset("tiles/" + path), width: 100%, height: 100%, fit: "cover"))
+
+// A portrait mock game card (5:7) with a pile-colour border, for decoration.
+#let mock-card(art, accent) = box(width: 1.35in, height: 1.89in, radius: 8pt, clip: true,
+  stroke: 2.5pt + accent,
+  image(asset("cards/" + art), width: 100%, height: 100%, fit: "cover"))
 
 // Title / intro (unnumbered).
 #let leaf-title = frame(
@@ -198,9 +199,9 @@
     v(0.35in)
     align(center, box(width: 5.6in,
       grid(columns: 3, column-gutter: 16pt,
-        tile-card("mirror-lake.jpg"),
-        tile-card("mountain-peak.jpg"),
-        tile-card("singing-cave.jpg"))))
+        tile-card("mirror-lake-m.jpg"),
+        tile-card("mountain-peak-m.jpg"),
+        tile-card("singing-cave-m.jpg"))))
     v(8pt)
     align(center, text(font: "Inter", size: 9pt, style: "italic", fill: c-mut,
       t(en: [A few of the places your journey may take you.],
@@ -266,9 +267,6 @@
       t(en: [Die for choosing the starting player (1).], es: [Un dado para decidir quién empieza (1).], fr: [Un dé pour désigner qui commence (1).]),
       t(en: [Writing utensils.], es: [Algo para escribir.], fr: [De quoi écrire.]),
     )
-    // Illustration tucked into the empty right of the components list (out of flow).
-    place(top + right, dy: 1.35in, doodle-note("playground",
-      t(en: [set the scene], es: [prepara la escena], fr: [plante le décor]), w: 1.55in))
     subhead(t(en: [Initial Setup], es: [Preparación inicial], fr: [Préparation initiale]))
     nlist(
       t(en: [Shuffle all cards together and place them face down in three piles.],
@@ -302,6 +300,7 @@
 // Basic Gameplay (folio 3).
 #let leaf-gameplay = frame(num: 3, left-num: true,
   {
+    set par(leading: 0.72em, spacing: 0.8em)
     title(t(en: [Basic Gameplay], es: [Cómo se juega], fr: [Déroulement du jeu]))
     subhead(t(en: [Turn Structure], es: [Estructura del turno], fr: [Structure du tour]))
     t(en: [Each turn consists of three phases: Explore, Pick, and Reflect.],
@@ -340,8 +339,12 @@
     callout(t(en: [*Remember:* the game is not about winning or losing. It is about discovering, exploring, and becoming.],
       es: [*Recuerda:* el juego no va de ganar ni de perder. Va de descubrir, explorar y devenir.],
       fr: [*Souviens-toi :* le jeu ne consiste pas à gagner ou à perdre. Il s'agit de découvrir, d'explorer et de devenir.]))
-    place(bottom + right, dy: 0.15in, doodle-note("cliff",
-      t(en: [an ending, or a pause], es: [un final, o una pausa], fr: [une fin, ou une pause])))
+    // A quiet row of places to close the page.
+    place(bottom + center, dy: -0.3in,
+      grid(columns: 3, column-gutter: 14pt,
+        tile-img("star-bridge-m.jpg", 1.5in),
+        tile-img("night-way-m.jpg", 1.5in),
+        tile-img("northern-lights-m.jpg", 1.5in)))
   }
 )
 
@@ -363,8 +366,11 @@
     p(t(en: [Here is an example of a possible journal entry, on the next page.],
       es: [Aquí tienes un ejemplo de una posible entrada de diario, en la página siguiente.],
       fr: [Voici un exemple d'entrée de journal possible, à la page suivante.]))
-    place(bottom + right, dy: 0.15in, doodle-note("trail",
-      t(en: [where will you go?], es: [¿adónde irás?], fr: [où iras-tu ?])))
+    // A leaning pair of places, set apart from the neat row on the previous page.
+    place(bottom + center, dy: -0.4in,
+      stack(dir: ltr, spacing: -0.5in,
+        rotate(-6deg, tile-img("lantern-festival-m.jpg", 1.9in)),
+        rotate(6deg, tile-img("firefly-forest-m.jpg", 1.9in))))
   }
 )
 
@@ -373,9 +379,21 @@
 // description (the narrator's identity is deliberately unfixed).
 #let leaf-journal-example = frame(num: 6, left-num: false,
   {
-    v(0.15in)
-    set par(leading: 0.58em, spacing: 0.85em, justify: false)
-    text(font: "Italianno", size: 25pt, fill: c-ink, t(
+    // Notebook page: ruled lines + a margin rule, with the entry in handwriting.
+    let pitch = 0.36in
+    let nlines = 18
+    place(top + left, dy: 0.1in, {
+      place(top + left, dx: 0.2in,
+        line(start: (0pt, 0pt), end: (0pt, pitch * nlines), stroke: 0.9pt + rgb("#e3a7a7")))
+      {
+        set block(spacing: 0pt)
+        for _ in range(nlines) { v(pitch); line(length: 100%, stroke: 0.5pt + c-mut.lighten(45%)) }
+      }
+    })
+    place(top + left, dy: 0.12in, box(width: 100%, inset: (left: 0.4in, right: 0.08in), {
+      set text(font: "Caveat", size: 18pt, fill: c-ink, top-edge: pitch - 6pt, bottom-edge: -6pt)
+      set par(leading: 0pt, spacing: pitch, justify: false)
+      t(
       en: [
         It was a warm summer evening when I stumbled upon a cave entrance. There was a soft breeze, and I could hear music coming from the inside. I did not dare go inside, but, right by the entrance I found a pair of shoes. They were brown and looked well-worn, but something in my mind told me to try them on. I removed the tattered sandals I was wearing and put those shoes on. As soon as I did, I felt lighter, as if I was not standing up by myself but some other unexplained force was lifting me. That made me happy. I only wanted the shoes to look a bit better, not brown and all worn down. When that thought crossed my mind, the shoes changed. Now they were sparkly green boots with red trimmings and golden shoelaces. I loved them and decided to keep them.
 
@@ -391,9 +409,8 @@
 
         Quant à la grotte, j'ai décidé de passer mon chemin. Je pourrai peut-être y revenir une autre fois.
       ],
-    ))
-    place(bottom + right, dy: 0.1in, box(width: 1.5in,
-      image(asset("doodles/volcano.jpg"), width: 100%)))
+      )
+    }))
   }
 )
 
@@ -425,7 +442,9 @@
       )
     },
   )
-  place(bottom + center, dy: 0.05in, image(asset("meeples.jpg"), width: 3.2in))
+  place(bottom + center, dy: 0.0in, box(width: 2.7in, radius: 6pt, clip: true,
+    stroke: 0.6pt + c-mut.lighten(35%),
+    image(asset("cards/shared-encounter-m.jpg"), width: 100%)))
 }
 
 #let sec-advanced = {
@@ -475,8 +494,6 @@
       )
     },
   )
-  place(bottom + left, dy: 0.1in, doodle-note("field",
-    t(en: [room to wander], es: [espacio para deambular], fr: [de quoi vagabonder])))
 }
 
 #let sec-notes = {
@@ -495,19 +512,19 @@
 // Website / QR codes (last page, unnumbered like the booklet's back cover).
 #let leaf-web = frame(
   {
-    v(0.5in)
+    v(0.3in)
     align(center, text(font: "Italianno", size: 58pt, fill: c-orange, [Journeyways]))
     v(0.04in)
     align(center, text(font: "Inter", style: "italic", size: 16pt, fill: c-ink,
       t(en: [A game about becoming.], es: [Un juego sobre el devenir.], fr: [Un jeu sur le devenir.])))
-    v(0.25in)
+    v(0.22in)
     align(center, text(font: "Italianno", size: 36pt, fill: c-orange,
       t(en: [Website], es: [Sitio web], fr: [Site web])))
-    v(0.18in)
-    align(center, image(asset("qr-website.png"), width: 2.8in))
+    v(0.16in)
+    align(center, image(asset("qr-website.png"), width: 2.5in))
     v(0.14in)
     align(center, text(font: "Inter", size: 12pt, fill: c-ink, [www.journeyways.ca]))
-    v(0.5in)
+    v(0.35in)
     align(center, text(font: "Inter", size: 9pt, fill: c-mut,
       t(en: [© 2025-2026 Adri M. Licensed under CC BY-NC 4.0.],
         es: [© 2025-2026 Adri M. Con licencia CC BY-NC 4.0.],
@@ -533,14 +550,22 @@
   frame(num: 7, left-num: true, sec-solo),
   frame(num: 8, left-num: false, {
     sec-advanced
-    v(0.3in)
-    grid(columns: (1fr, 1.7in), column-gutter: 22pt,
+    v(0.1in)
+    grid(columns: (1fr, 1.6in), column-gutter: 22pt,
       sec-creating-own,
-      align(center + horizon, doodle-note("house",
-        t(en: [return here], es: [vuelve aquí], fr: [reviens ici]), w: 1.45in)),
+      align(top + center, box(width: 1.6in, radius: 6pt, clip: true,
+        stroke: 0.6pt + c-mut.lighten(35%),
+        image(asset("tiles/crossroads-m.jpg"), width: 100%))),
     )
   }),
-  frame(num: 9, left-num: true, sec-tips),
+  frame(num: 9, left-num: true, {
+    sec-tips
+    place(bottom + center, dy: -0.12in,
+      stack(dir: ltr, spacing: -0.65in,
+        rotate(-10deg, mock-card("map-m.jpg", rgb("#ef4444"))),
+        rotate(0deg, mock-card("leap-m.jpg", rgb("#10b981"))),
+        rotate(10deg, mock-card("commune-m.jpg", rgb("#8b5cf6")))))
+  }),
   frame(num: 10, left-num: false, sec-notes),
   leaf-web,
 )
