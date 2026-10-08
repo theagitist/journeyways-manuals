@@ -43,9 +43,13 @@ assets/player-booklet/ pages/ = cover-bg.jpg (grayscale); art/ = wash, swirl, QR
 src/cards.typ         card faces: one per card (single) or 8-up cut sheets (sheet)
 src/card-backs.typ    the five deck backs, one per page
 assets/cards/         GENERATED: manifest + art exported from the play repo
+src/tiles.typ         map tile faces: one per design (single) or 3x3 cut sheets (sheet)
+src/tile-backs.typ    the shared tile back: one for every tile (single) or 3x3 sheet
+assets/tiles/         GENERATED: manifest + art exported from the play repo
 deploy-web.sh         copy stable PDFs (all languages) into www/download
 build.sh              builds all nine PDFs (3 documents x 3 languages)
 build-cards.sh        builds the card print files (needs the export first)
+build-tiles.sh        builds the map tile print files, faces + the shared back (needs the export first)
 ```
 
 ## Build
@@ -110,6 +114,25 @@ size variant: the collectible look is a finish (gloss, rounded corners) chosen a
 print shop, not a different renderer.
 
 Omitting `--input lang=..` builds English.
+
+## Map tile print files
+
+Like the cards, the map tiles render from the single source (the play DB + locales +
+full-resolution art), so print and screen cannot drift. Export the manifest + art from
+the play repo first, then build:
+
+```sh
+( cd /var/www/play.journeyways.ca && node scripts/export-print-tiles.js )   # or: ./build-tiles.sh --export
+./build-tiles.sh                     # English faces + the shared back
+./build-tiles.sh --all-langs --png   # es/fr too, plus per-tile PNGs for The Game Crafter
+```
+
+Outputs (square tile, 2.5in trim + 1/8in bleed):
+
+- `tiles_LANG.pdf` / `tiles-sheet_LANG.pdf`: the faces, one per design (print-on-demand) or 3x3 on US Letter (DIY cutting).
+- `tiles-back.pdf` / `tiles-back-sheet.pdf`: the **shared face-down back**. Every tile uses the same painted design, so there is one back file (not one per tile). POD single or 3x3 DIY sheet; language-independent (no text).
+
+The physical game is English-only for now, so `build-tiles.sh` builds English by default (`--all-langs` adds es/fr). The back carries no text, so it is built once regardless of language.
 
 ## Deploying to the website (ongoing)
 
