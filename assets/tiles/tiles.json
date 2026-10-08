@@ -460,6 +460,72 @@
     },
     {
       "tile_number": "T42",
+      "slug": "home-village",
+      "name": {
+        "en": "Home Village",
+        "es": "La aldea",
+        "fr": "Le village"
+      },
+      "art": "home-village-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T43",
+      "slug": "great-boulder",
+      "name": {
+        "en": "Great Boulder",
+        "es": "El peñasco",
+        "fr": "Le rocher"
+      },
+      "art": "great-boulder-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T44",
+      "slug": "wheel-of-chance",
+      "name": {
+        "en": "Wheel of Chance",
+        "es": "Rueda de la suerte",
+        "fr": "Roue de la chance"
+      },
+      "art": "wheel-of-chance-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T45",
+      "slug": "wayfinding-star",
+      "name": {
+        "en": "Wayfinding Star",
+        "es": "Estrella guía",
+        "fr": "Étoile guide"
+      },
+      "art": "wayfinding-star-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T46",
+      "slug": "tulip-field",
+      "name": {
+        "en": "Tulip Field",
+        "es": "Campo de tulipanes",
+        "fr": "Champ de tulipes"
+      },
+      "art": "tulip-field-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T47",
+      "slug": "the-cosmos",
+      "name": {
+        "en": "The Cosmos",
+        "es": "El cosmos",
+        "fr": "Le cosmos"
+      },
+      "art": "the-cosmos-full.webp",
+      "copies": 1
+    },
+    {
+      "tile_number": "T48",
       "slug": "blank",
       "name": {
         "en": "Blank",
