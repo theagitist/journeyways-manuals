@@ -20,6 +20,8 @@
 # Outputs (LANG = en by default, or en/es/fr with --all-langs):
 #   tiles_LANG.pdf         one tile per unique design, trim + 1/8in bleed
 #   tiles-sheet_LANG.pdf   3x3 portrait Letter, for DIY cutting
+#   tiles-back.pdf         the shared face-down back, trim + 1/8in bleed (one for all tiles)
+#   tiles-back-sheet.pdf   3x3 backs on US Letter, for DIY
 #   tgc-png-tiles/LANG/<num>.png  per-tile faces at 750x750 (with --png)
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -59,6 +61,11 @@ done
 
 echo "Built (${LANGS[*]}):"
 ls -la tiles_*.pdf tiles-sheet_*.pdf
+
+# Tile backs: one shared, language-independent design (no text), so build once.
+typst compile --font-path fonts --root . --input mode=single src/tile-backs.typ tiles-back.pdf
+typst compile --font-path fonts --root . --input mode=sheet  src/tile-backs.typ tiles-back-sheet.pdf
+echo "Tile backs: tiles-back.pdf (POD, one back for all tiles) + tiles-back-sheet.pdf (DIY 3x3)"
 
 if [[ "$DO_PNG" == 1 ]]; then
   echo "Rendering per-tile PNGs (750x750, 300 DPI) for The Game Crafter..."

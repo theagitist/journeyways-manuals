@@ -6,16 +6,17 @@
     ],
     "bleed_mm": 3.175
   },
+  "back": "tile-back.webp",
   "tiles": [
     {
       "tile_number": "T1",
-      "slug": "start",
+      "slug": "the-clearing",
       "name": {
-        "en": "Start",
-        "es": "Inicio",
-        "fr": "Départ"
+        "en": "The Clearing",
+        "es": "El claro",
+        "fr": "La clairière"
       },
-      "art": "start-full.webp",
+      "art": "the-clearing-full.webp",
       "copies": 1
     },
     {

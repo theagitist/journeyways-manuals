@@ -16,6 +16,8 @@
 /card-backs.pdf
 /tiles_*.pdf
 /tiles-sheet_*.pdf
+/tiles-back.pdf
+/tiles-back-sheet.pdf
 /tgc-png/
 
 # Generated card manifest + art, exported from the play repo (not source; run
