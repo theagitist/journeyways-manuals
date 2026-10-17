@@ -6,7 +6,7 @@
 // as the digital card and the website, so print and screen cannot drift.
 //
 // Typography and palette mirror the digital card (game-components.css): warm paper
-// #fdfbf6, Italianno title, Inter body, per-deck colour bar, black Countdown panel.
+// #fdfbf6, Italianno title, Nunito body, per-deck colour bar, black Countdown panel.
 //
 // Compile (see build-cards.sh):
 //   typst compile --font-path fonts --root . --input lang=es src/cards.typ cards_es.pdf
@@ -39,11 +39,13 @@
 
 #let art-dir = "../assets/cards/"
 
-// One body text size for every card. Shrink-to-fit only drops it (in 0.5pt steps,
-// per card) for the few whose text would otherwise overflow, so the type stays a
-// single consistent size across the deck instead of stepping by text length.
-#let body-size = 10.5pt
-#let body-min  = 8pt
+// Text sizes mirror the web/play card (game-components.css, 1cqw = 1.8pt on a
+// 2.5in card): one size per kind (art card / text-only card), and a card whose
+// text would overflow steps down the same fixed ladder the web uses, so the
+// deck shows only a few sizes.
+#let art-size  = 11.5pt   // 6.4cqw
+#let text-size = 16.5pt   // 9.2cqw
+#let fit-steps = (1, 0.88, 0.78, 0.7)
 
 // Localized string from a {en, es, fr} dict (English fallback).
 #let pick(d) = if type(d) == dictionary { d.at(lang, default: d.at("en", default: "")) } else { d }
@@ -78,49 +80,56 @@
     place(bottom + right, dx: -(bl + 0.19in), dy: -(bl + 0.15in),
       text(font: "Inter", size: 6pt,
         fill: if black { rgb("#9ca3af") } else { ink.lighten(20%) }, card.number))
-    // Quote author, bottom-centre (Reflection cards).
-    if author != none {
-      place(bottom + center, dy: -(bl + 0.28in),
-        text(font: "Inter", size: 7pt, fill: fg, tracking: 0.04em, "- " + upper(author) + " -"))
-    }
     // Content flow in the safe area.
     block(width: 100%, height: 100%, inset: (
-        left: bl + 0.19in, right: bl + 0.19in,
-        top: bl + 0.05in + 0.1in, bottom: bl + 0.34in,
+        left: bl + 0.18in, right: bl + 0.18in,
+        top: bl + if hasart { 0.18in } else { 0.19in }, bottom: bl + 0.25in,
       ),
       layout(size => {
-        set text(font: "Inter", fill: fg)
-        // Stack title -> art -> text tight at the TOP (matches the web/play card):
-        // kill Typst's default block/paragraph gaps, control spacing with v(), and
-        // trim Italianno's tall line box so the art sits right under the title.
+        set text(font: "Nunito", fill: fg)
+        // Title, then the art edge to edge, then the body centred (both ways) in
+        // the space left above the card number, as on the web/play card.
         set par(spacing: 0pt)
         set block(spacing: 0pt)
         let aw = size.width
-        // Title and art take fixed space at the top; measure them so the body gets
-        // the real remaining height to shrink-to-fit against.
         let title-el = if title != "" {
           text(font: "Italianno", size: 28pt, fill: fg,
             top-edge: "cap-height", bottom-edge: "baseline", title)
         }
-        let art-el = if hasart { image(art-dir + card.art, width: 100%, fit: "contain") }
+        // The art runs past the side margins to the trim and on into the bleed,
+        // cropped 3:2 (only blank paper goes; the paper is pre-matched to #fdfbf6).
+        let art-h = w / 1.5
+        let art-el = if hasart {
+          block(width: aw, height: art-h,
+            place(center + top, image(art-dir + card.art, width: w + 2 * bl, height: art-h, fit: "cover")))
+        }
         let used = 0pt
-        if title != "" { used += measure(title-el).height + 0.1in }
-        if hasart { used += measure(box(width: aw, art-el)).height + 0.1in }
-        // One size for every card; step down only if the body overflows what is left.
-        let mk = s => par(leading: 0.5em, justify: false, text(size: s, body))
-        let bsize = body-size
-        while bsize > body-min and measure(box(width: aw, mk(bsize))).height > size.height - used {
-          bsize = bsize - 0.5pt
+        if title != "" { used += measure(title-el).height + 0.08in }
+        if hasart { used += art-h + 0.02in }
+        let base = if hasart { art-size } else { text-size }
+        // Full ascender-to-descender line boxes (Nunito spans 1.364em), so the
+        // leading below reproduces CSS line-height 1.38 / 1.5 and the fit check
+        // measures the same box the browser does.
+        let lead = if hasart { 0.016em } else { 0.136em }
+        // Styles are set INSIDE mk: measure() only sees the styles of the content
+        // it is given, not the set rules of this layout block.
+        let mk = s => {
+          set text(font: "Nunito", fill: fg, size: s, top-edge: "ascender", bottom-edge: "descender")
+          set par(spacing: 0pt)
+          set block(spacing: 0pt)
+          align(center, par(leading: lead, justify: false, body))
+          if author != none {
+            v(0.14in)
+            align(center, text(size: 7pt, fill: if black { fg } else { rgb("#6b7280") }, tracking: 0.08em, "- " + upper(author) + " -"))
+          }
         }
-        // Emit top-down: title, art, then body (left for art cards; centred and
-        // vertically centred for the text-only quote / Countdown cards).
-        if title != "" { align(center, title-el); v(0.1in) }
-        if hasart { align(center, art-el); v(0.1in) }
-        if hasart {
-          mk(bsize)
-        } else {
-          v(1fr); align(center, mk(bsize)); v(1fr)
+        let bsize = base * fit-steps.last()
+        for f in fit-steps {
+          if measure(block(width: aw, mk(base * f))).height <= size.height - used { bsize = base * f; break }
         }
+        if title != "" { align(center, title-el); v(0.08in) }
+        if hasart { art-el; v(0.02in) }
+        v(1fr); mk(bsize); v(1fr)
       })
     )
   })
