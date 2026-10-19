@@ -1,0 +1,83 @@
+{
+  "en": {
+    "encounter": {
+      "name": "Encounter",
+      "colour": "Red",
+      "colour_plural": "Red"
+    },
+    "movement": {
+      "name": "Movement",
+      "colour": "Green",
+      "colour_plural": "Green"
+    },
+    "reflection": {
+      "name": "Reflection",
+      "colour": "Blue",
+      "colour_plural": "Blue"
+    },
+    "countdown": {
+      "name": "Countdown",
+      "colour": "Black",
+      "colour_plural": "Black"
+    },
+    "group": {
+      "name": "Group",
+      "colour": "Purple",
+      "colour_plural": "Purple"
+    }
+  },
+  "es": {
+    "encounter": {
+      "name": "Encuentro",
+      "colour": "Roja",
+      "colour_plural": "Rojas"
+    },
+    "movement": {
+      "name": "Movimiento",
+      "colour": "Verde",
+      "colour_plural": "Verdes"
+    },
+    "reflection": {
+      "name": "Reflexión",
+      "colour": "Azul",
+      "colour_plural": "Azules"
+    },
+    "countdown": {
+      "name": "Cuenta atrás",
+      "colour": "Negra",
+      "colour_plural": "Negras"
+    },
+    "group": {
+      "name": "Grupo",
+      "colour": "Morada",
+      "colour_plural": "Moradas"
+    }
+  },
+  "fr": {
+    "encounter": {
+      "name": "Rencontre",
+      "colour": "Rouge",
+      "colour_plural": "Rouges"
+    },
+    "movement": {
+      "name": "Mouvement",
+      "colour": "Verte",
+      "colour_plural": "Vertes"
+    },
+    "reflection": {
+      "name": "Réflexion",
+      "colour": "Bleue",
+      "colour_plural": "Bleues"
+    },
+    "countdown": {
+      "name": "Compte à rebours",
+      "colour": "Noire",
+      "colour_plural": "Noires"
+    },
+    "group": {
+      "name": "Groupe",
+      "colour": "Violette",
+      "colour_plural": "Violettes"
+    }
+  }
+}

@@ -80,7 +80,7 @@ the DB reachable):
 ( cd /var/www/play.journeyways.ca && node scripts/export-print-cards.js )
 ```
 
-This writes `assets/cards/cards.json` and copies the card art here. Then build:
+This writes `assets/cards/cards.json` and copies the card art here. It also writes `assets/cards/decks.json`, the deck names and colour words in every language straight from the game; the manuals read their deck labels from it (`content.typ`), so never type a deck name or colour into the Typst sources. `decks.json` is committed so the manuals build from a fresh checkout. Then build:
 
 ```sh
 ./build-cards.sh            # English PDFs; --export runs the export, --png adds TGC images, --all-langs adds es/fr

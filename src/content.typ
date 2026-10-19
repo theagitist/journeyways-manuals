@@ -43,11 +43,16 @@
   text(font: "Inter", weight: "bold", size: 12pt, fill: c-orange, body))
 // Card-colour word (feminine, agreeing with "card" / "carta" / "carte").
 #let card(name, col) = text(fill: col, weight: "bold", name)
-#let g   = card(t(en: "Green",  es: "Verde",  fr: "Verte"),    c-green)
-#let bl  = card(t(en: "Black",  es: "Negra",  fr: "Noire"),    c-mut)
-#let blu = card(t(en: "Blue",   es: "Azul",   fr: "Bleue"),    c-blue)
-#let rd  = card(t(en: "Red",    es: "Roja",   fr: "Rouge"),    c-red)
-#let pp  = card(t(en: "Purple", es: "Morada", fr: "Violette"), c-purple)
+// Deck names and colour words come from the game (play locales, exported by
+// build-cards.sh --export as assets/cards/decks.json); never type them here.
+#let deck = json(asset("cards/decks.json")).at(lang)
+#let g   = card(deck.movement.colour,   c-green)
+#let bl  = card(deck.countdown.colour,  c-mut)
+#let blu = card(deck.reflection.colour, c-blue)
+#let rd  = card(deck.encounter.colour,  c-red)
+#let pp  = card(deck.group.colour,      c-purple)
+// Legend label: "Purple (Group):", the colour and the deck's name.
+#let leg-label(d) = d.colour + " (" + d.name + ")" + t(en: ":", es: ":", fr: " :")
 
 #let body-set(body) = {
   set text(font: "Inter", size: 11.5pt, fill: c-ink)
@@ -71,15 +76,15 @@
   chip(name), [#text(weight: "bold")[#label] #meaning])
 #let card-legend = block(above: 7pt, below: 5pt, grid(
   columns: (1fr, 1fr), column-gutter: 18pt, row-gutter: 9pt,
-  leg-item("green",  t(en: "Green:",  es: "Verde:",  fr: "Verte :"),
-    t(en: "movement.", es: "movimiento.", fr: "déplacement.")),
-  leg-item("blue",   t(en: "Blue:",   es: "Azul:",   fr: "Bleue :"),
+  leg-item("green",  leg-label(deck.movement),
+    t(en: "how you move on the map.", es: "cómo te mueves por el mapa.", fr: "comment tu te déplaces sur la carte.")),
+  leg-item("blue",   leg-label(deck.reflection),
     t(en: "a quote to reflect on.", es: "una cita para reflexionar.", fr: "une citation à méditer.")),
-  leg-item("red",    t(en: "Red:",    es: "Roja:",   fr: "Rouge :"),
-    t(en: "an encounter.", es: "un encuentro.", fr: "une rencontre.")),
-  leg-item("purple", t(en: "Purple:", es: "Morada:", fr: "Violette :"),
+  leg-item("red",    leg-label(deck.encounter),
+    t(en: "something happens on your journey.", es: "algo sucede en tu viaje.", fr: "il se passe quelque chose pendant ton voyage.")),
+  leg-item("purple", leg-label(deck.group),
     t(en: "a group event.", es: "un evento de grupo.", fr: "un événement de groupe.")),
-  leg-item("black",  t(en: "Black:",  es: "Negra:",  fr: "Noire :"),
+  leg-item("black",  leg-label(deck.countdown),
     t(en: "the passing of time.", es: "el paso del tiempo.", fr: "le passage du temps.")),
 ))
 
@@ -259,7 +264,7 @@
     title(t(en: [Game Setup], es: [Preparación], fr: [Mise en place]))
     subhead(t(en: [What You'll Need], es: [Qué necesitas], fr: [Ce qu'il te faut]))
     blist(
-      t(en: [Board tiles (47).], es: [Losetas de tablero (47).], fr: [Tuiles de plateau (47).]),
+      t(en: [Board tiles (47).], es: [Mosaicos del tablero (47).], fr: [Tuiles de plateau (47).]),
       t(en: [Game cards (101).], es: [Cartas de juego (101).], fr: [Cartes de jeu (101).]),
       t(en: [Player tokens (1 per player).], es: [Fichas de juego (1 por persona).], fr: [Pions (1 par personne).]),
       t(en: [Player booklet (1 per player).], es: [Cuaderno de juego (1 por persona).], fr: [Cahier de jeu (1 par personne).]),
@@ -276,7 +281,7 @@
         es: [Elige una carta y colócala aparte boca arriba. Será el montón de descarte.],
         fr: [Choisis une carte et pose-la à part, face visible. Ce sera la pile de défausse.]),
       t(en: [Shuffle all the board tiles and place them face down in three piles.],
-        es: [Baraja todas las losetas y colócalas boca abajo en tres montones.],
+        es: [Baraja todos los mosaicos y colócalos boca abajo en tres montones.],
         fr: [Mélange toutes les tuiles et place-les face cachée en trois piles.]),
       t(en: [Each player takes one player token.],
         es: [Cada persona toma una ficha.],
@@ -285,13 +290,13 @@
         es: [Usa el dado para decidir quién empieza. Por ejemplo, el número más alto va primero.],
         fr: [Utilise le dé pour désigner qui commence. Par exemple, le plus grand nombre commence.]),
       t(en: [The starting player picks a tile from any pile and places it in the middle of the table. This is the first tile, where the journey begins.],
-        es: [Quien empieza elige una loseta de cualquier montón y la coloca en el centro de la mesa. Es la primera loseta, donde comienza el viaje.],
+        es: [Quien empieza elige un mosaico de cualquier montón y lo coloca en el centro de la mesa. Es el primer mosaico, donde comienza el viaje.],
         fr: [La personne qui commence choisit une tuile dans une pile et la place au milieu de la table. C'est la première tuile, là où le voyage commence.]),
       t(en: [Taking turns, each player picks a tile from any pile and places it adjacent to another previously placed tile. If it's a blank tile, put it back in the pile and pick again.],
-        es: [Por turnos, cada persona elige una loseta de cualquier montón y la coloca junto a otra ya colocada. Si es una loseta en blanco, devuélvela al montón y elige otra.],
+        es: [Por turnos, cada persona elige un mosaico de cualquier montón y lo coloca junto a otro ya colocado. Si es un mosaico en blanco, devuélvelo al montón y elige otro.],
         fr: [À tour de rôle, chaque personne choisit une tuile dans une pile et la place à côté d'une tuile déjà posée. Si la tuile est vierge, remets-la dans la pile et choisis-en une autre.]),
       t(en: [All players place their tokens on the first tile.],
-        es: [Todas las personas colocan su ficha en la primera loseta.],
+        es: [Todas las personas colocan su ficha en el primer mosaico.],
         fr: [Chaque personne place son pion sur la première tuile.]),
     )
   }
@@ -308,7 +313,7 @@
       fr: [Chaque tour comprend trois phases : Explorer, Choisir et Réfléchir.])
     label-b(t(en: [1. Explore], es: [1. Explorar], fr: [1. Explorer]))
     t(en: [For Exploration, you have two options: (1) Pick a map tile and place it adjacent to another one. If you pick a blank tile, you have to create it before placing it. (2) Use a sticky note to draw a new map tile (whatever you want) and place it on top of an existing one where no player is located. After you place your tile, you can move one or two spaces in any direction.],
-      es: [Para explorar tienes dos opciones: (1) Elige una loseta del mapa y colócala junto a otra. Si eliges una loseta en blanco, tienes que crearla antes de colocarla. (2) Usa una nota adhesiva para dibujar una nueva loseta del mapa (lo que quieras) y colócala encima de una loseta existente donde no haya ninguna ficha. Después de colocar tu loseta, puedes moverte uno o dos espacios en cualquier dirección.],
+      es: [Para explorar tienes dos opciones: (1) Elige un mosaico del mapa y colócalo junto a otro. Si eliges un mosaico en blanco, tienes que crearlo antes de colocarlo. (2) Usa una nota adhesiva para dibujar un nuevo mosaico del mapa (lo que quieras) y colócalo encima de un mosaico existente donde no haya ninguna ficha. Después de colocar tu mosaico, puedes moverte uno o dos espacios en cualquier dirección.],
       fr: [Pour explorer, tu as deux options : (1) Choisis une tuile de carte et place-la à côté d'une autre. Si tu choisis une tuile vierge, tu dois la créer avant de la poser. (2) Sur une note autocollante, dessine une nouvelle tuile de carte (ce que tu veux) et pose-la sur une tuile existante où ne se trouve aucun pion. Après avoir posé ta tuile, tu peux te déplacer d'une ou deux cases dans n'importe quelle direction.])
     label-b(t(en: [2. Pick], es: [2. Elegir], fr: [2. Choisir]))
     t(en: [Pick a card from any pile, even the Discard pile. Each colour means something different:],
@@ -360,7 +365,7 @@
       es: [Usa las cartas del juego como inspiración, no como definiciones rígidas; el objetivo principal es que liberes tu imaginación y escribas la historia que quieras contar. Las entradas del diario pueden ser tan cortas o tan largas, tan escuetas o tan detalladas como quieras.],
       fr: [Utilise les cartes du jeu comme inspiration, non comme des définitions rigides ; l'objectif principal est de libérer ton imagination et d'écrire l'histoire que tu veux raconter. Les entrées du journal peuvent être aussi courtes ou aussi longues, aussi brèves ou aussi détaillées que tu le souhaites.]))
     p(t(en: [You can get inspiration from the tile where your token is located and the text in the card, but you can be as creative as you want. You can write a journal entry, doodle it, or do whatever you like.],
-      es: [Puedes inspirarte en la loseta donde está tu ficha y en el texto de la carta, pero puedes dejar volar tu creatividad tanto como quieras. Puedes escribir una entrada de diario, dibujarla o hacer lo que prefieras.],
+      es: [Puedes inspirarte en el mosaico donde está tu ficha y en el texto de la carta, pero puedes dejar volar tu creatividad tanto como quieras. Puedes escribir una entrada de diario, dibujarla o hacer lo que prefieras.],
       fr: [Tu peux t'inspirer de la tuile où se trouve ton pion et du texte de la carte, mais tu peux laisser libre cours à ta créativité autant que tu veux. Tu peux écrire une entrée de journal, la dessiner, ou faire ce qui te plaît.]))
     v(0.1in)
     p(t(en: [Here is an example of a possible journal entry, on the next page.],

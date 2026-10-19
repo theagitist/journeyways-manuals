@@ -94,7 +94,7 @@
     fr: [Chaque tour a trois phases : Explorer, Choisir, Réfléchir.]))
   list(
     t(en: [*Explore:* place a map tile (or invent one on a sticky note), then move one or two spaces.],
-      es: [*Explorar:* coloca una loseta del mapa (o inventa una en una nota adhesiva) y muévete uno o dos espacios.],
+      es: [*Explorar:* coloca un mosaico del mapa (o inventa uno en una nota adhesiva) y muévete uno o dos espacios.],
       fr: [*Explorer :* place une tuile de carte (ou invente-en une sur une note autocollante), puis déplace-toi d'une ou deux cases.]),
     t(en: [*Pick:* take a card from any pile, even the Discard pile.],
       es: [*Elegir:* toma una carta de cualquier montón, incluso del de descarte.],

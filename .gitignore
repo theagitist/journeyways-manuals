@@ -22,7 +22,8 @@
 
 # Generated card manifest + art, exported from the play repo (not source; run
 # play's scripts/export-print-cards.js to regenerate)
-/assets/cards/
+/assets/cards/*
+!/assets/cards/decks.json
 
 # Editor / OS cruft
 .DS_Store
