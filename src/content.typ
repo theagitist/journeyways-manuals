@@ -103,8 +103,8 @@
 })
 
 // --- Page frame ----------------------------------------------------------------
-#let frame(num: none, left-num: false, body) = box(
-  width: leaf-w, height: leaf-h, clip: true,
+#let frame(num: none, left-num: false, fill: none, body) = box(
+  width: leaf-w, height: leaf-h, clip: true, fill: fill,
   {
     place(top + left, dx: 1.2in, dy: 0.82in,
       box(width: leaf-w - 2.4in, height: leaf-h - 1.5in, body-set(body)))
@@ -470,9 +470,9 @@
 
 #let sec-creating-own = {
   subhead(t(en: [Creating your own elements], es: [Crear tus propios elementos], fr: [Créer tes propres éléments]))
-  t(en: [Feel free to add your own story cards, character elements, or game mechanics. JOURNEYWAYS is a framework for exploration; make it your own.],
-    es: [Siéntete libre de añadir tus propias cartas de historia, elementos de personaje o mecánicas de juego. JOURNEYWAYS es un marco para la exploración; hazlo tuyo.],
-    fr: [N'hésite pas à ajouter tes propres cartes d'histoire, éléments de personnage ou mécaniques de jeu. JOURNEYWAYS est un cadre pour l'exploration ; fais-le tien.])
+  t(en: [Feel free to add your own places (new tiles on sticky notes), character elements, or game mechanics. JOURNEYWAYS is a framework for exploration; make it your own.],
+    es: [Siéntete libre de añadir tus propios lugares (losetas nuevas en notas adhesivas), elementos de personaje o mecánicas de juego. JOURNEYWAYS es un marco para la exploración; hazlo tuyo.],
+    fr: [N'hésite pas à ajouter tes propres lieux (nouvelles tuiles sur des notes autocollantes), éléments de personnage ou mécaniques de jeu. JOURNEYWAYS est un cadre pour l'exploration ; fais-le tien.])
 }
 
 #let sec-tips = {
@@ -515,8 +515,8 @@
   }
 }
 
-// Website / QR codes (last page, unnumbered like the booklet's back cover).
-#let leaf-web = frame(
+// Website / QR codes (back cover, unnumbered; same warm paper as the cover).
+#let leaf-web = frame(fill: rgb("#F4EEE0"),
   {
     v(0.3in)
     align(center, text(font: "Italianno", size: 58pt, fill: c-orange, [Journeyways]))

@@ -25,7 +25,7 @@
   v(0.25in)
   p[This guide is for the person who brings JOURNEYWAYS to a table: a friend hosting a game night, a teacher, a community worker running a workshop, or a researcher running a study session.]
   p[Facilitating JOURNEYWAYS is less about teaching rules and more about holding space. The players make the story; you make it easy, safe and unhurried for them to do so.]
-  p[Keep the Game Rules manual at hand. This guide does not repeat them; it explains how to open, guide, end and extend a session around them.]
+  p[Read the Game Rules manual first, and keep it at hand. This guide does not repeat the rules; it explains how to open, guide, end and extend a session around them.]
   v(0.1in)
   callout[*The one rule that matters:* every rule in JOURNEYWAYS can be bent or broken, by anyone, at any moment, as long as the group is okay with it. Breaking a rule is not a failure of the game; it is the game working.]
   place(bottom + center, dy: 0.05in,
@@ -76,22 +76,30 @@
 #let fg-before = frame(num: 3, left-num: true, {
   title[Before the session]
   subhead[The facilitator's kit]
-  blist(
-    [One complete copy of the game, and the Game Rules manual.],
-    [One player booklet per player, plus a spare.],
-    [Extra blank tiles and blank cards, so players can make new places and cards on the spot.],
-    [Sticky notes, pens, pencils and a few colours.],
-    [A small bag of assorted playing pieces (see the next page).],
-    [Index cards for the X-card (see Safety tools).],
-    [Water and simple snacks. They help the slow pace.],
+  grid(columns: (1fr, 1.3in), column-gutter: 16pt,
+    blist(
+      [One complete copy of the game, and the Game Rules manual.],
+      [One player booklet per player, plus a spare.],
+      [Plenty of sticky notes (Post-it size), so players can make new places on the spot.],
+      [Pens, pencils and a few colours.],
+      [A small bag of assorted playing pieces (see the next page).],
+      [Water and simple snacks. They help the slow pace.],
+    ),
+    // Side note: where to get every component.
+    box(width: 100%, inset: 8pt, radius: 5pt, stroke: 0.6pt + c-mut.lighten(35%), {
+      set par(leading: 0.5em)
+      align(center, image(asset("qr-components.svg"), width: 0.85in))
+      v(2pt)
+      align(center, text(size: 8.5pt, style: "italic", fill: c-mut)[All the game components can be found and downloaded at #text(fill: c-ink, style: "normal")[journeyways.ca/components]])
+    }),
   )
   subhead[The space and the time]
   blist(
     [A quiet room with steady, comfortable light.],
-    [A big table: the map grows, and 1.5 m by 1.5 m (about 5 by 5 feet) is comfortable.],
+    [A big enough table: the map grows, and 1.5 m by 1.5 m (about 5 by 5 feet) is comfortable.],
     [Seats for every player, and a place for you slightly apart.],
     [Check access ahead of time (step-free entry, washrooms) and ask players about any needs.],
-    [Plan about 2.5 to 3 hours: arrival, opening, character creation, play and a closing conversation. Two to five players works well; a solo player is welcome too.],
+    [Plan about 2 to 2.5 hours: arrival, opening, character creation, play and a closing conversation. Two to five players works well.],
   )
 })
 
@@ -99,22 +107,30 @@
   title[Playing pieces]
   p[Each player needs something to stand on the map. The player booklet includes a tear-out piece, but players can use *anything they like*: a ring, a coin, a button, a shell, a pebble, a piece borrowed from another game, a tiny toy.]
   p[The only limits are that the piece is not offensive and the group is okay with it. Choosing a piece is often the first small act of self-expression in the game, so give it a moment.]
+  p[A few days before the session, invite players to bring a small object they would like to play with. Many enjoy choosing something personal.]
   callout[*Bring options.* Keep a small bag of assorted, cheap pieces: buttons, beads, old game pieces, keys, dice, marbles, bottle caps. Nothing fancy. Lay them out on the table and let players choose, swap or bring their own.]
-  place(bottom + center, dy: -0.15in,
-    tile-img("wheel-of-chance-m.jpg", 2.7in))
+  place(bottom + center, dy: 0.05in,
+    tile-img("wheel-of-chance-m.jpg", 2.1in))
 })
 
 #let fg-opening = frame(num: 5, left-num: true, {
   title[Opening the session]
-  p[Let people arrive, settle and look at the materials on the table. Keep it informal. When everyone is ready, speak briefly to the whole table:]
-  nlist(
-    [*What JOURNEYWAYS is.* A game about becoming: you don't play to win, you play to discover a character and a story.],
-    [*The rules are loose.* Any rule can be bent or broken at any time, by anyone, as long as the group agrees. Say this out loud; it is the most important thing you will say.],
-    [*Sharing is optional.* Nobody has to read their journal aloud or explain what they wrote.],
-    [*The safety tools.* Introduce the opt-out, the X-card and lines and veils (next page).],
-    [*Leaving is fine.* Anyone can step away or leave at any time, without giving a reason.],
-    [*Questions.* Invite questions before you begin.],
-  )
+  p[Let people arrive, settle and look at the materials. When everyone is ready, speak briefly to the whole table. Here is an introduction you can adapt into your own words, or use as it is:]
+  callout({
+    set text(size: 10pt)
+    set par(leading: 0.6em, spacing: 1.05em)
+    emph[Welcome, and thank you for being here. Today we're playing JOURNEYWAYS, a board game about becoming. Nobody wins and nobody loses. Each of you will grow a character and a story, one place and one card at a time, and write or doodle that journey in your booklet.]
+    parbreak()
+    emph[Together we build a map out of tiles. On your turn you explore: add a place to the map, or make a new one on a sticky note, then move your piece. Then you pick a card and either do what it says or write about it in your journal. The game ends when the fifth black card turns up. I'll walk us through the first turn.]
+    parbreak()
+    emph[The rules are loose, on purpose. They are a starting point, not a test. Any rule can be bent or broken, by anyone, at any time, as long as the group is okay with it. Want to put a tile somewhere strange, or change how something works? Just ask the table. Turns aren't rigid either: play when you feel ready, or sit one out.]
+    parbreak()
+    emph[What you write is yours. Nobody has to read their journal aloud or explain it. If you want to share, we'd love to hear it; if not, that's completely fine.]
+    parbreak()
+    emph[You can opt out of anything, at any time: skip a card, a prompt, a turn or a question, take a break, or leave. You don't need a reason; just say so. Is there any topic you'd rather not see in the game at all, or only mentioned in passing? Tell the group, or tell me privately.]
+    parbreak()
+    emph[I'm not playing; I'm here to keep things comfortable and on time. We have about two hours. Any questions before we begin?]
+  })
   p[Then lay out the playing pieces and let everyone choose one.]
 })
 
@@ -122,9 +138,7 @@
   title[Safety tools]
   p[JOURNEYWAYS can touch personal ground: identity, memory, loss, the body. These tools help everyone feel free to go deep, because they know they can step back.]
   label-b[Opt out, any time]
-  p[Anyone can skip a card, a prompt, a turn or a question, or leave the table, without explaining why. Say so at the start and mean it.]
-  label-b[The X-card]
-  p[Draw an X on an index card and place it in the middle of the table. Anyone can tap it to remove whatever just came up: a card, an idea, a story thread. Nobody asks why. Set the card aside, rephrase or move on, and thank the person.]
+  p[Anyone can skip a card, a prompt, a turn or a question, or leave the table, without explaining why. No signal or tool is needed: they just say so. Say this at the start and mean it.]
   label-b[Lines and veils]
   p[Before play, ask the group for *lines*, topics that will not appear at all, and *veils*, topics that can happen but stay off-page, mentioned without detail. Anyone can add one privately to you. Write them on a sticky note everyone can see.]
   label-b[Check-ins]
@@ -134,7 +148,7 @@
 #let fg-start = frame(num: 7, left-num: true, {
   title[Starting the game]
   nlist(
-    [*Character creation (20 to 30 minutes).* Each player opens their booklet at the character sheet and answers the prompts. Some players write a lot, some a word or two; both are fine.],
+    [*Character creation (10 to 20 minutes).* Each player opens their booklet at the character sheet and answers the prompts. Some players write a lot, some a word or two; both are fine.],
     [*Set up the table* together, following the Game Rules: shuffle the cards and the tiles into piles, and place the first tile.],
     [*Choose who starts and a rough turn order.* Keep it loose. Turns are not rigid: anyone can play when they feel ready, or sit a turn out.],
     [*Place the pieces* on the first tile.],
@@ -152,7 +166,7 @@
   title[During play]
   p[Once the game is going, your job is mostly to watch and keep the space. Let silences happen; reflection takes time. Answer rules questions with an invitation more than a ruling: "what feels right to the group?"]
   subhead[When players break the rules]
-  p[Celebrate it. When someone proposes a change (placing a tile somewhere odd, inventing a card, ignoring a pile), ask the table if everyone is okay with it, then carry on. The change can last one turn or the whole game. If one player is not okay, the group finds another way.]
+  p[Celebrate it. When someone proposes a change (placing a tile somewhere odd, inventing a new place, ignoring a pile), ask the table if everyone is okay with it, then carry on. The change can last one turn or the whole game. If one player is not okay, the group finds another way.]
   subhead[Check-ins]
   p[Every so often, especially after a heavy card or a long silence, pause and ask the table how people are doing. Keep it light: "want to keep going, take a break, or change something?" Breaks are part of the game.]
   place(bottom + center, dy: 0.0in, box(width: 2.7in, radius: 6pt, clip: true,
@@ -184,7 +198,7 @@
   blist(
     [*Raise the countdown.* End at the sixth, seventh or tenth #bl card instead of the fifth.],
     [*Shuffle back.* When the piles run low, shuffle the discarded cards back in.],
-    [*Add new material.* Players can make new tiles and cards during play or between sessions, on blanks or sticky notes, and add them to the piles.],
+    [*Add new places.* Players can make new tiles on sticky notes, during play or between sessions, and add them to the map.],
     [*Continue next time.* Photograph the map before you pack it away, keep the journals and any kept cards, and note where each piece stood. Next session, rebuild the map and pick up where you left off. Characters and stories keep growing between sessions.],
   )
   place(bottom + center, dy: -0.12in,
@@ -195,7 +209,7 @@
 
 #let fg-research = frame(num: 11, left-num: true, {
   title[Research sessions]
-  p[When a session is part of a research study, the study's approved protocol comes first and adds a few steps to everything above:]
+  p[When a session is part of a research study, the study's approved protocol comes first. What follows are only general recommendations: each study has its own protocols, and those are what govern the session.]
   blist(
     [*Informed consent.* Share the consent form ahead of time if you can, go through it at the start, answer questions, and collect signatures before anything is recorded.],
     [*Recording.* Record only what the consent form allows. Photograph only people who signed the waiver; photograph the table, not faces, by default.],
