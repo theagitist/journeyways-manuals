@@ -272,7 +272,6 @@
         fr: [Supports de pièce (facultatifs ; la pièce est un prédécoupé du cahier).]),
       t(en: [Player booklet (1 per player).], es: [Cuaderno de juego (1 por persona).], fr: [Cahier de jeu (1 par personne).]),
       t(en: [Some sticky notes.], es: [Algunas notas adhesivas.], fr: [Quelques notes autocollantes.]),
-      t(en: [Die for choosing the starting player (1).], es: [Un dado para decidir quién empieza (1).], fr: [Un dé pour désigner qui commence (1).]),
       t(en: [Writing utensils.], es: [Algo para escribir.], fr: [De quoi écrire.]),
     )
     subhead(t(en: [Initial Setup], es: [Preparación inicial], fr: [Préparation initiale]))
@@ -289,9 +288,9 @@
       t(en: [Each player makes their playing piece from the booklet tear-out, or uses any small token they like.],
         es: [Cada persona crea su ficha con el recortable del cuaderno, o usa cualquier objeto pequeño que prefiera.],
         fr: [Chaque personne fabrique sa pièce à partir du prédécoupé du cahier, ou utilise un petit objet de son choix.]),
-      t(en: [Use the die to determine the starting player. For example, highest number goes first.],
-        es: [Usa el dado para decidir quién empieza. Por ejemplo, el número más alto va primero.],
-        fr: [Utilise le dé pour désigner qui commence. Par exemple, le plus grand nombre commence.]),
+      t(en: [Choose together who starts and a rough turn order. Turns don't need to be rigid: anyone can play when they feel like it, or sit a turn out.],
+        es: [Decidan entre todas las personas quién empieza y un orden de turnos aproximado. Los turnos no tienen que ser rígidos: cada persona puede jugar cuando quiera, o dejar pasar un turno.],
+        fr: [Choisissez ensemble qui commence et un ordre de jeu approximatif. Les tours n'ont pas besoin d'être rigides : chaque personne peut jouer quand elle en a envie, ou passer son tour.]),
       t(en: [The starting player picks a tile from any pile and places it in the middle of the table. This is the first tile, where the journey begins.],
         es: [Quien empieza elige una loseta de cualquier montón y la coloca en el centro de la mesa. Es el primer espacio, donde comienza el viaje.],
         fr: [La personne qui commence choisit une tuile dans une pile et la place au milieu de la table. C'est la première tuile, là où le voyage commence.]),
