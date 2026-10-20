@@ -216,7 +216,7 @@
   }
 )
 
-// Table of Contents, parameterised so the two editions get the right folios.
+// Table of contents, parameterised so the two editions get the right folios.
 #let toc-line(l, pg, indent: 0pt, bold: false, serif: false) = {
   set text(weight: (if bold { "bold" } else { "regular" }),
     style: (if serif { "italic" } else { "normal" }),
@@ -231,50 +231,50 @@
     // Compact heading so the list clears the bottom of the page with padding.
     block(below: 9pt, width: 100%, align(center, {
       text(font: "Italianno", size: 42pt, fill: c-orange,
-        t(en: [Table of Contents], es: [Índice], fr: [Table des matières]))
+        t(en: [Table of contents], es: [Índice], fr: [Table des matières]))
       v(-2pt)
       line(length: 1.4in, stroke: 0.9pt + c-orange.lighten(15%))
     }))
     v(2pt)
-    toc-line(t(en: "Game Setup", es: "Preparación", fr: "Mise en place"), "2", bold: true)
-    toc-line(t(en: "What You'll Need", es: "Qué necesitas", fr: "Ce qu'il te faut"), "2", indent: 20pt, serif: true)
-    toc-line(t(en: "Initial Setup", es: "Preparación inicial", fr: "Préparation initiale"), "2", indent: 20pt, serif: true)
-    toc-line(t(en: "Basic Gameplay", es: "Cómo se juega", fr: "Déroulement du jeu"), "3", bold: true)
-    toc-line(t(en: "Turn Structure", es: "Estructura del turno", fr: "Structure du tour"), "3", indent: 20pt, serif: true)
+    toc-line(t(en: "Game setup", es: "Preparación", fr: "Mise en place"), "2", bold: true)
+    toc-line(t(en: "What you'll need", es: "Qué necesitas", fr: "Ce qu'il te faut"), "2", indent: 20pt, serif: true)
+    toc-line(t(en: "Initial setup", es: "Preparación inicial", fr: "Préparation initiale"), "2", indent: 20pt, serif: true)
+    toc-line(t(en: "Basic gameplay", es: "Cómo se juega", fr: "Déroulement du jeu"), "3", bold: true)
+    toc-line(t(en: "Turn structure", es: "Estructura del turno", fr: "Structure du tour"), "3", indent: 20pt, serif: true)
     toc-line(t(en: "1. Explore", es: "1. Explorar", fr: "1. Explorer"), "3", indent: 40pt, serif: true)
     toc-line(t(en: "2. Pick", es: "2. Elegir", fr: "2. Choisir"), "3", indent: 40pt, serif: true)
     toc-line(t(en: "3. Reflect", es: "3. Reflexionar", fr: "3. Réfléchir"), "3", indent: 40pt, serif: true)
     toc-line(t(en: "Ending the game", es: "El final del juego", fr: "La fin de la partie"), "4", bold: true)
     toc-line(t(en: "Writing your journal", es: "Escribir tu diario", fr: "Écrire ton journal"), "5", bold: true)
-    toc-line(t(en: "Solo vs Group Play", es: "Juego en solitario y en grupo", fr: "Jeu en solo et en groupe"), "7", bold: true)
-    toc-line(t(en: "Solo Play", es: "Juego en solitario", fr: "Jeu en solo"), "7", indent: 20pt, serif: true)
-    toc-line(t(en: "Group Play", es: "Juego en grupo", fr: "Jeu en groupe"), "7", indent: 20pt, serif: true)
-    toc-line(t(en: "Advanced Concepts", es: "Conceptos avanzados", fr: "Concepts avancés"), "8", bold: true)
-    toc-line(t(en: "Session Endings", es: "Finales de sesión", fr: "Fins de séance"), "8", indent: 20pt, serif: true)
-    toc-line(t(en: "Returning to Previous Sessions", es: "Volver a sesiones anteriores", fr: "Revenir aux séances précédentes"), "8", indent: 20pt, serif: true)
-    toc-line(t(en: "Creating Your Own Elements", es: "Crear tus propios elementos", fr: "Créer tes propres éléments"), "8", indent: 20pt, serif: true)
-    toc-line(t(en: "Tips for Meaningful Play", es: "Consejos para un juego significativo", fr: "Conseils pour un jeu qui a du sens"), "9", bold: true)
-    toc-line(t(en: "Creating Safe Space", es: "Crear un espacio seguro", fr: "Créer un espace sûr"), "9", indent: 20pt, serif: true)
-    toc-line(t(en: "Deepening the Experience", es: "Profundizar la experiencia", fr: "Approfondir l'expérience"), "9", indent: 20pt, serif: true)
+    toc-line(t(en: "Solo and group play", es: "Juego en solitario y en grupo", fr: "Jeu en solo et en groupe"), "7", bold: true)
+    toc-line(t(en: "Solo play", es: "Juego en solitario", fr: "Jeu en solo"), "7", indent: 20pt, serif: true)
+    toc-line(t(en: "Group play", es: "Juego en grupo", fr: "Jeu en groupe"), "7", indent: 20pt, serif: true)
+    toc-line(t(en: "Advanced concepts", es: "Conceptos avanzados", fr: "Concepts avancés"), "8", bold: true)
+    toc-line(t(en: "Session endings", es: "Finales de sesión", fr: "Fins de séance"), "8", indent: 20pt, serif: true)
+    toc-line(t(en: "Returning to previous sessions", es: "Volver a sesiones anteriores", fr: "Revenir aux séances précédentes"), "8", indent: 20pt, serif: true)
+    toc-line(t(en: "Creating your own elements", es: "Crear tus propios elementos", fr: "Créer tes propres éléments"), "8", indent: 20pt, serif: true)
+    toc-line(t(en: "Tips for meaningful play", es: "Consejos para un juego significativo", fr: "Conseils pour un jeu qui a du sens"), "9", bold: true)
+    toc-line(t(en: "Creating a safe space", es: "Crear un espacio seguro", fr: "Créer un espace sûr"), "9", indent: 20pt, serif: true)
+    toc-line(t(en: "Deepening the experience", es: "Profundizar la experiencia", fr: "Approfondir l'expérience"), "9", indent: 20pt, serif: true)
   }
 )
 
-// Game Setup (folio 2).
+// Game setup (folio 2).
 #let leaf-setup = frame(num: 2, left-num: false,
   {
-    title(t(en: [Game Setup], es: [Preparación], fr: [Mise en place]))
-    subhead(t(en: [What You'll Need], es: [Qué necesitas], fr: [Ce qu'il te faut]))
+    title(t(en: [Game setup], es: [Preparación], fr: [Mise en place]))
+    subhead(t(en: [What you'll need], es: [Qué necesitas], fr: [Ce qu'il te faut]))
     blist(
-      t(en: [Board tiles (47).], es: [Losetas de mapa (47).], fr: [Tuiles de plateau (47).]),
+      t(en: [Board tiles (47), plus a blank tile (1).], es: [Losetas de mapa (47), más una loseta en blanco (1).], fr: [Tuiles de plateau (47), plus une tuile vierge (1).]),
       t(en: [Game cards (101).], es: [Cartas de juego (101).], fr: [Cartes de jeu (101).]),
       t(en: [Playing-piece stands (optional; the piece is a booklet tear-out).],
         es: [Soportes para las fichas (opcionales; la ficha es un recortable del cuaderno).],
-        fr: [Supports de pièce (facultatifs ; la pièce est un prédécoupé du cahier).]),
+        fr: [Supports de pion (facultatifs ; le pion est un prédécoupé du cahier).]),
       t(en: [Player booklet (1 per player).], es: [Cuaderno de juego (1 por persona).], fr: [Cahier de jeu (1 par personne).]),
       t(en: [Some sticky notes.], es: [Algunas notas adhesivas.], fr: [Quelques notes autocollantes.]),
       t(en: [Writing utensils.], es: [Algo para escribir.], fr: [De quoi écrire.]),
     )
-    subhead(t(en: [Initial Setup], es: [Preparación inicial], fr: [Préparation initiale]))
+    subhead(t(en: [Initial setup], es: [Preparación inicial], fr: [Préparation initiale]))
     nlist(
       t(en: [Shuffle all cards together and place them face down in three piles.],
         es: [Baraja todas las cartas juntas y colócalas boca abajo en tres montones.],
@@ -287,7 +287,7 @@
         fr: [Mélange toutes les tuiles et place-les face cachée en trois piles.]),
       t(en: [Each player makes their playing piece from the booklet tear-out, or uses any small token they like.],
         es: [Cada persona crea su ficha con el recortable del cuaderno, o usa cualquier objeto pequeño que prefiera.],
-        fr: [Chaque personne fabrique sa pièce à partir du prédécoupé du cahier, ou utilise un petit objet de son choix.]),
+        fr: [Chaque personne fabrique son pion à partir du prédécoupé du cahier, ou utilise un petit objet de son choix.]),
       t(en: [Choose together who starts and a rough turn order. Turns don't need to be rigid: anyone can play when they feel like it, or sit a turn out.],
         es: [Decidan entre todas las personas quién empieza y un orden de turnos aproximado. Los turnos no tienen que ser rígidos: cada persona puede jugar cuando quiera, o dejar pasar un turno.],
         fr: [Choisissez ensemble qui commence et un ordre de jeu approximatif. Les tours n'ont pas besoin d'être rigides : chaque personne peut jouer quand elle en a envie, ou passer son tour.]),
@@ -297,22 +297,24 @@
       t(en: [Taking turns, each player picks a tile from any pile and places it adjacent to another previously placed tile. If it's a blank tile, put it back in the pile and pick again.],
         es: [Por turnos, cada persona elige una loseta de cualquier montón y la coloca junto a otra ya colocada. Si es una loseta en blanco, devuélvela al montón y elige otra.],
         fr: [À tour de rôle, chaque personne choisit une tuile dans une pile et la place à côté d'une tuile déjà posée. Si la tuile est vierge, remets-la dans la pile et choisis-en une autre.]),
-      t(en: [All players place their tokens on the first tile.],
+      t(en: [All players place their pieces on the first tile.],
         es: [Todas las personas colocan su ficha en el primer espacio.],
         fr: [Chaque personne place son pion sur la première tuile.]),
     )
   }
 )
 
-// Basic Gameplay (folio 3).
+// Basic gameplay (folio 3).
 #let leaf-gameplay = frame(num: 3, left-num: true,
   {
-    set par(leading: 0.72em, spacing: 0.8em)
-    title(t(en: [Basic Gameplay], es: [Cómo se juega], fr: [Déroulement du jeu]))
-    subhead(t(en: [Turn Structure], es: [Estructura del turno], fr: [Structure du tour]))
-    t(en: [Each turn consists of three phases: Explore, Pick, and Reflect.],
-      es: [Cada turno consta de tres fases: Explorar, Elegir y Reflexionar.],
-      fr: [Chaque tour comprend trois phases : Explorer, Choisir et Réfléchir.])
+    // ponytail: densest page; smaller body keeps it clear of the folio in all three languages.
+    set text(size: 10.5pt)
+    set par(leading: 0.64em, spacing: 0.72em)
+    title(t(en: [Basic gameplay], es: [Cómo se juega], fr: [Déroulement du jeu]))
+    subhead(t(en: [Turn structure], es: [Estructura del turno], fr: [Structure du tour]))
+    t(en: [Each turn consists of three phases: Explore, Pick, and Reflect. Turns follow the rough order you agreed on, but stay loose: play when you feel ready, or sit a turn out.],
+      es: [Cada turno consta de tres fases: Explorar, Elegir y Reflexionar. Los turnos siguen el orden aproximado que acordaron, pero sin rigidez: juega cuando quieras, o deja pasar un turno.],
+      fr: [Chaque tour comprend trois phases : Explorer, Choisir et Réfléchir. L'ordre des tours reste souple : joue quand tu en as envie, ou passe ton tour.])
     label-b(t(en: [1. Explore], es: [1. Explorar], fr: [1. Explorer]))
     t(en: [For Exploration, you have two options: (1) Pick a map tile and place it adjacent to another one. If you pick a blank tile, you have to create it before placing it. (2) Use a sticky note to draw a new map tile (whatever you want) and place it on top of an existing one where no player is located. After you place your tile, you can move one or two spaces in any direction.],
       es: [Para explorar tienes dos opciones: (1) Elige una loseta del mapa y colócala junto a otra. Si eliges una loseta en blanco, tienes que crearla antes de colocarla. (2) Usa una nota adhesiva para dibujar una nueva loseta del mapa (lo que quieras) y colócala encima de un espacio donde no haya ninguna ficha. Después de colocar tu loseta, puedes moverte uno o dos espacios en cualquier dirección.],
@@ -323,9 +325,9 @@
       fr: [Choisis une carte dans n'importe quelle pile, même la pile de défausse. Chaque couleur veut dire quelque chose de différent :])
     card-legend
     label-b(t(en: [3. Reflect], es: [3. Reflexionar], fr: [3. Réfléchir]))
-    t(en: [If you picked a #g or #pp card, you have to perform the action it indicates. If you picked a #blu or #rd card, take into account what they say, and write a new entry in your journal. If you picked a #bl card, set it apart. The game ends when the fifth #bl card is picked.],
-      es: [Si elegiste una carta #g o #pp, tienes que realizar la acción que indica. Si elegiste una carta #blu o #rd, ten en cuenta lo que dicen y escribe una nueva entrada en tu diario. Si elegiste una carta #bl, ponla aparte. El juego termina cuando se elige la quinta carta #bl.],
-      fr: [Si tu as choisi une carte #g ou #pp, tu dois accomplir l'action indiquée. Si tu as choisi une carte #blu ou #rd, tiens compte de ce qu'elle dit et écris une nouvelle entrée dans ton journal. Si tu as choisi une carte #bl, mets-la à part. La partie se termine quand la cinquième carte #bl est choisie.])
+    t(en: [If you picked a #g or #pp card, you have to perform the action it indicates. If you picked a #blu or #rd card, take into account what it says, and write a new entry in your journal. If you picked a #bl card, set it apart. The game ends when the fifth #bl card is picked. Once you are done with a card, discard it or keep it: it does nothing more in the game, but some players keep their cards as a journal log or as milestones.],
+      es: [Si elegiste una carta #g o #pp, tienes que realizar la acción que indica. Si elegiste una carta #blu o #rd, ten en cuenta lo que dice y escribe una nueva entrada en tu diario. Si elegiste una carta #bl, ponla aparte. El juego termina cuando se elige la quinta carta #bl. Cuando termines con una carta, descártala o guárdala: ya no tiene efecto en el juego, pero hay personas que guardan sus cartas como registro de su diario o como hitos.],
+      fr: [Si tu as choisi une carte #g ou #pp, tu dois accomplir l'action indiquée. Si tu as choisi une carte #blu ou #rd, tiens compte de ce qu'elle dit et écris une nouvelle entrée dans ton journal. Si tu as choisi une carte #bl, mets-la à part. La partie se termine quand la cinquième carte #bl est choisie. Ensuite, défausse la carte ou garde-la : elle n'a plus d'effet, mais certaines personnes gardent leurs cartes comme trace de leur journal ou comme jalons.])
   }
 )
 
@@ -339,7 +341,7 @@
     p(t(en: [It is okay if your story ends abruptly. You can leave it like that, or return to it in another session.],
       es: [No pasa nada si tu historia termina de golpe. Puedes dejarla así o retomarla en otra sesión.],
       fr: [Ce n'est pas grave si ton histoire se termine brusquement. Tu peux la laisser ainsi ou y revenir lors d'une autre séance.]))
-    p(t(en: [After ending the game, each player can fill their Character Sheet at the end of the Player Booklet. This way they can see how their character developed during the game; what changed, and what stayed the same.],
+    p(t(en: [After ending the game, each player can fill in the character sheet at the end of their player booklet. This way they can see how their character developed during the game: what changed, and what stayed the same.],
       es: [Al terminar el juego, cada persona puede rellenar su Hoja de Personaje al final del Cuaderno de juego. Así puede ver cómo evolucionó su personaje durante la partida: qué cambió y qué permaneció igual.],
       fr: [À la fin de la partie, chaque personne peut remplir sa Fiche de Personnage à la fin du Cahier de jeu. Elle peut ainsi voir comment son personnage a évolué au cours de la partie : ce qui a changé et ce qui est resté pareil.]))
     v(4pt)
@@ -363,16 +365,16 @@
     p(t(en: [Unlike traditional games, your character in JOURNEYWAYS emerges through play rather than being predetermined.],
       es: [A diferencia de los juegos tradicionales, tu personaje en JOURNEYWAYS surge a través del juego en lugar de estar predeterminado.],
       fr: [Contrairement aux jeux traditionnels, ton personnage dans JOURNEYWAYS émerge au fil du jeu au lieu d'être prédéterminé.]))
-    p(t(en: [Use the game cards as inspiration, not rigid definitions; the main objective is you set your imagination free and write the story you want to tell. Journal entries can be as short or as long, as terse or as detailed as you want.],
+    p(t(en: [Use the game cards as inspiration, not rigid definitions; the main objective is to set your imagination free and write the story you want to tell. Journal entries can be as short or as long, as terse or as detailed as you want.],
       es: [Usa las cartas del juego como inspiración, no como definiciones rígidas; el objetivo principal es que liberes tu imaginación y escribas la historia que quieras contar. Las entradas del diario pueden ser tan cortas o tan largas, tan escuetas o tan detalladas como quieras.],
       fr: [Utilise les cartes du jeu comme inspiration, non comme des définitions rigides ; l'objectif principal est de libérer ton imagination et d'écrire l'histoire que tu veux raconter. Les entrées du journal peuvent être aussi courtes ou aussi longues, aussi brèves ou aussi détaillées que tu le souhaites.]))
-    p(t(en: [You can get inspiration from the tile where your token is located and the text in the card, but you can be as creative as you want. You can write a journal entry, doodle it, or do whatever you like.],
+    p(t(en: [You can get inspiration from the tile where your piece stands and the text in the card, but you can be as creative as you want. You can write a journal entry, doodle it, or do whatever you like.],
       es: [Puedes inspirarte en el espacio donde está tu ficha y en el texto de la carta, pero puedes dejar volar tu creatividad tanto como quieras. Puedes escribir una entrada de diario, dibujarla o hacer lo que prefieras.],
       fr: [Tu peux t'inspirer de la tuile où se trouve ton pion et du texte de la carte, mais tu peux laisser libre cours à ta créativité autant que tu veux. Tu peux écrire une entrée de journal, la dessiner, ou faire ce qui te plaît.]))
     v(0.1in)
-    p(t(en: [Here is an example of a possible journal entry, on the next page.],
-      es: [Aquí tienes un ejemplo de una posible entrada de diario, en la página siguiente.],
-      fr: [Voici un exemple d'entrée de journal possible, à la page suivante.]))
+    p(t(en: [The next page shows an example journal entry.],
+      es: [En la página siguiente tienes un ejemplo de entrada de diario.],
+      fr: [La page suivante montre un exemple d'entrée de journal.]))
     // A leaning pair of places, set apart from the neat row on the previous page.
     place(bottom + center, dy: -0.4in,
       stack(dir: ltr, spacing: -0.5in,
@@ -424,11 +426,11 @@
 // --- Atomic section chunks (composed differently per edition) -------------------
 
 #let sec-solo = {
-  title(t(en: [Solo vs Group Play], es: [Juego en solitario y en grupo], fr: [Jeu en solo et en groupe]))
+  title(t(en: [Solo and group play], es: [Juego en solitario y en grupo], fr: [Jeu en solo et en groupe]))
   v(4pt)
   two-col(
     {
-      subhead(t(en: [Solo Play], es: [Juego en solitario], fr: [Jeu en solo]))
+      subhead(t(en: [Solo play], es: [Juego en solitario], fr: [Jeu en solo]))
       blist(
         t(en: [Remove the #pp cards from the game.], es: [Retira las cartas #pp del juego.], fr: [Retire les cartes #pp du jeu.]),
         t(en: [Focus on deep personal reflection.], es: [Céntrate en una reflexión personal profunda.], fr: [Concentre-toi sur une réflexion personnelle profonde.]),
@@ -439,7 +441,7 @@
       )
     },
     {
-      subhead(t(en: [Group Play], es: [Juego en grupo], fr: [Jeu en groupe]))
+      subhead(t(en: [Group play], es: [Juego en grupo], fr: [Jeu en groupe]))
       blist(
         t(en: [Share reflections with others.], es: [Comparte reflexiones con las demás personas.], fr: [Partage tes réflexions avec les autres.]),
         t(en: [Learn from different perspectives.], es: [Aprende de perspectivas distintas.], fr: [Apprends d'autres perspectives.]),
@@ -455,43 +457,40 @@
 }
 
 #let sec-advanced = {
-  title(t(en: [Advanced Concepts], es: [Conceptos avanzados], fr: [Concepts avancés]))
-  subhead(t(en: [Session Endings], es: [Finales de sesión], fr: [Fins de séance]))
-  p(t(en: [It's recommended to end the session when the fifth #bl card is picked. Each player can add a final entry to their journal, or just leave it as it is.],
-    es: [Se recomienda terminar la sesión cuando se elige la quinta carta #bl. Cada persona puede añadir una última entrada a su diario, o dejarlo tal cual.],
-    fr: [Il est recommandé de terminer la séance quand la cinquième carte #bl est choisie. Chaque personne peut ajouter une dernière entrée à son journal, ou le laisser tel quel.]))
-  p(t(en: [However, if all players agree you can end the session after any number of #bl cards are picked, or disregard the #bl cards and use a timer, etc.],
-    es: [Sin embargo, de común acuerdo, la sesión puede terminar tras elegir cualquier número de cartas #bl, o pueden ignorarse las cartas #bl y usar un temporizador, etc.],
-    fr: [Cependant, d'un commun accord, la séance peut se terminer après un nombre quelconque de cartes #bl, ou vous pouvez ignorer les cartes #bl et utiliser un minuteur, etc.]))
-  subhead(t(en: [Returning to Previous Sessions], es: [Volver a sesiones anteriores], fr: [Revenir aux séances précédentes]))
+  title(t(en: [Advanced concepts], es: [Conceptos avanzados], fr: [Concepts avancés]))
+  subhead(t(en: [Session endings], es: [Finales de sesión], fr: [Fins de séance]))
+  p(t(en: [How a session ends is explained on page 4. Treat it as a suggestion: agree together on whatever ending suits your group.],
+    es: [Cómo termina una sesión se explica en la página 4. Tómalo como una sugerencia: decidan entre todas las personas el final que mejor le siente al grupo.],
+    fr: [La fin d'une séance est expliquée à la page 4. Prends-la comme une suggestion : choisissez ensemble la fin qui convient à votre groupe.]))
+  subhead(t(en: [Returning to previous sessions], es: [Volver a sesiones anteriores], fr: [Revenir aux séances précédentes]))
   t(en: [JOURNEYWAYS is designed for ongoing play. Return to previous sessions, revisit old insights, and see how your understanding has evolved. Your character and story continue to develop between sessions.],
     es: [JOURNEYWAYS está pensado para jugarse de forma continua. Vuelve a sesiones anteriores, revisita viejas ideas y observa cómo ha evolucionado tu comprensión. Tu personaje y tu historia siguen desarrollándose entre sesiones.],
     fr: [JOURNEYWAYS est conçu pour un jeu qui se poursuit dans le temps. Reviens aux séances précédentes, retrouve d'anciennes intuitions et observe comment ta compréhension a évolué. Ton personnage et ton histoire continuent de se développer d'une séance à l'autre.])
 }
 
 #let sec-creating-own = {
-  subhead(t(en: [Creating Your Own Elements], es: [Crear tus propios elementos], fr: [Créer tes propres éléments]))
+  subhead(t(en: [Creating your own elements], es: [Crear tus propios elementos], fr: [Créer tes propres éléments]))
   t(en: [Feel free to add your own story cards, character elements, or game mechanics. JOURNEYWAYS is a framework for exploration; make it your own.],
     es: [Siéntete libre de añadir tus propias cartas de historia, elementos de personaje o mecánicas de juego. JOURNEYWAYS es un marco para la exploración; hazlo tuyo.],
     fr: [N'hésite pas à ajouter tes propres cartes d'histoire, éléments de personnage ou mécaniques de jeu. JOURNEYWAYS est un cadre pour l'exploration ; fais-le tien.])
 }
 
 #let sec-tips = {
-  title(t(en: [Tips for Meaningful Play], es: [Consejos para un juego significativo], fr: [Conseils pour un jeu qui a du sens]))
+  title(t(en: [Tips for meaningful play], es: [Consejos para un juego significativo], fr: [Conseils pour un jeu qui a du sens]))
   v(4pt)
   two-col(
     {
-      subhead(t(en: [Creating Safe Space], es: [Crear un espacio seguro], fr: [Créer un espace sûr]))
+      subhead(t(en: [Creating a safe space], es: [Crear un espacio seguro], fr: [Créer un espace sûr]))
       blist(
         t(en: [Set aside dedicated time.], es: [Reserva un tiempo dedicado.], fr: [Réserve un temps dédié.]),
-        t(en: [Minimize distractions.], es: [Reduce las distracciones.], fr: [Limite les distractions.]),
+        t(en: [Minimise distractions.], es: [Reduce las distracciones.], fr: [Limite les distractions.]),
         t(en: [Create a comfortable environment.], es: [Crea un ambiente cómodo.], fr: [Crée un environnement confortable.]),
-        t(en: [Honor everyone's privacy.], es: [Respeta la privacidad de todo el mundo.], fr: [Respecte l'intimité de tout le monde.]),
-        t(en: [Practice active listening.], es: [Practica la escucha activa.], fr: [Pratique l'écoute active.]),
+        t(en: [Honour everyone's privacy.], es: [Respeta la privacidad de todo el mundo.], fr: [Respecte l'intimité de tout le monde.]),
+        t(en: [Practise active listening.], es: [Practica la escucha activa.], fr: [Pratique l'écoute active.]),
       )
     },
     {
-      subhead(t(en: [Deepening the Experience], es: [Profundizar la experiencia], fr: [Approfondir l'expérience]))
+      subhead(t(en: [Deepening the experience], es: [Profundizar la experiencia], fr: [Approfondir l'expérience]))
       blist(
         t(en: [Ask open-ended questions.], es: [Haz preguntas abiertas.], fr: [Pose des questions ouvertes.]),
         t(en: [Embrace uncertainty.], es: [Abraza la incertidumbre.], fr: [Accueille l'incertitude.]),
@@ -523,7 +522,7 @@
     align(center, text(font: "Italianno", size: 58pt, fill: c-orange, [Journeyways]))
     v(0.04in)
     align(center, text(font: "Inter", style: "italic", size: 16pt, fill: c-ink,
-      t(en: [A game about becoming.], es: [Un juego sobre el devenir.], fr: [Un jeu sur le devenir.])))
+      t(en: [A board game about becoming.], es: [Un juego de mesa sobre el devenir.], fr: [Un jeu de société sur le devenir.])))
     v(0.22in)
     align(center, text(font: "Italianno", size: 36pt, fill: c-orange,
       t(en: [Website], es: [Sitio web], fr: [Site web])))
