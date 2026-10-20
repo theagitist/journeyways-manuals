@@ -17,7 +17,7 @@
 
 #box(width: leaf-w, height: leaf-h, clip: true, {
   place(top + left, dx: 0.75in, dy: 0.45in, box(width: leaf-w - 1.5in, {
-    set text(font: "Inter", size: 11pt, fill: c-ink)
+    set text(font: "Nunito", size: 11pt, fill: c-ink)
     set par(leading: 0.65em, spacing: 0.75em)
     set list(indent: 4pt, spacing: 0.55em)
     align(center, {
@@ -65,5 +65,5 @@
     grid(columns: 5, column-gutter: 10pt,
       ..("crossroads-m.jpg", "mirror-lake-m.jpg", "lantern-festival-m.jpg", "star-bridge-m.jpg", "northern-lights-m.jpg").map(f => tile-img(f, 0.8in))))
   place(bottom + center, dy: -0.25in,
-    text(font: "Inter", size: 8pt, fill: c-mut)[JOURNEYWAYS · A board game about becoming · www.journeyways.ca · © 2025-2026 Adri M., CC BY-NC 4.0])
+    text(font: "Nunito", size: 8pt, fill: c-mut)[JOURNEYWAYS · A board game about becoming · www.journeyways.ca · © 2025-2026 Adri M., CC BY-NC 4.0])
 })

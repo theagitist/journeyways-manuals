@@ -14,7 +14,7 @@
   place(top + center, dy: leaf-h * 0.68,
     text(font: "Italianno", size: 92pt, fill: c-orange, [Journeyways]))
   place(top + center, dy: leaf-h * 0.86,
-    text(font: "Inter", weight: "bold", style: "italic", size: 18pt, fill: c-ink,
+    text(font: "Nunito", weight: "bold", style: "italic", size: 18pt, fill: c-ink,
       [Facilitator's guide]))
 })
 

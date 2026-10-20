@@ -5,7 +5,7 @@
 // a back cover.
 // Art-heavy pages (journal) are placed as faithful full-page renders; text pages
 // (cover, intro, character sheet, back cover) are rebuilt with the brand fonts
-// (Italianno + Inter). The booklet is monochrome (black script headings).
+// (Italianno + Nunito). The booklet is monochrome (black script headings).
 //
 // Localized en / es / fr via the shared `t()` picker (see i18n.typ); one layout,
 // three languages, no duplication.
@@ -39,7 +39,7 @@
 })
 
 #let script(size, body) = text(font: "Italianno", size: size, fill: c-ink, body)
-#let tagline = text(font: "Inter", weight: "bold", size: 9pt, fill: c-ink, tracking: 0.02em,
+#let tagline = text(font: "Nunito", weight: "bold", size: 9pt, fill: c-ink, tracking: 0.02em,
   t(en: [A BOARD GAME ABOUT BECOMING.],
     es: [UN JUEGO DE MESA SOBRE EL DEVENIR.],
     fr: [UN JEU DE SOCIÉTÉ SUR LE DEVENIR.]))
@@ -59,7 +59,7 @@
       place(top + center, dy: side * 0.03, image(pba("art/logo-mark-gray.png"), width: side * 0.62))
       place(top + center, dy: side * 0.62, text(font: "Italianno", size: 60pt, fill: c-ink, [Journeyways]))
       place(top + center, dy: side * 0.86,
-        text(font: "Inter", weight: "bold", size: 10.5pt, fill: c-ink, tracking: 0.02em,
+        text(font: "Nunito", weight: "bold", size: 10.5pt, fill: c-ink, tracking: 0.02em,
           t(en: [A BOARD GAME ABOUT BECOMING], es: [UN JUEGO DE MESA SOBRE EL DEVENIR], fr: [UN JEU DE SOCIÉTÉ SUR LE DEVENIR])))
     }))
   // localized booklet label below the panel
@@ -70,13 +70,13 @@
 // 2. Intro + quick guide. Black and white; a short lead, then a handy reference.
 // Compact enough that the longer es/fr text still clears the page number.
 #let qh(body) = block(above: 8pt, below: 5pt,
-  text(font: "Inter", weight: "bold", size: 10pt, fill: c-ink, body))
+  text(font: "Nunito", weight: "bold", size: 10pt, fill: c-ink, body))
 #let pb-intro = pb-frame(pad: 0.5in, {
   script(44pt, [Journeyways])
   v(-4pt)
   tagline
   v(9pt)
-  block(width: 100%, text(font: "Inter", size: 11pt, style: "italic", fill: c-ink,
+  block(width: 100%, text(font: "Nunito", size: 11pt, style: "italic", fill: c-ink,
     t(en: [
       Step into a world where identity is not chosen but uncovered. In Journeyways,
       you don't play to win; you play to unfold.
@@ -92,7 +92,7 @@
   v(6pt)
   script(28pt, t(en: [Quick Reference], es: [Referencia rápida], fr: [Aide-mémoire]))
   v(7pt)
-  set text(font: "Inter", size: 9pt, fill: c-ink)
+  set text(font: "Nunito", size: 9pt, fill: c-ink)
   set par(leading: 0.48em, spacing: 0.48em)
   set list(indent: 4pt, spacing: 0.46em, marker: [•])
 
@@ -144,7 +144,7 @@
 })
 
 // 3. Character Sheet.
-#let prompt(l) = block(below: 3pt, above: 8pt, text(font: "Inter", size: 9.5pt, fill: c-ink, l))
+#let prompt(l) = block(below: 3pt, above: 8pt, text(font: "Nunito", size: 9.5pt, fill: c-ink, l))
 #let cbox(h) = rect(width: 100%, height: h, radius: 1pt, stroke: 0.7pt + c-boxln, fill: c-boxfill)
 #let pb-charsheet = box(width: pbw, height: pbh, clip: true, {
   place(top + left, image(pba("art/wash-faint.png"), width: pbw, height: pbh, fit: "cover"))
@@ -255,10 +255,10 @@
     line(length: STRIP, stroke: (paint: c-mut, thickness: 1pt, dash: "loosely-dashed")))
   // labels: centre fold is the top; the end bands are feet
   place(top + left, dx: sx + 4pt, dy: ridge - 10pt,
-    text(font: "Inter", size: 6pt, fill: c-mut, t(en: [fold (top)], es: [doblez (arriba)], fr: [pli (haut)])))
+    text(font: "Nunito", size: 6pt, fill: c-mut, t(en: [fold (top)], es: [doblez (arriba)], fr: [pli (haut)])))
   for fy in (FLAP / 2 - 4pt, pbh - FLAP / 2 - 4pt) {
     place(top + left, dx: sx, dy: fy, box(width: STRIP, align(center,
-      text(font: "Inter", size: 6pt, fill: c-mut, t(en: [foot], es: [pie], fr: [pied])))))
+      text(font: "Nunito", size: 6pt, fill: c-mut, t(en: [foot], es: [pie], fr: [pied])))))
   }
 }
 
@@ -296,7 +296,7 @@
   place(left + horizon, dx: 0.45in, box(width: pbw - STRIP - 0.75in, {
     script(32pt, t(en: [Your playing piece], es: [Tu ficha], fr: [Ta pièce]))
     v(4pt)
-    text(font: "Inter", size: 10pt, fill: c-ink,
+    text(font: "Nunito", size: 10pt, fill: c-ink,
       t(en: [Cut straight down the dotted line to free the strip. Draw your character on one half. Fold at the centre to make a tent (the fold is the top), then fold the two end flaps out as feet so it stands. The diagram on the next page shows how.
 
 Also, a ring, pebble, or any other small object would work.],
@@ -319,7 +319,7 @@ De plus, une bague, un caillou ou tout autre petit objet ferait l'affaire.]))
     v(10pt)
     standee-diagram
     v(8pt)
-    text(font: "Inter", size: 9pt, fill: c-mut, style: "italic",
+    text(font: "Nunito", size: 9pt, fill: c-mut, style: "italic",
       t(en: [Fold in half at the centre, the fold is the top of the tent, then fold the two end flaps out into feet. It stands on its own.],
         es: [Dobla por la mitad en el centro: el doblez es la parte de arriba de la tienda; luego abre las dos pestañas de los extremos como pies. Se sostiene sola.],
         fr: [Plie en deux au centre : le pli est le haut de la tente ; puis déplie les deux rabats des extrémités en pieds. Elle tient debout toute seule.]))
@@ -359,7 +359,7 @@ De plus, une bague, un caillou ou tout autre petit objet ferait l'affaire.]))
   }))
   place(horizon + center, dy: -0.1in, image(pba("art/qr.png"), width: 2in))
   place(bottom + center, dy: -0.6in, align(center,
-    text(font: "Inter", size: 9pt, style: "italic", fill: c-mut,
+    text(font: "Nunito", size: 9pt, style: "italic", fill: c-mut,
       t(en: [
         © 2025-2026 Adri M. Licensed under CC BY-NC 4.0. \
         https://www.journeyways.ca
@@ -396,7 +396,7 @@ De plus, une bague, un caillou ou tout autre petit objet ferait l'affaire.]))
 #let stamp-num(n, leaf) = box(width: pbw, height: pbh, clip: true, {
   leaf
   place(bottom + center, dy: -0.3in,
-    text(font: "Inter", size: 9pt, fill: c-mut, str(n)))
+    text(font: "Nunito", size: 9pt, fill: c-mut, str(n)))
 })
 #let pb-leaves = pb-raw.enumerate().map(((i, leaf)) => {
   if i >= 1 and i <= pb-raw.len() - 2 { stamp-num(i, leaf) } else { leaf }

@@ -4,7 +4,7 @@
 // boardgame box holds a square trim, so the manual prints on letter and is
 // trimmed at the bottom to 8.5x8.5.
 //
-// Typography mirrors the web/play brand: Italianno (display script) + Inter (body).
+// Typography: Italianno (display script) + Nunito (body, same as the printed card text).
 // Localized en / es / fr via the shared `t()` picker (see i18n.typ); one layout,
 // three languages, no duplication.
 // Content reproduces the JOURNEYWAYS game rules (c) 2025-2026 Adri M., CC BY-NC 4.0.
@@ -40,7 +40,7 @@
 #let subhead(body) = block(above: 18pt, below: 11pt,
   text(font: "Italianno", size: 30pt, fill: c-orange, body))
 #let label-b(body) = block(above: 13pt, below: 6pt,
-  text(font: "Inter", weight: "bold", size: 12pt, fill: c-orange, body))
+  text(font: "Nunito", weight: "bold", size: 12pt, fill: c-orange, body))
 // Card-colour word (feminine, agreeing with "card" / "carta" / "carte").
 #let card(name, col) = text(fill: col, weight: "bold", name)
 // Deck names and colour words come from the game (play locales, exported by
@@ -55,7 +55,7 @@
 #let leg-label(d) = d.colour + " (" + d.name + ")" + t(en: ":", es: ":", fr: " :")
 
 #let body-set(body) = {
-  set text(font: "Inter", size: 11.5pt, fill: c-ink)
+  set text(font: "Nunito", size: 11.5pt, fill: c-ink)
   set par(leading: 0.9em, spacing: 1.15em, justify: false)
   body
 }
@@ -111,7 +111,7 @@
     if num != none {
       place(bottom + (if left-num { left } else { right }),
         dx: (if left-num { 1.2in } else { -1.2in }), dy: -0.42in,
-        text(font: "Inter", size: 10pt, fill: c-mut, str(num)))
+        text(font: "Nunito", size: 10pt, fill: c-mut, str(num)))
     }
   }
 )
@@ -125,7 +125,7 @@
   place(top + center, dy: leaf-h * 0.68,
     text(font: "Italianno", size: 92pt, fill: c-orange, [Journeyways]))
   place(top + center, dy: leaf-h * 0.86,
-    text(font: "Inter", weight: "bold", style: "italic", size: 18pt, fill: c-ink,
+    text(font: "Nunito", weight: "bold", style: "italic", size: 18pt, fill: c-ink,
       t(en: [A board game about becoming.],
         es: [Un juego de mesa sobre el devenir.],
         fr: [Un jeu de société sur le devenir.])))
@@ -154,7 +154,7 @@
     align(center, text(font: "Italianno", size: 32pt, fill: c-orange,
       t(en: [Game Rules], es: [Reglas del juego], fr: [Règles du jeu])))
     v(0.28in)
-    set text(font: "Inter", size: 11.5pt, fill: c-ink)
+    set text(font: "Nunito", size: 11.5pt, fill: c-ink)
     set par(leading: 0.7em, spacing: 0.85em)
     align(center, t(
       en: [
@@ -209,7 +209,7 @@
         tile-card("mountain-peak-m.jpg"),
         tile-card("singing-cave-m.jpg"))))
     v(8pt)
-    align(center, text(font: "Inter", size: 9pt, style: "italic", fill: c-mut,
+    align(center, text(font: "Nunito", size: 9pt, style: "italic", fill: c-mut,
       t(en: [A few of the places your journey may take you.],
         es: [Algunos de los lugares a los que tu viaje puede llevarte.],
         fr: [Quelques-uns des lieux où ton voyage pourrait te mener.])))
@@ -504,7 +504,7 @@
 
 #let sec-notes = {
   title(t(en: [Notes], es: [Notas], fr: [Notes]))
-  align(center, text(font: "Inter", size: 10.5pt, style: "italic", fill: c-mut,
+  align(center, text(font: "Nunito", size: 10.5pt, style: "italic", fill: c-mut,
     t(en: [For your thoughts, sketches, and discoveries.],
       es: [Para tus pensamientos, bocetos y descubrimientos.],
       fr: [Pour tes pensées, tes croquis et tes découvertes.])))
@@ -521,7 +521,7 @@
     v(0.3in)
     align(center, text(font: "Italianno", size: 58pt, fill: c-orange, [Journeyways]))
     v(0.04in)
-    align(center, text(font: "Inter", style: "italic", size: 16pt, fill: c-ink,
+    align(center, text(font: "Nunito", style: "italic", size: 16pt, fill: c-ink,
       t(en: [A board game about becoming.], es: [Un juego de mesa sobre el devenir.], fr: [Un jeu de société sur le devenir.])))
     v(0.22in)
     align(center, text(font: "Italianno", size: 36pt, fill: c-orange,
@@ -529,9 +529,9 @@
     v(0.16in)
     align(center, image(asset("qr-website.png"), width: 2.5in))
     v(0.14in)
-    align(center, text(font: "Inter", size: 12pt, fill: c-ink, [www.journeyways.ca]))
+    align(center, text(font: "Nunito", size: 12pt, fill: c-ink, [www.journeyways.ca]))
     v(0.35in)
-    align(center, text(font: "Inter", size: 9pt, fill: c-mut,
+    align(center, text(font: "Nunito", size: 9pt, fill: c-mut,
       t(en: [© 2025-2026 Adri M. Licensed under CC BY-NC 4.0.],
         es: [© 2025-2026 Adri M. Con licencia CC BY-NC 4.0.],
         fr: [© 2025-2026 Adri M. Sous licence CC BY-NC 4.0.])))
