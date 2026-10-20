@@ -118,13 +118,14 @@
 
 // --- Shared front matter -------------------------------------------------------
 
-// Cover: full-bleed art (the stylized JOURNEYWAYS wordmark is baked into the art
-// and stays as the brandmark in every language) with the localized tagline set
-// as live text over the light silhouette below it.
-#let leaf-cover = box(width: leaf-w, height: leaf-h, clip: true, {
-  image(asset("cover-bg.jpg"), width: leaf-w, height: leaf-h, fit: "cover")
-  place(top + center, dy: leaf-h * 0.64,
-    text(font: "Inter", weight: "bold", style: "italic", size: 20pt, fill: c-ink,
+// Cover: the spiral labyrinth mark (original_assets/brand/spiral) on warm paper,
+// with the Italianno wordmark and the localized tagline set as live text.
+#let leaf-cover = box(width: leaf-w, height: leaf-h, clip: true, fill: rgb("#F4EEE0"), {
+  place(top + center, dy: leaf-h * 0.03, image(asset("logo-mark.png"), width: leaf-w * 0.68))
+  place(top + center, dy: leaf-h * 0.68,
+    text(font: "Italianno", size: 92pt, fill: c-orange, [Journeyways]))
+  place(top + center, dy: leaf-h * 0.86,
+    text(font: "Inter", weight: "bold", style: "italic", size: 18pt, fill: c-ink,
       t(en: [A board game about becoming.],
         es: [Un juego de mesa sobre el devenir.],
         fr: [Un jeu de société sur le devenir.])))

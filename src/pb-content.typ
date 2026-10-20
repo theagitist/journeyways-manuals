@@ -49,9 +49,10 @@
   let side = pbw - 2 * m
   place(top + center, dy: m, box(width: side, height: side, radius: 10pt, clip: true,
     stroke: 1pt + c-mut.lighten(30%), {
-      image(pba("pages/cover-bg.jpg"), width: side, height: side, fit: "cover")
-      // localized tagline over the light chest, below the wordmark
-      place(top + center, dy: side * 0.60,
+      // the spiral mark in grayscale (the booklet prints black and white), wordmark + tagline live
+      place(top + center, dy: side * 0.03, image(pba("art/logo-mark-gray.png"), width: side * 0.62))
+      place(top + center, dy: side * 0.62, text(font: "Italianno", size: 60pt, fill: c-ink, [Journeyways]))
+      place(top + center, dy: side * 0.86,
         text(font: "Inter", weight: "bold", size: 10.5pt, fill: c-ink, tracking: 0.02em,
           t(en: [A BOARD GAME ABOUT BECOMING], es: [UN JUEGO DE MESA SOBRE EL DEVENIR], fr: [UN JEU DE SOCIÉTÉ SUR LE DEVENIR])))
     }))
