@@ -1,8 +1,7 @@
 // JOURNEYWAYS Game Rules - content module.
-// One square 8.5x8.5 reading edition (`manual-leaves`), one topic per page, with
-// generous spacing. The former imposed 2-up booklet edition was retired: the
-// boardgame box holds a square trim, so the manual prints on letter and is
-// trimmed at the bottom to 8.5x8.5.
+// One 8x10 portrait edition (`manual-leaves`), one topic per page, with generous
+// spacing: The Game Crafter's Jumbo Booklet (saddle-stitched, 16 pages, ADR-032).
+// It was an 8.5x8.5 square until 2026-10-20.
 //
 // Typography: Italianno (display script) + Nunito (body, same as the printed card text).
 // Localized en / es / fr via the shared `t()` picker (see i18n.typ); one layout,
@@ -11,11 +10,11 @@
 
 #import "i18n.typ": lang, t
 
-// Square trim: the boardgame box holds an 8.5x8.5 booklet, so the manual is
-// printed on letter and trimmed at the bottom to a square. Large single edition
-// (no 2-up imposition).
-#let leaf-w = 8.5in
-#let leaf-h = 8.5in
+// 8x10 portrait trim (The Game Crafter Jumbo Booklet). Page count must be a
+// multiple of 4, hence the blank inside covers (`leaf-blank`).
+#let leaf-w = 8in
+#let leaf-h = 10in
+#let paper = rgb("#F4EEE0")   // warm paper: covers and inside covers
 
 // --- Brand palette (sampled from the source PDF) -------------------------------
 #let c-orange = rgb("#F59E0B")   // script headings + labels
@@ -106,11 +105,11 @@
 #let frame(num: none, left-num: false, fill: none, body) = box(
   width: leaf-w, height: leaf-h, clip: true, fill: fill,
   {
-    place(top + left, dx: 1.2in, dy: 0.82in,
-      box(width: leaf-w - 2.4in, height: leaf-h - 1.5in, body-set(body)))
+    place(top + left, dx: 1in, dy: 0.95in,
+      box(width: leaf-w - 2in, height: leaf-h - 1.85in, body-set(body)))
     if num != none {
       place(bottom + (if left-num { left } else { right }),
-        dx: (if left-num { 1.2in } else { -1.2in }), dy: -0.42in,
+        dx: (if left-num { 1in } else { -1in }), dy: -0.5in,
         text(font: "Nunito", size: 10pt, fill: c-mut, str(num)))
     }
   }
@@ -120,7 +119,8 @@
 
 // Cover: the spiral labyrinth mark (original_assets/brand/spiral) on warm paper,
 // with the Italianno wordmark and the localized tagline set as live text.
-#let leaf-cover = box(width: leaf-w, height: leaf-h, clip: true, fill: rgb("#F4EEE0"), {
+#let leaf-blank = box(width: leaf-w, height: leaf-h, fill: paper)
+#let leaf-cover = box(width: leaf-w, height: leaf-h, clip: true, fill: paper, {
   place(top + center, dy: leaf-h * 0.03, image(asset("logo-mark.png"), width: leaf-w * 0.68))
   place(top + center, dy: leaf-h * 0.68,
     text(font: "Italianno", size: 92pt, fill: c-orange, [Journeyways]))
@@ -262,8 +262,6 @@
 // Game setup (folio 2).
 #let leaf-setup = frame(num: 2, left-num: false,
   {
-    set text(size: 10.5pt)
-    set par(leading: 0.64em, spacing: 0.72em)
     title(t(en: [Game setup], es: [Preparación], fr: [Mise en place]))
     p(t(en: [For 1 to 6 players, plus a facilitator. If more people want to play, use a second game set.],
       es: [Para 1 a 6 personas, más una persona facilitadora. Si quieren jugar más personas, usen un segundo juego.],
@@ -312,9 +310,6 @@
 // Basic gameplay (folio 3).
 #let leaf-gameplay = frame(num: 3, left-num: true,
   {
-    // ponytail: densest page; smaller body keeps it clear of the folio in all three languages.
-    set text(size: 10.5pt)
-    set par(leading: 0.64em, spacing: 0.72em)
     title(t(en: [Basic gameplay], es: [Cómo se juega], fr: [Déroulement du jeu]))
     subhead(t(en: [Turn structure], es: [Estructura del turno], fr: [Structure du tour]))
     t(en: [Each turn consists of three phases: Explore, Pick, and Reflect. Turns follow the rough order you agreed on, but stay loose: play when you feel ready, or sit a turn out.],
@@ -395,7 +390,7 @@
   {
     // Notebook page: ruled lines + a margin rule, with the entry in handwriting.
     let pitch = 0.36in
-    let nlines = 18
+    let nlines = 21
     place(top + left, dy: 0.1in, {
       place(top + left, dx: 0.2in,
         line(start: (0pt, 0pt), end: (0pt, pitch * nlines), stroke: 0.9pt + rgb("#e3a7a7")))
@@ -521,7 +516,7 @@
 }
 
 // Website / QR codes (back cover, unnumbered; same warm paper as the cover).
-#let leaf-web = frame(fill: rgb("#F4EEE0"),
+#let leaf-web = frame(fill: paper,
   {
     v(0.3in)
     align(center, text(font: "Italianno", size: 58pt, fill: c-orange, [Journeyways]))
@@ -545,12 +540,13 @@
 
 // --- The edition ---------------------------------------------------------------
 
-// Single square reading manual. Generous one-topic-per-page pagination (the
-// former imposed 2-up booklet was retired). Folios: TOC 1, Setup 2, Basic
-// Gameplay 3, Ending 4, Journal 5, Journal example 6, Solo/Group 7, Advanced 8,
-// Tips 9, Notes 10; cover, title, and the closing website page are unnumbered.
+// The 16-page manual. Folios: TOC 1, Setup 2, Basic Gameplay 3, Ending 4,
+// Journal 5, Journal example 6, Solo/Group 7, Advanced 8, Tips 9, Notes 10-11;
+// covers, inside covers and the title page are unnumbered. The blank inside
+// front cover puts odd folios on left-hand pages, matching `left-num`.
 #let manual-leaves = (
   leaf-cover,
+  leaf-blank,
   leaf-title,
   leaf-toc,
   leaf-setup,
@@ -578,5 +574,7 @@
         rotate(10deg, mock-card("commune-m.jpg", rgb("#8b5cf6")))))
   }),
   frame(num: 10, left-num: false, sec-notes),
+  frame(num: 11, left-num: true, sec-notes),
+  leaf-blank,
   leaf-web,
 )

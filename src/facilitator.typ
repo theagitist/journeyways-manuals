@@ -1,5 +1,5 @@
 // JOURNEYWAYS Facilitator's Guide: how to host a session.
-// Same square 8.5x8.5 trim, fonts and design system as the game rules
+// Same 8x10 trim (16 pages), fonts and design system as the game rules
 // (reuses content.typ). English only for now, like the physical game (ADR-025).
 // Build: see build.sh (facilitator_en.pdf).
 // (c) 2025-2026 Adri M., CC BY-NC 4.0.
@@ -9,7 +9,7 @@
 #set page(width: leaf-w, height: leaf-h, margin: 0pt)
 
 // Cover: the game cover with the guide's name in place of the tagline.
-#let fg-cover = box(width: leaf-w, height: leaf-h, clip: true, fill: rgb("#F4EEE0"), {
+#let fg-cover = box(width: leaf-w, height: leaf-h, clip: true, fill: paper, {
   place(top + center, dy: leaf-h * 0.03, image(asset("logo-mark.png"), width: leaf-w * 0.68))
   place(top + center, dy: leaf-h * 0.68,
     text(font: "Italianno", size: 92pt, fill: c-orange, [Journeyways]))
@@ -74,8 +74,6 @@
 })
 
 #let fg-before = frame(num: 3, left-num: true, {
-  set text(size: 10.5pt)
-  set par(leading: 0.62em, spacing: 0.7em)
   title[Before the session]
   subhead[The facilitator's kit]
   grid(columns: (1fr, 1.3in), column-gutter: 16pt,
@@ -232,7 +230,7 @@
 })
 
 #let fg-leaves = (
-  fg-cover, fg-intro, fg-toc, fg-role, fg-before, fg-pieces, fg-opening,
+  fg-cover, leaf-blank, fg-intro, fg-toc, fg-role, fg-before, fg-pieces, fg-opening,
   fg-safety, fg-start, fg-play, fg-ending, fg-extend, fg-research,
   frame(num: 12, left-num: false, sec-notes),
   leaf-web,

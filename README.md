@@ -9,20 +9,21 @@ at compile time with `--input lang=..` (default `en`); every PDF is written with
 a `_en` / `_es` / `_fr` suffix. See "Translating / editing text" below.
 
 **Game rules:**
-- **`manual_LANG.pdf`** - a single large **square 8.5x8.5** reading manual, one
-  topic per page with generous spacing. Print on letter and trim the bottom to a
-  square (the boardgame box holds a square trim). There is no 2-up edition.
+- **`manual_LANG.pdf`** - a 16-page **8x10 portrait** manual, one topic per page
+  with generous spacing, sized for The Game Crafter's Jumbo Booklet
+  (saddle-stitched, page count a multiple of 4; vault ADR-032). Blank warm-paper
+  inside covers pad it to 16 pages. It was square 8.5x8.5 until 2026-10-20.
 
 **Facilitator's Guide:**
 - **`facilitator_en.pdf`** (`src/facilitator.typ`) - how to host a session: the
   facilitator's role (they do not play), kit (incl. a bag of cheap assorted
-  playing pieces), opening, safety tools (opt-out, X-card, lines and veils,
+  playing pieces), opening (a sample introduction), safety tools (opt-out, lines and veils,
   check-ins), starting, during play, ending, extending, and research sessions.
-  Same square 8.5x8.5 trim and design system as the rules (it imports
+  Same 8x10 trim (16 pages) and design system as the rules (it imports
   `content.typ`). English only for now.
 
 **Quick Reference:**
-- **`quickref_en.pdf`** (`src/quickref.typ`) - one square 8.5x8.5 page: a turn,
+- **`quickref_en.pdf`** (`src/quickref.typ`) - one letter (8.5x11) sheet, a TGC Document: a turn,
   setup at a glance, what each card colour asks (deck names from decks.json),
   and the loose-rules reminders. English only for now.
 
@@ -47,7 +48,7 @@ background (`assets/cover-bg.jpg`, extracted from the source cover PSD).
 ```
 src/i18n.typ          localization helper: lang (from --input) + the t() picker
 src/content.typ       game-rules content + styles (source of truth)
-src/manual.typ        game-rules driver: builds the square 8.5x8.5 manual
+src/manual.typ        game-rules driver: builds the 8x10 manual
 src/pb-content.typ    Player Booklet content (leaves + rebuilt text pages)
 src/pb-manual.typ     Player Booklet driver: 1-up
 src/pb-booklet.typ    Player Booklet driver: 2-up saddle-stitch imposition
