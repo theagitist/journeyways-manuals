@@ -15,9 +15,19 @@
 #let langs = ("en", "es", "fr")
 #let lang-label = (en: "English", es: "Español", fr: "Français")
 #let chip-of = (encounter: "red", movement: "green", reflection: "blue", countdown: "black", group: "purple")
+// Blue (quote) cards go last, after the other decks.
+#let deck-order = data.decks.filter(d => d.slug != "reflection") + data.decks.filter(d => d.slug == "reflection")
+// Short biographies of the quoted authors, keyed by author name.
+#let bios = json("quote-authors.json")
+#let page-top = 0.65in
+#let page-bottom = 0.85in
+#let text-w = leaf-w - 1.4in
+#let avail-h = leaf-h - page-top - page-bottom
+#let rule-gap = 0.24in
+#let entry-gap = 26pt
 
 #set page(width: leaf-w, height: leaf-h,
-  margin: (x: 0.7in, top: 0.65in, bottom: 0.85in),
+  margin: (x: 0.7in, top: page-top, bottom: page-bottom),
   footer: context {
     let n = counter(page).get().first()
     // Covers and the intro page carry no folio.
@@ -54,13 +64,13 @@
     linebreak()
     body
   })
-  intro[English][Every JOURNEYWAYS card, in English, Spanish and French. Find a card by the number printed in its bottom-right corner (R for the red cards, G for green, B for blue, K for black, P for purple). Each card has space for your own notes: a new reading, a version you changed, or a memory from a game.]
-  intro[Español][Todas las cartas de JOURNEYWAYS, en inglés, español y francés. Busca una carta por el número impreso en su esquina inferior derecha (R para las cartas rojas, G para las verdes, B para las azules, K para las negras, P para las moradas). Cada carta tiene espacio para tus notas: una nueva lectura, una versión que cambiaste o un recuerdo de una partida.]
-  intro[Français][Toutes les cartes de JOURNEYWAYS, en anglais, en espagnol et en français. Retrouve une carte grâce au numéro imprimé dans son coin inférieur droit (R pour les cartes rouges, G pour les vertes, B pour les bleues, K pour les noires, P pour les violettes). Chaque carte a un espace pour tes notes : une nouvelle lecture, une version que tu as changée ou un souvenir de partie.]
+  intro[English][Every JOURNEYWAYS card, in English, Spanish and French. Find a card by the number printed in its bottom-right corner (R for the red cards, G for green, B for blue, K for black, P for purple). Each card has space for your own notes: a new reading, a version you changed, or a memory from a game. The blue cards come last, each with a short biography of the person quoted.]
+  intro[Español][Todas las cartas de JOURNEYWAYS, en inglés, español y francés. Busca una carta por el número impreso en su esquina inferior derecha (R para las cartas rojas, G para las verdes, B para las azules, K para las negras, P para las moradas). Cada carta tiene espacio para tus notas: una nueva lectura, una versión que cambiaste o un recuerdo de una partida. Las cartas azules van al final, cada una con una breve biografía de la persona citada.]
+  intro[Français][Toutes les cartes de JOURNEYWAYS, en anglais, en espagnol et en français. Retrouve une carte grâce au numéro imprimé dans son coin inférieur droit (R pour les cartes rouges, G pour les vertes, B pour les bleues, K pour les noires, P pour les violettes). Chaque carte a un espace pour tes notes : une nouvelle lecture, une version que tu as changée ou un souvenir de partie. Les cartes bleues viennent en dernier, chacune avec une courte biographie de la personne citée.]
   v(0.3in)
   align(center, grid(columns: 5, column-gutter: 14pt, row-gutter: 6pt,
-    ..data.decks.map(d => align(center, chip(chip-of.at(d.slug)))),
-    ..data.decks.map(d => align(center, text(size: 8.5pt, fill: c-mut,
+    ..deck-order.map(d => align(center, chip(chip-of.at(d.slug)))),
+    ..deck-order.map(d => align(center, text(size: 8.5pt, fill: c-mut,
       langs.map(l => decks.at(l).at(d.slug).name).join(linebreak()))))))
 }
 
@@ -70,7 +80,8 @@
   if c.art != none { image(asset("card-thumbs/" + c.art.replace(".webp", ".jpg")), width: 100%, height: 100%, fit: "cover") }
   else { image(asset("chips/" + chip-of.at(c.deck) + ".jpg"), width: 100%, height: 100%, fit: "cover") })
 
-#let card-entry(c) = block(breakable: false, width: 100%, above: 0pt, below: 26pt, {
+// extra: ruled lines added under the notes to fill the rest of the page.
+#let card-entry(c, extra: 0) = block(breakable: false, width: 100%, above: 0pt, below: entry-gap, {
   let col = rgb(c.color)
   grid(columns: (1.05in, 1fr), column-gutter: 12pt,
     {
@@ -90,26 +101,55 @@
           linebreak()
           c.content.at(l)
         }))
-      if c.author != none { v(3pt); align(right, text(size: 8.5pt, style: "italic", fill: c-mut, c.author)) }
+      if c.author != none {
+        v(3pt); align(right, text(size: 8.5pt, style: "italic", fill: c-mut, c.author))
+        let bio = bios.at(c.author, default: none)
+        if bio != none {
+          v(4pt)
+          grid(columns: (1fr, 1fr, 1fr), column-gutter: 11pt,
+            ..langs.map(l => text(size: 7.5pt, fill: c-mut, bio.at(l))))
+        }
+      }
     })
-  // Notes: three ruled lines.
+  // Notes: three ruled lines, plus any extra that fill the page.
   v(4pt)
   text(size: 7pt, weight: "bold", fill: c-mut)[NOTES · NOTAS · NOTES]
-  for _ in range(3) { v(0.24in); line(length: 100%, stroke: 0.5pt + c-mut.lighten(45%)) }
+  for _ in range(3 + extra) { v(rule-gap); line(length: 100%, stroke: 0.5pt + c-mut.lighten(45%)) }
 })
 
-#for d in data.decks {
-  pagebreak()
-  block(below: 14pt, grid(columns: (0.5in, 1fr), column-gutter: 10pt, align: horizon,
+#let deck-head(d) = block(below: 14pt, grid(columns: (0.5in, 1fr), column-gutter: 10pt, align: horizon,
     box(width: 0.5in, height: 0.5in, radius: 4pt, clip: true,
       image(asset("chips/" + chip-of.at(d.slug) + ".jpg"), width: 100%, height: 100%, fit: "cover")),
     {
-      text(font: "Italianno", size: 32pt, fill: c-orange,
+      text(font: "Italianno", size: 32pt, fill: c-orange, bottom-edge: "descender",
         langs.map(l => decks.at(l).at(d.slug).name).dedup().join(" · "))
       linebreak()
       text(size: 9pt, fill: c-mut, langs.map(l => decks.at(l).at(d.slug).colour).dedup().join(" · "))
     }))
-  for c in data.cards.filter(c => c.deck == d.slug) { card-entry(c) }
+
+// Pack the cards into pages by measuring them, so the last card on each page can
+// take extra note lines down to the bottom margin instead of leaving it blank.
+#for d in deck-order {
+  pagebreak()
+  context {
+    let cards = data.cards.filter(c => c.deck == d.slug)
+    let hs = cards.map(c => measure(card-entry(c), width: text-w).height + entry-gap)
+    // One extra ruled line's real height (its gap plus block spacing).
+    let line-h = measure(card-entry(cards.first(), extra: 1), width: text-w).height - hs.first() + entry-gap
+    let fill(free) = calc.max(0, calc.floor((free - 6pt) / line-h))
+    let extra = cards.map(_ => 0)
+    let used = measure(deck-head(d), width: text-w).height + 14pt
+    for i in range(cards.len()) {
+      if i > 0 and used + hs.at(i) - entry-gap > avail-h {
+        extra.at(i - 1) = fill(avail-h - used + entry-gap)
+        used = 0pt
+      }
+      used += hs.at(i)
+    }
+    extra.at(cards.len() - 1) = fill(avail-h - used + entry-gap)
+    deck-head(d)
+    for (i, c) in cards.enumerate() { card-entry(c, extra: extra.at(i)) }
+  }
 }
 
 // --- Back cover ----------------------------------------------------------------

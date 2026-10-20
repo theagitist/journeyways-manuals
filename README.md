@@ -25,7 +25,10 @@ a `_en` / `_es` / `_fr` suffix. See "Translating / editing text" below.
 **Card Companion:**
 - **`companion_en.pdf`** (`src/companion.typ`) - every card in English, Spanish
   and French side by side, grouped by deck, each with its art thumbnail, number
-  and three ruled lines for notes. Download-and-print (the printed cards stay
+  and ruled lines for notes (the last card on each page gets extra lines down to
+  the margin). The blue (quote) deck comes last, each card with a short author
+  biography in three languages from `src/quote-authors.json`, keyed by the author
+  name as play exports it. Download-and-print (the printed cards stay
   English-only); the website serves it as `JOURNEYWAYS Card Companion 1.0.pdf`.
   Text comes from the play export (`assets/cards/cards.json`); `build.sh` makes
   small JPEG thumbnails in `assets/card-thumbs/` (gitignored) so the PDF stays
