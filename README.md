@@ -13,6 +13,14 @@ a `_en` / `_es` / `_fr` suffix. See "Translating / editing text" below.
   topic per page with generous spacing. Print on letter and trim the bottom to a
   square (the boardgame box holds a square trim). There is no 2-up edition.
 
+**Facilitator's Guide:**
+- **`facilitator_en.pdf`** (`src/facilitator.typ`) - how to host a session: the
+  facilitator's role (they do not play), kit (incl. a bag of cheap assorted
+  playing pieces), opening, safety tools (opt-out, X-card, lines and veils,
+  check-ins), starting, during play, ending, extending, and research sessions.
+  Same square 8.5x8.5 trim and design system as the rules (it imports
+  `content.typ`). English only for now.
+
 **Player Booklet** (the per-player write-in booklet: cover, an intro + quick
 reference, two Character Sheets - a "before" near the front and an "after"
 second-to-last - a tear-out playing piece (a tent-fold standee you draw, cut,

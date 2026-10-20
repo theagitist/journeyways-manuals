@@ -5,6 +5,7 @@
 #   manual_LANG.pdf             game rules (single square 8.5x8.5 reading edition)
 #   player-booklet_LANG.pdf     Player Booklet, 1-up reading proof
 #   player-booklet-2up_LANG.pdf Player Booklet, 2-up imposed for print
+#   facilitator_en.pdf          Facilitator's Guide (same square trim, English only)
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -16,5 +17,8 @@ for L in "${LANGS[@]}"; do
   typst compile --font-path fonts --root . --input lang="$L" src/pb-booklet.typ "player-booklet-2up_${L}.pdf"
 done
 
+# Facilitator's Guide: English only for now (ADR-025).
+typst compile --font-path fonts --root . src/facilitator.typ facilitator_en.pdf
+
 echo "Built:"
-ls -la manual_*.pdf player-booklet_*.pdf player-booklet-2up_*.pdf
+ls -la manual_*.pdf player-booklet_*.pdf player-booklet-2up_*.pdf facilitator_*.pdf

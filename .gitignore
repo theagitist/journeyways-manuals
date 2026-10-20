@@ -3,6 +3,7 @@
 /manual_*.pdf
 /player-booklet_*.pdf
 /player-booklet-2up_*.pdf
+/facilitator_*.pdf
 
 # Legacy un-suffixed names (pre-localization; regenerate as *_en.pdf)
 /manual.pdf
