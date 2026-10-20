@@ -53,7 +53,7 @@ src/pb-manual.typ     Player Booklet driver: 1-up
 src/pb-booklet.typ    Player Booklet driver: 2-up saddle-stitch imposition
 fonts/                Italianno + Nunito (+ Inter, still used by tile labels) + Caveat (SIL OFL, vendored so builds are reproducible)
 assets/               game-rules art: cover-bg.jpg (text-free cover), swirl, QR, and the
-                      design art (tiles/ gallery, chips/ card colours, doodles/, meeples.jpg)
+                      design art (tiles/ gallery, chips/ card colours, doodles/; meeples.jpg is legacy, unused)
 assets/player-booklet/ pages/ = cover-bg.jpg (grayscale); art/ = wash, swirl, QR
 src/cards.typ         card faces: one per card (single) or 8-up cut sheets (sheet)
 src/card-backs.typ    the five deck backs, one per page

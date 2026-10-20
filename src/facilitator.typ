@@ -30,9 +30,9 @@
   callout[*The one rule that matters:* every rule in JOURNEYWAYS can be bent or broken, by anyone, at any moment, as long as the group is okay with it. Breaking a rule is not a failure of the game; it is the game working.]
   place(bottom + center, dy: 0.05in,
     grid(columns: 3, column-gutter: 14pt,
+      tile-img("home-village-m.jpg", 1.15in),
       tile-img("crossroads-m.jpg", 1.15in),
-      tile-img("lantern-festival-m.jpg", 1.15in),
-      tile-img("star-bridge-m.jpg", 1.15in)))
+      tile-img("wayfinding-star-m.jpg", 1.15in)))
 })
 
 #let fg-toc = frame(num: 1, left-num: true, {
@@ -101,8 +101,7 @@
   p[The only limits are that the piece is not offensive and the group is okay with it. Choosing a piece is often the first small act of self-expression in the game, so give it a moment.]
   callout[*Bring options.* Keep a small bag of assorted, cheap pieces: buttons, beads, old game pieces, keys, dice, marbles, bottle caps. Nothing fancy. Lay them out on the table and let players choose, swap or bring their own.]
   place(bottom + center, dy: -0.15in,
-    box(width: 3.6in, radius: 6pt, clip: true, stroke: 0.6pt + c-mut.lighten(35%),
-      image(asset("meeples.jpg"), width: 100%)))
+    tile-img("wheel-of-chance-m.jpg", 2.7in))
 })
 
 #let fg-opening = frame(num: 5, left-num: true, {
@@ -145,8 +144,8 @@
   callout[Use the word *pick* for cards and tiles, not "draw". In JOURNEYWAYS, drawing means illustrating: a blank tile, a sticky note, a doodle in the journal.]
   place(bottom + center, dy: -0.3in,
     stack(dir: ltr, spacing: -0.5in,
-      rotate(-6deg, tile-img("mirror-lake-m.jpg", 1.8in)),
-      rotate(6deg, tile-img("mountain-peak-m.jpg", 1.8in))))
+      rotate(-6deg, tile-img("the-clearing-m.jpg", 1.8in)),
+      rotate(6deg, tile-img("ferry-dock-m.jpg", 1.8in))))
 })
 
 #let fg-play = frame(num: 8, left-num: false, {
@@ -158,7 +157,7 @@
   p[Every so often, especially after a heavy card or a long silence, pause and ask the table how people are doing. Keep it light: "want to keep going, take a break, or change something?" Breaks are part of the game.]
   place(bottom + center, dy: 0.0in, box(width: 2.7in, radius: 6pt, clip: true,
     stroke: 0.6pt + c-mut.lighten(35%),
-    image(asset("cards/gathering-dusk-m.jpg"), width: 100%)))
+    image(asset("cards/journey-together-m.jpg"), width: 100%)))
 })
 
 #let fg-ending = frame(num: 9, left-num: true, {
@@ -174,9 +173,9 @@
   )
   place(bottom + center, dy: -0.1in,
     grid(columns: 3, column-gutter: 14pt,
-      tile-img("night-way-m.jpg", 1.4in),
-      tile-img("northern-lights-m.jpg", 1.4in),
-      tile-img("singing-cave-m.jpg", 1.4in)))
+      tile-img("night-market-m.jpg", 1.4in),
+      tile-img("the-cosmos-m.jpg", 1.4in),
+      tile-img("tulip-field-m.jpg", 1.4in)))
 })
 
 #let fg-extend = frame(num: 10, left-num: false, {
@@ -189,10 +188,9 @@
     [*Continue next time.* Photograph the map before you pack it away, keep the journals and any kept cards, and note where each piece stood. Next session, rebuild the map and pick up where you left off. Characters and stories keep growing between sessions.],
   )
   place(bottom + center, dy: -0.12in,
-    stack(dir: ltr, spacing: -0.65in,
-      rotate(-10deg, mock-card("map-m.jpg", rgb("#ef4444"))),
-      rotate(0deg, mock-card("leap-m.jpg", rgb("#10b981"))),
-      rotate(10deg, mock-card("commune-m.jpg", rgb("#8b5cf6")))))
+    stack(dir: ltr, spacing: 14pt,
+      ..("regroup-m.jpg", "homecoming-m.jpg").map(c => box(width: 2.5in, radius: 6pt, clip: true,
+        stroke: 0.6pt + c-mut.lighten(35%), image(asset("cards/" + c), width: 100%)))))
 })
 
 #let fg-research = frame(num: 11, left-num: true, {
@@ -206,7 +204,7 @@
     [*Withdrawal.* Anyone can withdraw, during or after the session, as set out in the consent form.],
   )
   p[The safety tools, the loose rules and the optional sharing apply exactly as in any other session.]
-  place(bottom + center, dy: -0.1in, tile-img("firefly-forest-m.jpg", 1.8in))
+  place(bottom + center, dy: -0.1in, tile-img("old-library-m.jpg", 1.8in))
 })
 
 #let fg-leaves = (
