@@ -79,7 +79,8 @@
   grid(columns: (1fr, 1.3in), column-gutter: 16pt,
     blist(
       [One complete copy of the game, and the Game Rules manual.],
-      [One player booklet per player, plus a spare.],
+      [One printed player booklet per player, plus a spare. The booklet is not in the box: download it from journeyways.ca/components and print it before the session.],
+      [For players who read Spanish or French, a printed Card Companion (same page) with every card in all three languages.],
       [Plenty of sticky notes (Post-it size), so players can make new places on the spot.],
       [Pens, pencils and a few colours.],
       [A small bag of assorted playing pieces (see the next page).],
@@ -179,7 +180,7 @@
   p[Every so often, especially after a heavy card or a long silence, pause and ask the table how people are doing. Keep it light: "want to keep going, take a break, or change something?" Breaks are part of the game.]
   place(bottom + center, dy: 0.1in, box(width: 1.8in, radius: 6pt, clip: true,
     stroke: 0.6pt + c-mut.lighten(35%),
-    image(asset("cards/journey-together-m.jpg"), width: 100%)))
+    image(asset("card-previews/journey-together-m.jpg"), width: 100%)))
 })
 
 #let fg-ending = frame(num: 9, left-num: true, {
@@ -212,7 +213,7 @@
   place(bottom + center, dy: -0.12in,
     stack(dir: ltr, spacing: 14pt,
       ..("regroup-m.jpg", "homecoming-m.jpg").map(c => box(width: 2.5in, radius: 6pt, clip: true,
-        stroke: 0.6pt + c-mut.lighten(35%), image(asset("cards/" + c), width: 100%)))))
+        stroke: 0.6pt + c-mut.lighten(35%), image(asset("card-previews/" + c), width: 100%)))))
 })
 
 #let fg-research = frame(num: 11, left-num: true, {

@@ -142,9 +142,11 @@
   image(asset("tiles/" + path), width: 100%, height: 100%, fit: "cover"))
 
 // A portrait mock game card (5:7) with a pile-colour border, for decoration.
+// Card previews live in assets/card-previews/ (tracked): the play export clears
+// assets/cards/, so nothing hand-made may live there.
 #let mock-card(art, accent) = box(width: 1.35in, height: 1.89in, radius: 8pt, clip: true,
   stroke: 2.5pt + accent,
-  image(asset("cards/" + art), width: 100%, height: 100%, fit: "cover"))
+  image(asset("card-previews/" + art), width: 100%, height: 100%, fit: "cover"))
 
 // Title / intro (unnumbered).
 #let leaf-title = frame(
@@ -273,7 +275,7 @@
       t(en: [Playing-piece stands (optional; the piece is a booklet tear-out).],
         es: [Soportes para las fichas (opcionales; la ficha es un recortable del cuaderno).],
         fr: [Supports de pion (facultatifs ; le pion est un prédécoupé du cahier).]),
-      t(en: [Player booklet (1 per player).], es: [Cuaderno de juego (1 por persona).], fr: [Cahier de jeu (1 par personne).]),
+      t(en: [Player booklet (1 per player; download and print it from journeyways.ca/components).], es: [Cuaderno de juego (1 por persona; descárgalo e imprímelo desde journeyways.ca/components).], fr: [Cahier de jeu (1 par personne ; à télécharger et imprimer sur journeyways.ca/components).]),
       t(en: [Some sticky notes.], es: [Algunas notas adhesivas.], fr: [Quelques notes autocollantes.]),
       t(en: [Writing utensils.], es: [Algo para escribir.], fr: [De quoi écrire.]),
     )
@@ -453,7 +455,7 @@
   )
   place(bottom + center, dy: 0.0in, box(width: 2.7in, radius: 6pt, clip: true,
     stroke: 0.6pt + c-mut.lighten(35%),
-    image(asset("cards/shared-encounter-m.jpg"), width: 100%)))
+    image(asset("card-previews/shared-encounter-m.jpg"), width: 100%)))
 }
 
 #let sec-advanced = {

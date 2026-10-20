@@ -22,6 +22,18 @@ a `_en` / `_es` / `_fr` suffix. See "Translating / editing text" below.
   Same 8x10 trim (16 pages) and design system as the rules (it imports
   `content.typ`). English only for now.
 
+**Card Companion:**
+- **`companion_en.pdf`** (`src/companion.typ`) - every card in English, Spanish
+  and French side by side, grouped by deck, each with its art thumbnail, number
+  and three ruled lines for notes. Download-and-print (the printed cards stay
+  English-only); the website serves it as `JOURNEYWAYS Card Companion 1.0.pdf`.
+  Text comes from the play export (`assets/cards/cards.json`); `build.sh` makes
+  small JPEG thumbnails in `assets/card-thumbs/` (gitignored) so the PDF stays
+  about 5 MB.
+
+**Card art used in the manuals** lives in `assets/card-previews/` (tracked),
+not `assets/cards/`: the play export clears `assets/cards/` on every run.
+
 **Quick Reference:**
 - **`quickref_en.pdf`** (`src/quickref.typ`) - one letter (8.5x11) sheet, a TGC Document: a turn,
   setup at a glance, what each card colour asks (deck names from decks.json),

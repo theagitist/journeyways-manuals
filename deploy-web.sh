@@ -39,6 +39,7 @@ cp "player-booklet_en.pdf" "$DL/JOURNEYWAYS Player Booklet 1.0.pdf"
 # Facilitator's Guide (English only for now).
 cp "facilitator_en.pdf"    "$DL/JOURNEYWAYS Facilitator Guide 1.0 EN.pdf"
 cp "quickref_en.pdf"       "$DL/JOURNEYWAYS Quick Reference 1.0 EN.pdf"
+cp "companion_en.pdf"      "$DL/JOURNEYWAYS Card Companion 1.0.pdf"
 
 echo "Next: bump ?v= on the on-site PDF links if these overwrote cached files;"
 echo "      commit the www repo; purge Cloudflare /download/*.pdf once a purge token exists."
