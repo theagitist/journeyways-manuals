@@ -37,6 +37,7 @@
         p[Turns are loose: play when you feel ready, or sit a turn out.]
         qh[Setup at a glance]
         list(
+          [1 to 6 players, plus a facilitator. More people? Use a second game set.],
           [Cards: shuffle into three face-down piles; turn one face up as the Discard pile.],
           [Tiles: shuffle into three face-down piles.],
           [Agree who starts; that player places the first tile in the middle.],

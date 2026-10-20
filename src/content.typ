@@ -262,7 +262,12 @@
 // Game setup (folio 2).
 #let leaf-setup = frame(num: 2, left-num: false,
   {
+    set text(size: 10.5pt)
+    set par(leading: 0.64em, spacing: 0.72em)
     title(t(en: [Game setup], es: [Preparación], fr: [Mise en place]))
+    p(t(en: [For 1 to 6 players, plus a facilitator. If more people want to play, use a second game set.],
+      es: [Para 1 a 6 personas, más una persona facilitadora. Si quieren jugar más personas, usen un segundo juego.],
+      fr: [Pour 1 à 6 personnes, plus une personne qui anime. Si plus de monde veut jouer, utilisez un deuxième jeu.]))
     subhead(t(en: [What you'll need], es: [Qué necesitas], fr: [Ce qu'il te faut]))
     blist(
       t(en: [Board tiles (47), plus a blank tile (1).], es: [Losetas de mapa (47), más una loseta en blanco (1).], fr: [Tuiles de plateau (47), plus une tuile vierge (1).]),
@@ -470,9 +475,9 @@
 
 #let sec-creating-own = {
   subhead(t(en: [Creating your own elements], es: [Crear tus propios elementos], fr: [Créer tes propres éléments]))
-  t(en: [Feel free to add your own places (new tiles on sticky notes), character elements, or game mechanics. JOURNEYWAYS is a framework for exploration; make it your own.],
-    es: [Siéntete libre de añadir tus propios lugares (losetas nuevas en notas adhesivas), elementos de personaje o mecánicas de juego. JOURNEYWAYS es un marco para la exploración; hazlo tuyo.],
-    fr: [N'hésite pas à ajouter tes propres lieux (nouvelles tuiles sur des notes autocollantes), éléments de personnage ou mécaniques de jeu. JOURNEYWAYS est un cadre pour l'exploration ; fais-le tien.])
+  t(en: [Feel free to add your own places (new tiles on sticky notes), character elements, or game mechanics. You can also adapt any card you pick: change what it says, read it your own way, or go by the image alone. JOURNEYWAYS is a framework for exploration; make it your own.],
+    es: [Siéntete libre de añadir tus propios lugares (losetas nuevas en notas adhesivas), elementos de personaje o mecánicas de juego. También puedes adaptar cualquier carta que elijas: cambiar lo que dice, interpretarla a tu manera o guiarte solo por la imagen. JOURNEYWAYS es un marco para la exploración; hazlo tuyo.],
+    fr: [N'hésite pas à ajouter tes propres lieux (nouvelles tuiles sur des notes autocollantes), éléments de personnage ou mécaniques de jeu. Tu peux aussi adapter toute carte que tu choisis : changer ce qu'elle dit, l'interpréter à ta façon ou te fier seulement à l'image. JOURNEYWAYS est un cadre pour l'exploration ; fais-le tien.])
 }
 
 #let sec-tips = {

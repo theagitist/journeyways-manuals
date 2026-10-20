@@ -74,6 +74,8 @@
 })
 
 #let fg-before = frame(num: 3, left-num: true, {
+  set text(size: 10.5pt)
+  set par(leading: 0.62em, spacing: 0.7em)
   title[Before the session]
   subhead[The facilitator's kit]
   grid(columns: (1fr, 1.3in), column-gutter: 16pt,
@@ -94,12 +96,19 @@
     }),
   )
   subhead[The space and the time]
-  blist(
-    [A quiet room with steady, comfortable light.],
-    [A big enough table: the map grows, and 1.5 m by 1.5 m (about 5 by 5 feet) is comfortable.],
-    [Seats for every player, and a place for you slightly apart.],
-    [Check access ahead of time (step-free entry, washrooms) and ask players about any needs.],
-    [Plan about 2 to 2.5 hours: arrival, opening, character creation, play and a closing conversation. Two to five players works well.],
+  grid(columns: (1fr, 1.3in), column-gutter: 16pt,
+    blist(
+      [A quiet room with steady, comfortable light.],
+      [A big enough table: the map grows, and 1.5 m by 1.5 m (about 5 by 5 feet) is comfortable.],
+      [Seats for every player, and a place for you slightly apart.],
+      [Check access ahead of time (step-free entry, washrooms) and ask players about any needs.],
+      [Plan about 2 to 2.5 hours in total (arrival, opening, character creation, play and a closing conversation), or more if the game runs long. We recommend 1 to 1.5 hours of play at most, but a session can be as long or as short as the players want. JOURNEYWAYS is for 1 to 6 players, plus you. If more people want to play, use a second game set.],
+    ),
+    // Side note: a playtest anecdote.
+    box(width: 100%, inset: 8pt, radius: 5pt, stroke: 0.6pt + c-mut.lighten(35%), {
+      set par(leading: 0.5em)
+      text(size: 8.5pt, style: "italic", fill: c-mut)[From a playtest: one session was planned for an hour of play, and the players asked to keep going for another half hour. Leave some slack in your plan.]
+    }),
   )
 })
 
@@ -148,7 +157,7 @@
 #let fg-start = frame(num: 7, left-num: true, {
   title[Starting the game]
   nlist(
-    [*Character creation (10 to 20 minutes).* Each player opens their booklet at the character sheet and answers the prompts. Some players write a lot, some a word or two; both are fine.],
+    [*Character creation (10 to 20 minutes, or more if players ask for it).* Each player opens their booklet at the character sheet and answers the prompts. Some players write a lot, some a word or two; both are fine. It is good not to linger too long on this phase: the character keeps growing during play.],
     [*Set up the table* together, following the Game Rules: shuffle the cards and the tiles into piles, and place the first tile.],
     [*Choose who starts and a rough turn order.* Keep it loose. Turns are not rigid: anyone can play when they feel ready, or sit a turn out.],
     [*Place the pieces* on the first tile.],
@@ -167,9 +176,10 @@
   p[Once the game is going, your job is mostly to watch and keep the space. Let silences happen; reflection takes time. Answer rules questions with an invitation more than a ruling: "what feels right to the group?"]
   subhead[When players break the rules]
   p[Celebrate it. When someone proposes a change (placing a tile somewhere odd, inventing a new place, ignoring a pile), ask the table if everyone is okay with it, then carry on. The change can last one turn or the whole game. If one player is not okay, the group finds another way.]
+  p[Cards are open to change too. A player can adapt the card they pick: change what it says, read it their own way, ignore the text and go by the image alone, or make up content on the spot. The change does not need to last beyond that moment.]
   subhead[Check-ins]
   p[Every so often, especially after a heavy card or a long silence, pause and ask the table how people are doing. Keep it light: "want to keep going, take a break, or change something?" Breaks are part of the game.]
-  place(bottom + center, dy: 0.0in, box(width: 2.7in, radius: 6pt, clip: true,
+  place(bottom + center, dy: 0.1in, box(width: 1.8in, radius: 6pt, clip: true,
     stroke: 0.6pt + c-mut.lighten(35%),
     image(asset("cards/journey-together-m.jpg"), width: 100%)))
 })
