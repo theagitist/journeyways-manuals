@@ -1,6 +1,8 @@
 // JOURNEYWAYS Player Booklet - content module.
 // Reproduces "Journeyways character sheet 1.1.pdf" (the Player Booklet): cover,
-// intro, a fill-in Character Sheet, 12 lined journal pages, and a back cover.
+// intro, a tear-out playing piece (a cut-and-fold standee, on its own leaf), a
+// fill-in Character Sheet, 9 lined journal pages, an "after" Character Sheet, and
+// a back cover.
 // Art-heavy pages (journal) are placed as faithful full-page renders; text pages
 // (cover, intro, character sheet, back cover) are rebuilt with the brand fonts
 // (Italianno + Inter). The booklet is monochrome (black script headings).
@@ -19,6 +21,10 @@
 #let c-mut = rgb("#555555")
 #let c-boxln = rgb("#333333")
 #let c-boxfill = rgb("#F4F4F2")
+
+// Tear-out standee: dotted = cut line (scissors or pre-perf), dashed = fold.
+#let dash-cut = (paint: c-boxln, thickness: 0.9pt, dash: "dotted")
+#let dash-fold = (paint: c-mut, thickness: 0.7pt, dash: "loosely-dashed")
 
 #let pba(p) = "../assets/player-booklet/" + p
 
@@ -216,6 +222,110 @@
   }))
 })
 
+// Tear-out playing piece. ONE straight cut down the dotted line frees a
+// full-height strip at the page's outer edge; a few folds then turn it into a
+// self-standing figure. The piece and its how-to live on a dedicated leaf (this
+// page + its reverse), so the cut never touches a journal page. A stand is
+// optional, and any small token works too.
+//
+// Fold design (a tent, the way table-tent cards and fold-over paper minis stand):
+// the CENTRE fold is the apex, the top of the tent. The two halves splay down
+// into an A, and a short flap at each END folds out flat as a foot, so the legs
+// cannot slide apart and spring the tent open. Crease at the top, feet at the
+// bottom. (A crease at the bottom just unfolds, which is the thing to avoid.)
+
+#let STRIP = 2.1in
+#let FLAP = 0.5in
+
+// The tear strip with its cut + fold lines. `side` is "right" (the front, where
+// you draw) or "left" (the reverse); the inner cut edge flips to match the leaf's
+// fore-edge so it is the SAME physical strip on both faces.
+#let standee-strip(side) = {
+  let panel = (pbh - 2 * FLAP) / 2   // the two tent slopes; flaps are at the ends
+  let ridge = FLAP + panel           // centre fold = apex = top of the tent
+  let sx = if side == "right" { pbw - STRIP } else { 0pt }
+  let cutx = if side == "right" { sx } else { STRIP }
+  place(top + left, dx: sx, rect(width: STRIP, height: pbh, stroke: none, fill: rgb("#FFFFFFEC")))
+  place(top + left, dx: cutx, line(angle: 90deg, length: pbh, stroke: dash-cut))
+  // a foot flap fold at each end
+  place(top + left, dx: sx, dy: FLAP, line(length: STRIP, stroke: dash-fold))
+  place(top + left, dx: sx, dy: pbh - FLAP, line(length: STRIP, stroke: dash-fold))
+  // the centre ridge, drawn heavier so the "top" fold reads as the main one
+  place(top + left, dx: sx, dy: ridge,
+    line(length: STRIP, stroke: (paint: c-mut, thickness: 1pt, dash: "loosely-dashed")))
+  // labels: centre fold is the top; the end bands are feet
+  place(top + left, dx: sx + 4pt, dy: ridge - 10pt,
+    text(font: "Inter", size: 6pt, fill: c-mut, t(en: [fold (top)], es: [doblez (arriba)], fr: [pli (haut)])))
+  for fy in (FLAP / 2 - 4pt, pbh - FLAP / 2 - 4pt) {
+    place(top + left, dx: sx, dy: fy, box(width: STRIP, align(center,
+      text(font: "Inter", size: 6pt, fill: c-mut, t(en: [foot], es: [pie], fr: [pied])))))
+  }
+}
+
+// Small schematic of the folded, standing piece (drawn overleaf).
+#let standee-diagram = {
+  let H = 1.9in
+  box(width: 100%, height: H, {
+    // flat strip mini, with fold lines + a dot for the figure
+    let sw = 0.62in
+    rect(width: sw, height: H, radius: 2pt, stroke: 0.7pt + c-mut)
+    for fy in (H * 0.12, H * 0.88) {
+      place(top + left, dy: fy, line(length: sw, stroke: dash-fold))
+    }
+    place(top + left, dy: H * 0.5, line(length: sw, stroke: (paint: c-mut, thickness: 1pt, dash: "loosely-dashed")))
+    place(top + left, dx: sw / 2 - 3.5pt, dy: H * 0.5 - 3.5pt, circle(radius: 3.5pt, stroke: 0.8pt + c-ink))
+    // arrow
+    place(horizon + left, dx: 0.85in, text(15pt, fill: c-mut, [→]))
+    // folded standee: A-frame body, head at the apex, a foot folding OUT at each base
+    let ox = 1.45in
+    let bw = 1.0in
+    let apex = H * 0.14
+    let by = H * 0.9
+    place(top + left, dx: ox, line(start: (bw / 2, apex), end: (bw * 0.24, by), stroke: 1pt + c-ink))
+    place(top + left, dx: ox, line(start: (bw / 2, apex), end: (bw * 0.76, by), stroke: 1pt + c-ink))
+    place(top + left, dx: ox, line(start: (bw * 0.24, by), end: (bw * 0.0, by), stroke: 1.6pt + c-ink))
+    place(top + left, dx: ox, line(start: (bw * 0.76, by), end: (bw * 1.0, by), stroke: 1.6pt + c-ink))
+    place(top + left, dx: ox + bw / 2 - 3.5pt, dy: apex - 3.5pt, circle(radius: 3.5pt, stroke: 0.8pt + c-ink))
+  })
+}
+
+// Front of the leaf: the draw strip (right) + title and how-to (left).
+#let pb-standee-front = box(width: pbw, height: pbh, clip: true, {
+  place(top + left, image(pba("art/wash-faint.png"), width: pbw, height: pbh, fit: "cover"))
+  standee-strip("right")
+  place(left + horizon, dx: 0.45in, box(width: pbw - STRIP - 0.75in, {
+    script(32pt, t(en: [Your playing piece], es: [Tu ficha], fr: [Ta pièce]))
+    v(4pt)
+    text(font: "Inter", size: 10pt, fill: c-ink,
+      t(en: [Cut straight down the dotted line to free the strip. Draw your character on one half. Fold at the centre to make a tent (the fold is the top), then fold the two end flaps out as feet so it stands. The diagram on the next page shows how.
+
+Also, a ring, pebble, or any other small object would work.],
+        es: [Corta recto por la línea punteada para separar la tira. Dibuja tu personaje en una mitad. Dobla por el centro para formar una tienda (el doblez es la parte de arriba) y abre las dos pestañas de los extremos como pies para que se sostenga. El dibujo de la página siguiente muestra cómo.
+
+Además, un anillo, una piedrita o cualquier otro objeto pequeño serviría.],
+        fr: [Découpe tout droit le long de la ligne pointillée pour détacher la bande. Dessine ton personnage sur une moitié. Plie au centre pour former une tente (le pli est le haut), puis déplie les deux rabats des extrémités en pieds pour qu'elle tienne. Le schéma de la page suivante montre comment.
+
+De plus, une bague, un caillou ou tout autre petit objet ferait l'affaire.]))
+  }))
+})
+
+// Reverse of the leaf: the fold diagram (right); the left strip is the back of
+// the drawing surface, left clean because the cut passes through it too.
+#let pb-standee-back = box(width: pbw, height: pbh, clip: true, {
+  place(top + left, image(pba("art/wash-faint.png"), width: pbw, height: pbh, fit: "cover"))
+  standee-strip("left")
+  place(left + horizon, dx: STRIP + 0.3in, box(width: pbw - STRIP - 0.7in, {
+    script(26pt, t(en: [How it folds], es: [Cómo se dobla], fr: [Comment plier]))
+    v(10pt)
+    standee-diagram
+    v(8pt)
+    text(font: "Inter", size: 9pt, fill: c-mut, style: "italic",
+      t(en: [Fold in half at the centre, the fold is the top of the tent, then fold the two end flaps out into feet. It stands on its own.],
+        es: [Dobla por la mitad en el centro: el doblez es la parte de arriba de la tienda; luego abre las dos pestañas de los extremos como pies. Se sostiene sola.],
+        fr: [Plie en deux au centre : le pli est le haut de la tente ; puis déplie les deux rabats des extrémités en pieds. Elle tient debout toute seule.]))
+  }))
+})
+
 // Journal pages: rebuilt in Typst. Faint wash background with an
 // Italianno "Journeyways" header and vector ruled lines. The shared wash
 // is panned/repositioned per page (deterministic by index) so the 12 pages keep
@@ -237,7 +347,7 @@
     }
   }))
 })
-#let pb-journal = range(11).map(i => pb-journal-page(i))
+#let pb-journal = range(9).map(i => pb-journal-page(i))
 
 // 16. Back cover.
 #let pb-back = box(width: pbw, height: pbh, clip: true, {
@@ -264,11 +374,16 @@
       ]))))
 })
 
-// Reading order (16): cover, intro, first character sheet, 11 journal pages, the
-// second (after) character sheet second-to-last, back cover last.
+// Reading order (16): cover, intro, the tear-out playing piece as a dedicated
+// leaf (front = draw strip, back = fold diagram; placed at pages 3-4 so the two
+// are the recto/verso of ONE physical leaf and the cut touches nothing else),
+// first character sheet, 9 journal pages, the second (after) character sheet
+// second-to-last, back cover last.
 #let pb-raw = (
   pb-cover,
   pb-intro,
+  pb-standee-front,
+  pb-standee-back,
   pb-charsheet,
   ..pb-journal,
   pb-charsheet-2,

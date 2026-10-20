@@ -15,7 +15,9 @@ a `_en` / `_es` / `_fr` suffix. See "Translating / editing text" below.
 
 **Player Booklet** (the per-player write-in booklet: cover, an intro + quick
 reference, two Character Sheets - a "before" near the front and an "after"
-second-to-last - 11 lined journal pages numbered 1 to 14, and a back cover):
+second-to-last - a tear-out playing piece (a tent-fold standee you draw, cut,
+and fold; a stand is optional), 10 lined journal pages, numbered 1 to 14, and a
+back cover):
 - **`player-booklet_LANG.pdf`** - 1-up, letter-proportioned pages.
 - **`player-booklet-2up_LANG.pdf`** - imposed **2-up** (16 pages = 4 saddle-stitch
   sheets). Every page, including the cover, is built in Typst with the brand
@@ -92,7 +94,7 @@ videogame and website stay trilingual regardless.
 
 Outputs (all `.gitignore`d; regenerate, do not commit):
 
-- **`cards_LANG.pdf`** - one card face per **unique design** (79), at the 2.5 x 3.5in
+- **`cards_LANG.pdf`** - one card face per **unique design** (101), at the 2.5 x 3.5in
   poker/trading-card trim plus 1/8in bleed. The page is 2.75 x 3.75in, i.e. exactly
   The Game Crafter's **Poker Card** template (825 x 1125px at 300 DPI, cut 750 x 1050,
   safe zone 675 x 975), and the same spec MakePlayingCards / QinPrinting use. Physical
