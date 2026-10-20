@@ -21,6 +21,11 @@ a `_en` / `_es` / `_fr` suffix. See "Translating / editing text" below.
   Same square 8.5x8.5 trim and design system as the rules (it imports
   `content.typ`). English only for now.
 
+**Quick Reference:**
+- **`quickref_en.pdf`** (`src/quickref.typ`) - one square 8.5x8.5 page: a turn,
+  setup at a glance, what each card colour asks (deck names from decks.json),
+  and the loose-rules reminders. English only for now.
+
 **Player Booklet** (the per-player write-in booklet: cover, an intro + quick
 reference, two Character Sheets - a "before" near the front and an "after"
 second-to-last - a tear-out playing piece (a tent-fold standee you draw, cut,

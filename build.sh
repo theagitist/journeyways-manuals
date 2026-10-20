@@ -6,6 +6,7 @@
 #   player-booklet_LANG.pdf     Player Booklet, 1-up reading proof
 #   player-booklet-2up_LANG.pdf Player Booklet, 2-up imposed for print
 #   facilitator_en.pdf          Facilitator's Guide (same square trim, English only)
+#   quickref_en.pdf             Quick Reference, one square page (English only)
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -19,6 +20,7 @@ done
 
 # Facilitator's Guide: English only for now (ADR-025).
 typst compile --font-path fonts --root . src/facilitator.typ facilitator_en.pdf
+typst compile --font-path fonts --root . src/quickref.typ    quickref_en.pdf
 
 echo "Built:"
-ls -la manual_*.pdf player-booklet_*.pdf player-booklet-2up_*.pdf facilitator_*.pdf
+ls -la manual_*.pdf player-booklet_*.pdf player-booklet-2up_*.pdf facilitator_*.pdf quickref_*.pdf
