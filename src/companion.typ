@@ -67,11 +67,21 @@
   intro[English][Every JOURNEYWAYS card, in English, Spanish and French. Find a card by the number printed in its bottom-right corner (R for the red cards, G for green, B for blue, K for black, P for purple). Each card has space for your own notes: a new reading, a version you changed, or a memory from a game. The blue cards come last, each with a short biography of the person quoted.]
   intro[Español][Todas las cartas de JOURNEYWAYS, en inglés, español y francés. Busca una carta por el número impreso en su esquina inferior derecha (R para las cartas rojas, G para las verdes, B para las azules, K para las negras, P para las moradas). Cada carta tiene espacio para tus notas: una nueva lectura, una versión que cambiaste o un recuerdo de una partida. Las cartas azules van al final, cada una con una breve biografía de la persona citada.]
   intro[Français][Toutes les cartes de JOURNEYWAYS, en anglais, en espagnol et en français. Retrouve une carte grâce au numéro imprimé dans son coin inférieur droit (R pour les cartes rouges, G pour les vertes, B pour les bleues, K pour les noires, P pour les violettes). Chaque carte a un espace pour tes notes : une nouvelle lecture, une version que tu as changée ou un souvenir de partie. Les cartes bleues viennent en dernier, chacune avec une courte biographie de la personne citée.]
+  // Contents: each deck's first page, found from the label in its header.
   v(0.3in)
-  align(center, grid(columns: 5, column-gutter: 14pt, row-gutter: 6pt,
-    ..deck-order.map(d => align(center, chip(chip-of.at(d.slug)))),
-    ..deck-order.map(d => align(center, text(size: 8.5pt, fill: c-mut,
-      langs.map(l => decks.at(l).at(d.slug).name).join(linebreak()))))))
+  align(center, text(font: "Italianno", size: 32pt, fill: c-orange, [Contents · Índice · Sommaire]))
+  v(4pt)
+  context for d in deck-order {
+    let at = query(<deck>).find(m => m.value == d.slug)
+    let nums = data.cards.filter(c => c.deck == d.slug).map(c => c.number)
+    toc-line({
+        box(width: 0.32in, height: 0.32in, radius: 3pt, clip: true, baseline: 30%,
+          image(asset("chips/" + chip-of.at(d.slug) + ".jpg"), width: 100%, height: 100%, fit: "cover"))
+        h(8pt)
+        langs.map(l => decks.at(l).at(d.slug).name).dedup().join(" · ") + "  (" + nums.first() + "–" + nums.last() + ")"
+      },
+      if at == none { "" } else { str(at.location().page() - 2) }, bold: true)
+  }
 }
 
 // --- Cards ---------------------------------------------------------------------
@@ -121,6 +131,7 @@
     box(width: 0.5in, height: 0.5in, radius: 4pt, clip: true,
       image(asset("chips/" + chip-of.at(d.slug) + ".jpg"), width: 100%, height: 100%, fit: "cover")),
     {
+      [#metadata(d.slug) <deck>]
       text(font: "Italianno", size: 32pt, fill: c-orange, bottom-edge: "descender",
         langs.map(l => decks.at(l).at(d.slug).name).dedup().join(" · "))
       linebreak()

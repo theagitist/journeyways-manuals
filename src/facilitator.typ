@@ -57,6 +57,7 @@
   toc-line("The closing conversation", "9", indent: 20pt, serif: true)
   toc-line("Extending the game", "10", bold: true)
   toc-line("Research sessions", "11", bold: true)
+  toc-line("Notes", "12", bold: true)
 })
 
 #let fg-role = frame(num: 2, left-num: false, {
