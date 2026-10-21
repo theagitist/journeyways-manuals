@@ -54,7 +54,8 @@
   toc-line("Time and group size", "4", indent: 20pt, serif: true)
   toc-line("Playing pieces", "4", indent: 20pt, serif: true)
   toc-line("Opening the session", "5", bold: true)
-  toc-line("Safety tools", "6", bold: true)
+  toc-line("Make the opening yours", "6", indent: 20pt, serif: true)
+  toc-line("Safety tools", "6", indent: 20pt, serif: true)
   toc-line("Starting the game", "7", bold: true)
   toc-line("During play", "8", bold: true)
   toc-line("When players break the rules", "8", indent: 20pt, serif: true)
@@ -151,16 +152,10 @@
   p[Then lay out the playing pieces and let everyone choose one.]
 })
 
+// Opening the session, continued: how the introduction is built, then the
+// safety tools it introduces.
 #let fg-safety = frame(num: 6, left-num: false, {
-  title[Safety tools]
-  p[JOURNEYWAYS can touch personal ground: identity, memory, loss, the body. These tools help everyone feel free to go deep, because they know they can step back.]
-  label-b[Opt out, any time]
-  p[Anyone can skip a card, a prompt, a turn or a question, or leave the table, without explaining why. No signal or tool is needed: they just say so. Say this at the start and mean it.]
-  label-b[Lines and veils]
-  p[Before play, ask the group for *lines*, topics that will not appear at all, and *veils*, topics that can happen but stay off-page, mentioned without detail. Anyone can add one privately to you. Write them down where everyone can see them.]
-  label-b[Check-ins]
-  p[Pause now and then to ask how people are doing (see _During play_, page 8).]
-  v(1fr)
+  v(6pt)
   aside("gear", [Make the opening yours], {
     [The introduction on page 5 follows a simple order, so you can change the words and keep what each part does:]
     enum(spacing: 0.6em,
@@ -172,6 +167,14 @@
       [*Your role:* you are not playing, how long the session runs, and room for questions.],
     )
   })
+  subhead[Safety tools]
+  p[JOURNEYWAYS can touch personal ground: identity, memory, loss, the body. These tools help everyone feel free to go deep, because they know they can step back.]
+  label-b[Opt out, any time]
+  p[Anyone can skip a card, a prompt, a turn or a question, or leave the table, without explaining why. No signal or tool is needed: they just say so. Say this at the start and mean it.]
+  label-b[Lines and veils]
+  p[Before play, ask the group for *lines*, topics that will not appear at all, and *veils*, topics that can happen but stay off-page, mentioned without detail. Anyone can add one privately to you. Write them down where everyone can see them.]
+  label-b[Check-ins]
+  p[Pause now and then to ask how people are doing (see _During play_, page 8).]
 })
 
 #let fg-start = frame(num: 7, left-num: true, {
