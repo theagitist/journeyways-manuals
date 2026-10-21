@@ -7,7 +7,7 @@ card with at least 4 modules of padding (see aside/colophon in src/content.typ).
 """
 import subprocess
 
-INK, EYE = "#1A1A1A", "#B45309"  # body ink; dark amber (brand orange is too light to scan)
+INK = EYE = "#000000"  # plain black dots and eyes
 CODES = {
     "qr-components.svg": "https://journeyways.ca/components",
     "qr-components-es.svg": "https://journeyways.ca/es/components",
