@@ -137,6 +137,30 @@
 // Cover: the spiral labyrinth mark (original_assets/brand/spiral) on warm paper,
 // with the Italianno wordmark and the localized tagline set as live text.
 #let leaf-blank = box(width: leaf-w, height: leaf-h, fill: paper)
+// Inside front cover as a colophon: title, edition, author, licence. English only
+// for now (the guide is English-only); localize with t() if the rules adopt it.
+#let leaf-colophon(name, edition) = frame(fill: paper, {
+  set text(size: 9.5pt, fill: c-mut)
+  set par(leading: 0.65em, spacing: 1.1em)
+  v(1fr)
+  text(font: "Italianno", size: 40pt, fill: c-orange, bottom-edge: "descender", [Journeyways])
+  linebreak()
+  text(weight: "bold", size: 12pt, fill: c-ink, name)
+  linebreak()
+  [Edition #edition]
+  v(0.25in)
+  [*Game design and text:* Adri M.]
+  parbreak()
+  [JOURNEYWAYS is a master's research project at the UBC Institute for Gender, Race, Sexuality and Social Justice, Vancouver, Canada.]
+  parbreak()
+  [The Game Rules, Player Booklet, Quick Reference and Card Companion can be downloaded at journeyways.ca/components.]
+  parbreak()
+  [Set in Nunito and Italianno, both under the SIL Open Font License.]
+  v(0.25in)
+  line(length: 1.2in, stroke: 0.6pt + c-orange.lighten(30%))
+  v(4pt)
+  [© 2025-2026 Adri M. This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International licence (CC BY-NC 4.0). You may copy, share and adapt it for non-commercial purposes, as long as you give credit. To view a copy of the licence, visit creativecommons.org/licenses/by-nc/4.0.]
+})
 #let leaf-cover = box(width: leaf-w, height: leaf-h, clip: true, fill: paper, {
   place(top + center, dy: leaf-h * 0.03, image(asset("logo-mark.png"), width: leaf-w * 0.68))
   place(top + center, dy: leaf-h * 0.68,
