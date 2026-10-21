@@ -95,6 +95,23 @@
 #let callout(body, accent: c-orange) = block(width: 100%, inset: (x: 13pt, y: 11pt),
   radius: 5pt, fill: accent.lighten(90%), stroke: (left: 3pt + accent), body)
 
+// Side note: warm paper card with an icon badge (assets/icons: bulb = tip,
+// gear = adapt it, download, mail) and a small label above the text.
+#let aside(icon, label, body) = block(width: 100%, above: 14pt, below: 10pt, breakable: false, {
+  block(width: 100%, inset: (x: 10pt, top: 18pt, bottom: 10pt), radius: 6pt, fill: paper,
+    stroke: 0.6pt + c-orange.lighten(55%), {
+      set par(leading: 0.55em, spacing: 0.8em)
+      set text(size: 9pt, fill: c-ink)
+      align(center, text(weight: "bold", size: 7.5pt, tracking: 0.08em, fill: c-orange, upper(label)))
+      v(1pt)
+      body
+    })
+  place(top + center, dy: -11pt, box(width: 22pt, height: 22pt, {
+    circle(radius: 11pt, fill: c-orange, stroke: 1.5pt + white)
+    place(center + horizon, image(asset("icons/" + icon + ".svg"), width: 13pt, height: 13pt))
+  }))
+})
+
 // A journal-style line doodle with a small handwritten caption (side note).
 #let doodle-note(name, caption, w: 1.7in) = box(width: w, {
   image(asset("doodles/" + name + ".jpg"), width: 100%)

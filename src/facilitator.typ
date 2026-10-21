@@ -8,6 +8,11 @@
 
 #set page(width: leaf-w, height: leaf-h, margin: 0pt)
 
+// More air between paragraphs and list items than the rules manual.
+#let p(body) = block(below: 1.5em, width: 100%, body)
+#let blist(..items) = block(below: 1.3em, list(indent: 8pt, spacing: 1.05em, ..items))
+#let nlist(..items) = block(below: 1.3em, enum(indent: 8pt, spacing: 1.05em, ..items))
+
 // Cover: the game cover with the guide's name in place of the tagline.
 #let fg-cover = box(width: leaf-w, height: leaf-h, clip: true, fill: paper, {
   place(top + center, dy: leaf-h * 0.03, image(asset("logo-mark.png"), width: leaf-w * 0.68))
@@ -45,8 +50,9 @@
   toc-line("Your role", "2", bold: true)
   toc-line("Before the session", "3", bold: true)
   toc-line("The facilitator's kit", "3", indent: 20pt, serif: true)
-  toc-line("The space and the time", "3", indent: 20pt, serif: true)
-  toc-line("Playing pieces", "4", bold: true)
+  toc-line("The space", "3", indent: 20pt, serif: true)
+  toc-line("Time and group size", "4", indent: 20pt, serif: true)
+  toc-line("Playing pieces", "4", indent: 20pt, serif: true)
   toc-line("Opening the session", "5", bold: true)
   toc-line("Safety tools", "6", bold: true)
   toc-line("Starting the game", "7", bold: true)
@@ -77,49 +83,49 @@
 #let fg-before = frame(num: 3, left-num: true, {
   title[Before the session]
   subhead[The facilitator's kit]
-  grid(columns: (1fr, 1.3in), column-gutter: 16pt,
+  grid(columns: (1fr, 1.45in), column-gutter: 16pt,
     blist(
       [One complete copy of the game, and the Game Rules manual.],
       [One printed player booklet per player, plus a spare. The booklet is not in the box: download it from journeyways.ca/components and print it before the session.],
       [For players who read Spanish or French, a printed Card Companion (same page) with every card in all three languages.],
       [Plenty of sticky notes (Post-it size), so players can make new places on the spot.],
       [Pens, pencils and a few colours.],
-      [A small bag of assorted playing pieces (see the next page).],
+      [A small bag of assorted playing pieces (see page 4).],
       [Water and simple snacks. They help the slow pace.],
     ),
-    // Side note: where to get every component.
-    box(width: 100%, inset: 8pt, radius: 5pt, stroke: 0.6pt + c-mut.lighten(35%), {
-      set par(leading: 0.5em)
+    aside("download", [Get the components], {
       align(center, image(asset("qr-components.svg"), width: 0.85in))
-      v(2pt)
-      align(center, text(size: 8.5pt, style: "italic", fill: c-mut)[All the game components can be found and downloaded at #text(fill: c-ink, style: "normal")[journeyways.ca/components]])
+      align(center)[All the game components can be found and downloaded at *journeyways.ca/components*]
     }),
   )
-  subhead[The space and the time]
-  grid(columns: (1fr, 1.3in), column-gutter: 16pt,
-    blist(
-      [A quiet room with steady, comfortable light.],
-      [A big enough table: the map grows, and 1.5 m by 1.5 m (about 5 by 5 feet) is comfortable.],
-      [Seats for every player, and a place for you slightly apart.],
-      [Check access ahead of time (step-free entry, washrooms) and ask players about any needs.],
-      [Plan about 2 to 2.5 hours in total (arrival, opening, character creation, play and a closing conversation), or more if the game runs long. We recommend 1 to 1.5 hours of play at most, but a session can be as long or as short as the players want. JOURNEYWAYS is for 1 to 6 players, plus you. If more people want to play, use a second game set.],
-    ),
-    // Side note: a playtest anecdote.
-    box(width: 100%, inset: 8pt, radius: 5pt, stroke: 0.6pt + c-mut.lighten(35%), {
-      set par(leading: 0.5em)
-      text(size: 8.5pt, style: "italic", fill: c-mut)[From a playtest: one session was planned for an hour of play, and the players asked to keep going for another half hour. Leave some slack in your plan.]
-    }),
+  subhead[The space]
+  blist(
+    [A quiet room with steady, comfortable light.],
+    [A big enough table: the map grows, and 1.5 m by 1.5 m (about 5 by 5 feet) is comfortable.],
+    [Seats for every player, and a place for you slightly apart.],
+    [Check access ahead of time (step-free entry, washrooms) and ask players about any needs.],
   )
 })
 
 #let fg-pieces = frame(num: 4, left-num: false, {
-  title[Playing pieces]
-  p[Each player needs something to stand on the map. The player booklet includes a tear-out piece, but players can use *anything they like*: a ring, a coin, a button, a shell, a pebble, a piece borrowed from another game, a tiny toy.]
-  p[The only limits are that the piece is not offensive and the group is okay with it. Choosing a piece is often the first small act of self-expression in the game, so give it a moment.]
-  p[A few days before the session, invite players to bring a small object they would like to play with. Many enjoy choosing something personal.]
+  subhead[Time and group size]
+  grid(columns: (1fr, 1.45in), column-gutter: 16pt,
+    {
+      p[Plan about 2 to 2.5 hours in total (arrival, opening, character creation, play and a closing conversation), or more if the game runs long. We recommend 1 to 1.5 hours of play at most, but a session can be as long or as short as the players want.]
+      p[JOURNEYWAYS is for 1 to 6 players, plus you. If more people want to play, you can try reshuffling cards or dividing the game in groups. Another option is to use a second game set.]
+    },
+    aside("bulb", [From a playtest])[One session was planned for an hour of play, and the players asked to keep going for another full hour. Leave some slack in your plan.],
+  )
+  subhead[Playing pieces]
+  grid(columns: (1fr, 1.45in), column-gutter: 16pt,
+    {
+      p[Each player needs something to stand on the map. The player booklet includes a tear-out piece, but players can use *anything they like*: a ring, a coin, a button, a shell, a pebble, a piece borrowed from another game, a tiny toy.]
+      p[The only limits are that the piece is not offensive and the group is okay with it. Choosing a piece is often the first small act of self-expression in the game, so give it a moment.]
+    },
+    aside("mail", [Invite them early])[A few days before the session, invite players to bring a small object they would like to play with. Many enjoy choosing something personal.],
+  )
   callout[*Bring options.* Keep a small bag of assorted, cheap pieces: buttons, beads, old game pieces, keys, dice, marbles, bottle caps. Nothing fancy. Lay them out on the table and let players choose, swap or bring their own.]
-  place(bottom + center, dy: 0.05in,
-    tile-img("wheel-of-chance-m.jpg", 2.1in))
+  place(bottom + center, dy: 0.05in, tile-img("wheel-of-chance-m.jpg", 1.7in))
 })
 
 #let fg-opening = frame(num: 5, left-num: true, {
@@ -127,10 +133,12 @@
   p[Let people arrive, settle and look at the materials. When everyone is ready, speak briefly to the whole table. Here is an introduction you can adapt into your own words, or use as it is:]
   callout({
     set text(size: 10pt)
-    set par(leading: 0.6em, spacing: 1.05em)
-    emph[Welcome, and thank you for being here. Today we're playing JOURNEYWAYS, a board game about becoming. Nobody wins and nobody loses. Each of you will grow a character and a story, one place and one card at a time, and write or doodle that journey in your booklet.]
+    set par(leading: 0.62em, spacing: 1.35em)
+    emph[Welcome, and thank you for being here. Today we're playing JOURNEYWAYS, a board game about becoming. Nobody wins and nobody loses. Each of you will grow a character and a story, and write or doodle that journey in your booklet.]
     parbreak()
-    emph[Together we build a map out of tiles. On your turn you explore: add a place to the map, or make a new one on a sticky note, then move your piece. Then you pick a card and either do what it says or write about it in your journal. The game ends when the fifth black card turns up. I'll walk us through the first turn.]
+    emph[Together we build a map out of tiles. And then you explore: add a place to the map, or make a new one, then move your piece. Then you pick a card, reflect on what it says, and write about it in your journal if you want. The game ends when the fifth black card turns up, or when we reach our time limit.]
+    parbreak()
+    emph[I'll walk us through the first turn.]
     parbreak()
     emph[The rules are loose, on purpose. They are a starting point, not a test. Any rule can be bent or broken, by anyone, at any time, as long as the group is okay with it. Want to put a tile somewhere strange, or change how something works? Just ask the table. Turns aren't rigid either: play when you feel ready, or sit one out.]
     parbreak()
@@ -149,9 +157,21 @@
   label-b[Opt out, any time]
   p[Anyone can skip a card, a prompt, a turn or a question, or leave the table, without explaining why. No signal or tool is needed: they just say so. Say this at the start and mean it.]
   label-b[Lines and veils]
-  p[Before play, ask the group for *lines*, topics that will not appear at all, and *veils*, topics that can happen but stay off-page, mentioned without detail. Anyone can add one privately to you. Write them on a sticky note everyone can see.]
+  p[Before play, ask the group for *lines*, topics that will not appear at all, and *veils*, topics that can happen but stay off-page, mentioned without detail. Anyone can add one privately to you. Write them down where everyone can see them.]
   label-b[Check-ins]
-  p[Pause now and then to ask how people are doing (see During play).]
+  p[Pause now and then to ask how people are doing (see _During play_, page 8).]
+  v(1fr)
+  aside("gear", [Make the opening yours], {
+    [The introduction on page 5 follows a simple order, so you can change the words and keep what each part does:]
+    enum(spacing: 0.6em,
+      [*Welcome:* what the game is, and that nobody wins or loses.],
+      [*How it plays:* the map, exploring, picking cards, the journal, and how it ends. Keep it short; the first turn teaches the rest.],
+      [*Permission:* the rules are loose and anyone can change them. New players often need to hear this out loud.],
+      [*Privacy:* journals are private and sharing is optional.],
+      [*Safety:* opting out, and asking for lines and veils.],
+      [*Your role:* you are not playing, how long the session runs, and room for questions.],
+    )
+  })
 })
 
 #let fg-start = frame(num: 7, left-num: true, {
