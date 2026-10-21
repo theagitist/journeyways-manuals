@@ -157,18 +157,30 @@
     fr: [JOURNEYWAYS est un projet de recherche de maîtrise à l'Institut pour le genre, la race, la sexualité et la justice sociale de l'UBC (Institute for Gender, Race, Sexuality and Social Justice), Vancouver, Canada.])
   parbreak()
   t(en: [All the game's documents can be downloaded at journeyways.ca/components.],
-    es: [Todos los documentos del juego se pueden descargar en journeyways.ca/components.],
-    fr: [Tous les documents du jeu peuvent être téléchargés sur journeyways.ca/components.])
+    es: [Todos los documentos del juego se pueden descargar en journeyways.ca/es/components.],
+    fr: [Tous les documents du jeu peuvent être téléchargés sur journeyways.ca/fr/components.])
   parbreak()
   t(en: [Set in Nunito and Italianno, both under the SIL Open Font License.],
     es: [Compuesto en Nunito e Italianno, ambas con licencia SIL Open Font License.],
     fr: [Composé en Nunito et Italianno, toutes deux sous licence SIL Open Font License.])
-  v(0.25in)
+  // QR codes: the documents page and the licence, each in the reader's language.
+  v(0.12in)
+  let qr(file, caption) = box(width: 1.4in, {
+    image(asset(file), width: 0.85in)
+    v(-2pt)
+    text(size: 8pt, caption)
+  })
+  stack(dir: ltr, spacing: 0.3in,
+    qr(t(en: "qr-components.svg", es: "qr-components-es.svg", fr: "qr-components-fr.svg"),
+      t(en: [Game documents], es: [Documentos del juego], fr: [Documents du jeu])),
+    qr(t(en: "qr-licence-en.svg", es: "qr-licence-es.svg", fr: "qr-licence-fr.svg"),
+      t(en: [The licence], es: [La licencia], fr: [La licence])))
+  v(0.2in)
   line(length: 1.2in, stroke: 0.6pt + c-orange.lighten(30%))
   v(4pt)
   t(en: [© 2025-2026 Adri M. This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International licence (CC BY-NC 4.0). You may copy, share and adapt it for non-commercial purposes, as long as you give credit. To view a copy of the licence, visit creativecommons.org/licenses/by-nc/4.0.],
-    es: [© 2025-2026 Adri M. Esta obra está bajo la licencia Creative Commons Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0). Puedes copiarla, compartirla y adaptarla con fines no comerciales, siempre que des el crédito correspondiente. Para ver una copia de la licencia, visita creativecommons.org/licenses/by-nc/4.0.],
-    fr: [© 2025-2026 Adri M. Cette œuvre est mise à disposition selon les termes de la licence Creative Commons Attribution - Pas d'Utilisation Commerciale 4.0 International (CC BY-NC 4.0). Tu peux la copier, la partager et l'adapter à des fins non commerciales, à condition d'en citer la source. Pour consulter une copie de la licence, visite creativecommons.org/licenses/by-nc/4.0.])
+    es: [© 2025-2026 Adri M. Esta obra está bajo la licencia Creative Commons Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0). Puedes copiarla, compartirla y adaptarla con fines no comerciales, siempre que des el crédito correspondiente. Para ver una copia de la licencia, visita creativecommons.org/licenses/by-nc/4.0/deed.es.],
+    fr: [© 2025-2026 Adri M. Cette œuvre est mise à disposition selon les termes de la licence Creative Commons Attribution - Pas d'Utilisation Commerciale 4.0 International (CC BY-NC 4.0). Tu peux la copier, la partager et l'adapter à des fins non commerciales, à condition d'en citer la source. Pour consulter une copie de la licence, visite creativecommons.org/licenses/by-nc/4.0/deed.fr.])
 })
 #let leaf-cover = box(width: leaf-w, height: leaf-h, clip: true, fill: paper, {
   place(top + center, dy: leaf-h * 0.03, image(asset("logo-mark.png"), width: leaf-w * 0.68))
