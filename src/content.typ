@@ -95,6 +95,10 @@
 #let callout(body, accent: c-orange) = block(width: 100%, inset: (x: 13pt, y: 11pt),
   radius: 5pt, fill: accent.lighten(90%), stroke: (left: 3pt + accent), body)
 
+// Styled QR code (make-qr.py) on a white rounded tile that gives it a quiet zone.
+#let qr-tile(file, size: 0.8in) = box(fill: white, radius: 7pt, inset: 0.11in,
+  stroke: 0.6pt + c-orange.lighten(55%), image(asset(file), width: size))
+
 // Side note: warm paper card with an icon badge (assets/icons: bulb = tip,
 // gear = adapt it, download, mail) and a small label above the text.
 #let aside(icon, label, body) = block(width: 100%, above: 14pt, below: 10pt, breakable: false, {
@@ -164,17 +168,21 @@
     es: [Compuesto en Nunito e Italianno, ambas con licencia SIL Open Font License.],
     fr: [Composé en Nunito et Italianno, toutes deux sous licence SIL Open Font License.])
   // QR codes: the documents page and the licence, each in the reader's language.
-  v(0.12in)
-  let qr(file, caption) = box(width: 1.4in, {
-    image(asset(file), width: 0.85in)
-    v(-2pt)
-    text(size: 8pt, caption)
-  })
-  stack(dir: ltr, spacing: 0.3in,
+  v(0.18in)
+  let qr(file, label, url) = grid(columns: (auto, 1.3in), column-gutter: 10pt, align: horizon,
+    qr-tile(file, size: 0.7in),
+    {
+      text(weight: "bold", size: 7.5pt, tracking: 0.08em, fill: c-orange, upper(label))
+      linebreak()
+      text(size: 8pt, url)
+    })
+  stack(dir: ltr, spacing: 0.35in,
     qr(t(en: "qr-components.svg", es: "qr-components-es.svg", fr: "qr-components-fr.svg"),
-      t(en: [Game documents], es: [Documentos del juego], fr: [Documents du jeu])),
+      t(en: [Game documents], es: [Documentos del juego], fr: [Documents du jeu]),
+      t(en: [journeyways.ca/\ components], es: [journeyways.ca/\ es/components], fr: [journeyways.ca/\ fr/components])),
     qr(t(en: "qr-licence-en.svg", es: "qr-licence-es.svg", fr: "qr-licence-fr.svg"),
-      t(en: [The licence], es: [La licencia], fr: [La licence])))
+      t(en: [The licence], es: [La licencia], fr: [La licence]),
+      [CC BY-NC 4.0]))
   v(0.2in)
   line(length: 1.2in, stroke: 0.6pt + c-orange.lighten(30%))
   v(4pt)

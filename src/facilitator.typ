@@ -95,7 +95,7 @@
       [Water and simple snacks. They help the slow pace.],
     ),
     aside("download", [Get the components], {
-      align(center, image(asset("qr-components.svg"), width: 0.85in))
+      align(center, qr-tile("qr-components.svg", size: 0.75in))
       align(center)[All the game components can be found and downloaded at *journeyways.ca/components*]
     }),
   )
