@@ -137,8 +137,7 @@
 // Cover: the spiral labyrinth mark (original_assets/brand/spiral) on warm paper,
 // with the Italianno wordmark and the localized tagline set as live text.
 #let leaf-blank = box(width: leaf-w, height: leaf-h, fill: paper)
-// Inside front cover as a colophon: title, edition, author, licence. English only
-// for now (the guide is English-only); localize with t() if the rules adopt it.
+// Inside front cover as a colophon: title, edition, author, licence.
 #let leaf-colophon(name, edition) = frame(fill: paper, {
   set text(size: 9.5pt, fill: c-mut)
   set par(leading: 0.65em, spacing: 1.1em)
@@ -147,19 +146,29 @@
   linebreak()
   text(weight: "bold", size: 12pt, fill: c-ink, name)
   linebreak()
-  [Edition #edition]
+  t(en: [Edition], es: [Edición], fr: [Édition]) + [ ] + edition
   v(0.25in)
-  [*Game design and text:* Adri M.]
+  t(en: [*Game design and text:* Adri M.],
+    es: [*Diseño del juego y textos:* Adri M.],
+    fr: [*Conception du jeu et textes :* Adri M.])
   parbreak()
-  [JOURNEYWAYS is a master's research project at the UBC Institute for Gender, Race, Sexuality and Social Justice, Vancouver, Canada.]
+  t(en: [JOURNEYWAYS is a master's research project at the UBC Institute for Gender, Race, Sexuality and Social Justice, Vancouver, Canada.],
+    es: [JOURNEYWAYS es un proyecto de investigación de maestría en el Instituto de Género, Raza, Sexualidad y Justicia Social de UBC (Institute for Gender, Race, Sexuality and Social Justice), Vancouver, Canadá.],
+    fr: [JOURNEYWAYS est un projet de recherche de maîtrise à l'Institut pour le genre, la race, la sexualité et la justice sociale de l'UBC (Institute for Gender, Race, Sexuality and Social Justice), Vancouver, Canada.])
   parbreak()
-  [The Game Rules, Player Booklet, Quick Reference and Card Companion can be downloaded at journeyways.ca/components.]
+  t(en: [All the game's documents can be downloaded at journeyways.ca/components.],
+    es: [Todos los documentos del juego se pueden descargar en journeyways.ca/components.],
+    fr: [Tous les documents du jeu peuvent être téléchargés sur journeyways.ca/components.])
   parbreak()
-  [Set in Nunito and Italianno, both under the SIL Open Font License.]
+  t(en: [Set in Nunito and Italianno, both under the SIL Open Font License.],
+    es: [Compuesto en Nunito e Italianno, ambas con licencia SIL Open Font License.],
+    fr: [Composé en Nunito et Italianno, toutes deux sous licence SIL Open Font License.])
   v(0.25in)
   line(length: 1.2in, stroke: 0.6pt + c-orange.lighten(30%))
   v(4pt)
-  [© 2025-2026 Adri M. This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International licence (CC BY-NC 4.0). You may copy, share and adapt it for non-commercial purposes, as long as you give credit. To view a copy of the licence, visit creativecommons.org/licenses/by-nc/4.0.]
+  t(en: [© 2025-2026 Adri M. This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International licence (CC BY-NC 4.0). You may copy, share and adapt it for non-commercial purposes, as long as you give credit. To view a copy of the licence, visit creativecommons.org/licenses/by-nc/4.0.],
+    es: [© 2025-2026 Adri M. Esta obra está bajo la licencia Creative Commons Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0). Puedes copiarla, compartirla y adaptarla con fines no comerciales, siempre que des el crédito correspondiente. Para ver una copia de la licencia, visita creativecommons.org/licenses/by-nc/4.0.],
+    fr: [© 2025-2026 Adri M. Cette œuvre est mise à disposition selon les termes de la licence Creative Commons Attribution - Pas d'Utilisation Commerciale 4.0 International (CC BY-NC 4.0). Tu peux la copier, la partager et l'adapter à des fins non commerciales, à condition d'en citer la source. Pour consulter une copie de la licence, visite creativecommons.org/licenses/by-nc/4.0.])
 })
 #let leaf-cover = box(width: leaf-w, height: leaf-h, clip: true, fill: paper, {
   place(top + center, dy: leaf-h * 0.03, image(asset("logo-mark.png"), width: leaf-w * 0.68))
@@ -589,7 +598,7 @@
 // front cover puts odd folios on left-hand pages, matching `left-num`.
 #let manual-leaves = (
   leaf-cover,
-  leaf-blank,
+  leaf-colophon(t(en: [Game Rules], es: [Reglas del juego], fr: [Règles du jeu]), [1.0, 2026]),
   leaf-title,
   leaf-toc,
   leaf-setup,

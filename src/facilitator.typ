@@ -255,9 +255,9 @@
 })
 
 #let fg-leaves = (
-  fg-cover, leaf-colophon([Facilitator's Guide], "1.0, 2026"), fg-intro, fg-toc, fg-role, fg-before, fg-pieces, fg-opening,
+  fg-cover, leaf-colophon([Facilitator's Guide], [1.0, 2026]), fg-intro, fg-toc, fg-role, fg-before, fg-pieces, fg-opening,
   fg-safety, fg-start, fg-play, fg-ending, fg-extend, fg-research,
-  frame(num: 12, left-num: false, sec-notes),
+  frame(num: 12, left-num: false, fill: paper, sec-notes),
   leaf-web,
 )
 
