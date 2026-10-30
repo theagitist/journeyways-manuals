@@ -12,7 +12,8 @@ a `_en` / `_es` / `_fr` suffix. See "Translating / editing text" below.
 - **`manual_LANG.pdf`** - a 16-page **8x10 portrait** manual, one topic per page
   with generous spacing, sized for The Game Crafter's Jumbo Booklet
   (saddle-stitched, page count a multiple of 4; vault ADR-032). Blank warm-paper
-  inside covers pad it to 16 pages. It was square 8.5x8.5 until 2026-10-20.
+  inside covers pad it to 16 pages. The inside front cover is a colophon
+  (`leaf-colophon` in `src/content.typ`): credits, licence and two QR codes. It was square 8.5x8.5 until 2026-10-20.
 
 **Facilitator's Guide:**
 - **`facilitator_en.pdf`** (`src/facilitator.typ`) - how to host a session: the
@@ -77,6 +78,9 @@ assets/cards/         GENERATED: manifest + art exported from the play repo
 src/tiles.typ         map tile faces: one per design (single) or 3x3 cut sheets (sheet)
 src/tile-backs.typ    the shared tile back: one for every tile (single) or 3x3 sheet
 assets/tiles/         GENERATED: manifest + art exported from the play repo
+src/boxes.typ         box art on The Game Crafter die-lines (--input part=lid|base|deck-<slug>), DRAFT
+build-tgc-docs.sh     rules, guide and Quick Reference as per-page PNGs for The Game Crafter (tgc-png/docs/)
+make-qr.py            regenerate the plain-black QR SVGs (assets/qr-*.svg) used on the colophon pages; needs qrencode
 deploy-web.sh         copy stable PDFs (all languages) into www/download
 build.sh              builds all nine PDFs (3 documents x 3 languages)
 build-cards.sh        builds the card print files (needs the export first)
