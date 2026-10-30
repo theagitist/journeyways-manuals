@@ -341,7 +341,7 @@
     subhead(t(en: [What you'll need], es: [Qué necesitas], fr: [Ce qu'il te faut]))
     blist(
       t(en: [Board tiles (47), plus a blank tile (1).], es: [Losetas de mapa (47), más una loseta en blanco (1).], fr: [Tuiles de plateau (47), plus une tuile vierge (1).]),
-      t(en: [Game cards (101).], es: [Cartas de juego (101).], fr: [Cartes de jeu (101).]),
+      t(en: [Game cards (112).], es: [Cartas de juego (112).], fr: [Cartes de jeu (112).]),
       t(en: [Playing-piece stands (optional; the piece is a booklet tear-out).],
         es: [Soportes para las fichas (opcionales; la ficha es un recortable del cuaderno).],
         fr: [Supports de pion (facultatifs ; le pion est un prédécoupé du cahier).]),
