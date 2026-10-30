@@ -13,7 +13,7 @@
 #
 # Flags (any order):
 #   --export     run the play-repo export first (needs the play repo + DB on this host)
-#   --png        also emit per-tile PNGs at 750x750 (300 DPI), named by tile number,
+#   --png        also emit per-tile PNGs at 825x825 (300 DPI), named by tile number,
 #                for The Game Crafter's uploader (it takes one image per tile, not a PDF)
 #   --all-langs  build es/fr too (default is English only)
 #
@@ -22,7 +22,7 @@
 #   tiles-sheet_LANG.pdf   3x3 portrait Letter, for DIY cutting
 #   tiles-back.pdf         the shared face-down back, trim + 1/8in bleed (one for all tiles)
 #   tiles-back-sheet.pdf   3x3 backs on US Letter, for DIY
-#   tgc-png-tiles/LANG/<num>.png  per-tile faces at 750x750 (with --png)
+#   tgc-png-tiles/LANG/<num>.png  per-tile faces at 825x825 (with --png)
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -68,7 +68,7 @@ typst compile --font-path fonts --root . --input mode=sheet  src/tile-backs.typ 
 echo "Tile backs: tiles-back.pdf (POD, one back for all tiles) + tiles-back-sheet.pdf (DIY 3x3)"
 
 if [[ "$DO_PNG" == 1 ]]; then
-  echo "Rendering per-tile PNGs (750x750, 300 DPI) for The Game Crafter..."
+  echo "Rendering per-tile PNGs (825x825, 300 DPI) for The Game Crafter..."
   rm -rf tgc-png-tiles && mkdir -p tgc-png-tiles
   tmp="$(mktemp -d)"
   for L in "${LANGS[@]}"; do
@@ -81,10 +81,11 @@ if [[ "$DO_PNG" == 1 ]]; then
       const m=require(path.resolve("assets/tiles/tiles.json"));
       const files=fs.readdirSync(tmp).filter(f=>f.startsWith(lang+"_")).sort();
       if(files.length!==m.tiles.length) throw new Error(`page/tile mismatch: ${files.length} vs ${m.tiles.length}`);
-      m.tiles.forEach((tl,i)=>fs.renameSync(path.join(tmp,files[i]),path.join(dest,tl.tile_number+".png")));
+      m.tiles.forEach((tl,i)=>fs.copyFileSync(path.join(tmp,files[i]),path.join(dest,tl.tile_number+".png")));
     ' "$tmp" "$L" "tgc-png-tiles/$L"
   done
   rm -rf "$tmp"
-  echo "Per-tile PNGs:"
+  typst compile --format png --ppi 300 --font-path fonts --root . --input mode=single src/tile-backs.typ tgc-png-tiles/back.png
+  echo "Per-tile PNGs (+ tgc-png-tiles/back.png, the shared back):"
   ls tgc-png-tiles/en | head && echo "  ... ($(ls tgc-png-tiles/en | wc -l) tiles/lang)"
 fi

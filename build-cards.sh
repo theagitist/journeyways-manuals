@@ -80,7 +80,7 @@ if [[ "$DO_PNG" == 1 ]]; then
       const m=require(path.resolve("assets/cards/cards.json"));
       const files=fs.readdirSync(tmp).filter(f=>f.startsWith(lang+"_")).sort();
       if(files.length!==m.cards.length) throw new Error(`page/card mismatch: ${files.length} vs ${m.cards.length}`);
-      m.cards.forEach((c,i)=>fs.renameSync(path.join(tmp,files[i]),path.join(dest,c.number+".png")));
+      m.cards.forEach((c,i)=>fs.copyFileSync(path.join(tmp,files[i]),path.join(dest,c.number+".png")));
     ' "$tmp" "$L" "tgc-png/$L"
   done
   # Backs: one PNG per card (same order as the faces), named by card number. Each
@@ -92,7 +92,7 @@ if [[ "$DO_PNG" == 1 ]]; then
     const m=require(path.resolve("assets/cards/cards.json"));
     const files=fs.readdirSync(tmp).filter(f=>f.startsWith("back_")).sort();
     if(files.length!==m.cards.length) throw new Error(`back page/card mismatch: ${files.length} vs ${m.cards.length}`);
-    m.cards.forEach((c,i)=>fs.renameSync(path.join(tmp,files[i]),path.join("tgc-png/backs",c.number+".png")));
+    m.cards.forEach((c,i)=>fs.copyFileSync(path.join(tmp,files[i]),path.join("tgc-png/backs",c.number+".png")));
   ' "$tmp"
   rm -rf "$tmp"
   echo "Per-card PNGs:"
